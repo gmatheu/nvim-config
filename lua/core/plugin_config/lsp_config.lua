@@ -1,5 +1,5 @@
 require("mason-lspconfig").setup({
-  ensure_installed = { "sumneko_lua", "solargraph" }
+  ensure_installed = { "sumneko_lua", "solargraph", "eslint", "tsserver" }
 })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())

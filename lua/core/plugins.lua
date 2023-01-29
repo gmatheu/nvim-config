@@ -14,7 +14,6 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'ellisonleao/gruvbox.nvim'
-  use 'dracula/vim'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
@@ -32,7 +31,7 @@ return require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip'
   use "rafamadriz/friendly-snippets"
 
-  use "github/copilot.vim"
+  --use "github/copilot.vim"
 
   use {
     "williamboman/mason.nvim",
@@ -46,6 +45,10 @@ return require('packer').startup(function(use)
 	  tag = '0.1.0',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+
+  use 'ThePrimeagen/harpoon'
+  use('mbbill/undotree')
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
