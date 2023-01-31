@@ -4,3 +4,5 @@ spell
 ftplugin
 coc-settings.json
 .luarc.json
+.undo
+.backup
