@@ -44,6 +44,18 @@ local plugins = {
 
   -- remove plugin
   -- ["hrsh7th/cmp-path"] = false,
+  --
+
+  ["sitiom/nvim-numbertoggle"] = {},
+  ["mbbill/undotree"] = {},
+  ["tpope/vim-fugitive"] = {},
+  ["theprimeagen/harpoon"] = {},
+  ["kylechui/nvim-surround"] = {
+    config = function()
+      require("nvim-surround").setup {}
+    end,
+  },
+  ["nvim-treesitter/nvim-treesitter-textobjects"] = {},
 }
 
 return plugins

@@ -20,6 +20,13 @@ M.mason = {
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
+    "json-lsp",
+
+    "dockerfile-language-server",
+
+    -- shell
+    -- "shfmt",
+    -- "shellcheck",
   },
 }
 
