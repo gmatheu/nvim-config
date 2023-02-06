@@ -45,6 +45,39 @@ local plugins = {
   -- remove plugin
   -- ["hrsh7th/cmp-path"] = false,
   --
+  ["nvim-telescope/telescope.nvim"] = {
+    override_options = function()
+      return {
+        defaults = {
+          layout_config = {
+            horizontal = {
+              prompt_position = "bottom",
+              preview_width = 0.55,
+              results_width = 0.8,
+            },
+            vertical = {
+              mirror = false,
+            },
+            width = 0.87,
+            height = 0.80,
+            preview_cutoff = 120,
+          },
+        },
+      }
+    end,
+  },
+
+  ["folke/which-key.nvim"] = {
+    disable = true,
+    module = "which-key",
+    keys = { "<leader>", '"', "'", "`" },
+    config = function()
+      require "plugins.configs.whichkey"
+    end,
+    setup = function()
+      require("core.utils").load_mappings "whichkey"
+    end,
+  },
 
   ["sitiom/nvim-numbertoggle"] = {},
   ["mbbill/undotree"] = {},
