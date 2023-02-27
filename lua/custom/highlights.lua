@@ -9,6 +9,12 @@ M.override = {
   CursorLine = {
     bg = "black2",
   },
+  LineNr = {
+    fg = "yellow",
+  },
+  -- CursorLineNr = {
+  --   fg = "green",
+  -- },
   Comment = {
     italic = true,
   },

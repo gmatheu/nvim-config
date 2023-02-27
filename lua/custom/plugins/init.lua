@@ -68,7 +68,7 @@ local plugins = {
   },
 
   ["folke/which-key.nvim"] = {
-    disable = true,
+    -- disable = true,
     module = "which-key",
     keys = { "<leader>", '"', "'", "`" },
     config = function()
@@ -89,6 +89,34 @@ local plugins = {
     end,
   },
   ["nvim-treesitter/nvim-treesitter-textobjects"] = {},
+
+  ["nvim-neotest/neotest-python"] = {},
+  ["nvim-neotest/neotest-plenary"] = {},
+  ["nvim-neotest/neotest-vim-test"] = {},
+  ["nvim-neotest/neotest"] = {
+    config = function()
+      require("neotest").setup {
+        adapters = {
+          require "neotest-python" {
+            dap = { justMyCode = false },
+          },
+          require "neotest-plenary",
+          require "neotest-vim-test" {
+            ignore_file_types = { "python", "vim", "lua" },
+          },
+        },
+      }
+    end,
+  },
+  ["antoinemadec/FixCursorHold.nvim"] = {},
+  ["tzachar/local-highlight.nvim"] = {
+      setup = function()
+        require('local-highlight').setup({
+            file_types = {'python', 'cpp', 'tsx', 'lua'},
+            hlgroup = 'TSDefinitionUsage',
+        })
+      end
+  }
 }
 
 return plugins
