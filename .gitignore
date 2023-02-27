@@ -3,6 +3,4 @@ spell
 ftplugin
 coc-settings.json
 .luarc.json
-.undo
-.backup
-cheatsheet.txt
+lazy-lock.json
