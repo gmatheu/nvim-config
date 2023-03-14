@@ -81,7 +81,7 @@ local default_plugins = {
       return require "plugins.configs.treesitter"
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "syntax")
+      pcall(dofile, vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
@@ -99,7 +99,7 @@ local default_plugins = {
           if vim.v.shell_error == 0 then
             vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
             vim.schedule(function()
-              require("lazy").load { plugins = "gitsigns.nvim" }
+              require("lazy").load { plugins = { "gitsigns.nvim" } }
             end)
           end
         end,
@@ -235,7 +235,6 @@ local default_plugins = {
   -- Only load whichkey after all the gui
   {
     "folke/which-key.nvim",
-    enabled = false,
     keys = { "<leader>", '"', "'", "`" },
     init = require("core.utils").load_mappings "whichkey",
     opts = function()

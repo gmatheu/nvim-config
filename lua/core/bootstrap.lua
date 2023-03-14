@@ -16,12 +16,11 @@ M.lazy = function(install_path)
 
   -- install plugins + compile their configs
   require "plugins"
-  require("lazy").load { plugins = { "nvim-treesitter" } }
 
-  -- install binaries from mason.nvim & tsparsers on LazySync
-  vim.schedule(function()
+  vim.api.nvim_buf_delete(0, { force = true }) -- close lazy window
+
+  vim.defer_fn(function()
     vim.cmd "silent! MasonInstallAll"
-    -- print success message
   end, 0)
 end
 
@@ -31,7 +30,6 @@ M.gen_chadrc_template = function()
     vim.cmd "redraw|echo ''"
 
     if input == "y" then
-      -- clone example_config repo
       print "cloning chadrc starter template repo...."
 
       vim.fn.system {
@@ -39,17 +37,31 @@ M.gen_chadrc_template = function()
         "clone",
         "--depth",
         "1",
-        "-b",
-        "v2.0",
         "https://github.com/NvChad/example_config",
         vim.fn.stdpath "config" .. "/lua/custom",
       }
+      print "dont forget to read docs from nvchad.com!"
       vim.cmd "redraw|echo ''"
 
       -- delete .git from that repo
       vim.loop.fs_rmdir(vim.fn.stdpath "config" .. "/lua/custom/.git")
       vim.notify "successfully installed chadrc template!"
       vim.cmd "redraw|echo ''"
+    else
+      local custom_dir = vim.fn.stdpath "config" .. "/lua/custom/"
+      vim.fn.mkdir(custom_dir, "p")
+
+      local str = [[
+              local M = {}
+                M.ui = {
+                  theme = "onedark",
+               }
+              return M
+           ]]
+
+      local file = io.open(custom_dir .. "chadrc.lua", "w")
+      file:write(str)
+      file:close()
     end
   end
 end
