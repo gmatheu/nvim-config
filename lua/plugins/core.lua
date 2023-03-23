@@ -3,7 +3,11 @@ return {
   { "AstroNvim/astrotheme", opts = { plugins = { ["dashboard-nvim"] = true } } },
   { "famiu/bufdelete.nvim", cmd = { "Bdelete", "Bwipeout" } },
   { "max397574/better-escape.nvim", event = "InsertCharPre", opts = { timeout = 300 } },
-  { "NMAC427/guess-indent.nvim", event = "User AstroFile", config = require "plugins.configs.guess-indent" },
+  {
+    "NMAC427/guess-indent.nvim",
+    event = "User AstroFile",
+    config = require "plugins.configs.guess-indent",
+  },
   { "Shatur/neovim-session-manager", event = "BufWritePost", cmd = "SessionManager" },
   { "s1n7ax/nvim-window-picker", opts = { use_winbar = "smart" } },
   {

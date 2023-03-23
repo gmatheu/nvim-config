@@ -1,30 +1,12 @@
--- Mapping data with "desc" stored directly by vim.keymap.set().
---
--- Please use this mappings table to set keyboard mapping since this is the
--- lower level configuration and more robust one. (which-key will
--- automatically pick-up stored data by this setting.)
-return {
-  -- first key is the mode
-  n = {
-    -- second key is the lefthand side of the map
-    -- mappings seen under group name "Buffer"
-    ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
-    ["<leader>bD"] = {
-      function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
-      end,
-      desc = "Pick to close",
-    },
-    -- tables with the `name` key will be registered with which-key if it's installed
-    -- this is useful for naming menus
-    ["<leader>b"] = { name = "Buffers" },
-    -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
-  },
-  t = {
-    -- setting a mapping to false will disable it
-    -- ["<esc>"] = false,
-  },
+local utils = require "astronvim.utils"
+local is_available = utils.is_available
+local ui = require "astronvim.utils.ui"
+
+local maps = {
+  i = {},
+  n = {},
+  v = {},
+  t = {},
 }
 
 local sections = {
@@ -35,25 +17,81 @@ local sections = {
   b = { name = "󰓩 Buffers" },
   d = { name = " Debugger" },
   g = { name = " Git" },
+  s = { name = "Search" },
   S = { name = "󱂬 Session" },
   t = { name = " Terminal" },
 }
 if not vim.g.icons_enabled then vim.tbl_map(function(opts) opts.name = opts.name:gsub("^.* ", "") end, sections) end
 
-
 -- User --
 -- go to  beginning and end
-maps.i["<C-b>"] = { "<ESC>^i", desc= "beginning of line" }
-maps.i["<C-e>"] = { "<End>", desc= "end of line" }
+maps.i["<C-b>"] = { "<ESC>^i", desc = "beginning of line" }
+maps.i["<C-e>"] = { "<End>", desc = "end of line" }
 -- navigate within insert mode
-maps.i["<C-h>"] = { "<Left>", desc= "move left" }
-maps.i["<C-l>"] = { "<Right>", desc= "move right" }
-maps.i["<C-j>"] = { "<Down>", desc= "move down" }
-maps.i["<C-k>"] = { "<Up>", desc= "move up" }
+maps.i["<C-h>"] = { "<Left>", desc = "move left" }
+maps.i["<C-l>"] = { "<Right>", desc = "move right" }
+maps.i["<C-j>"] = { "<Down>", desc = "move down" }
+maps.i["<C-k>"] = { "<Up>", desc = "move up" }
 
-maps.n["<F4>"] = { "<cmd> UndotreeToggle <CR>", desc= "Toggle Undo Tree" }
+maps.n["<F4>"] = { "<cmd> UndotreeToggle <CR>", desc = "Toggle Undo Tree" }
+
+maps.n["U"] = { "<C-r>", desc = "Redo" }
+maps.n["<leader>,"] = { "<cmd> :e#<CR>", desc = "Switch Last buffer" }
+maps.n[" "] = { "<leader>", desc = "alternative leader" }
+maps.n[";"] = { ":", desc = "enter command mode" }
+
+maps.n["<ESC>"] = { "<cmd> noh <CR>", desc = "no highlight" }
+maps.n["<ESC><ESC>"] = { "<cmd> nohlsearch<CR>", desc = "no highlight" }
+
+-- switch between windows
+maps.n["<C-h>"] = { "<C-w>h", desc = "window left" }
+maps.n["<C-l>"] = { "<C-w>l", desc = "window right" }
+maps.n["<C-j>"] = { "<C-w>j", desc = "window down" }
+maps.n["<C-k>"] = { "<C-w>k", desc = "window up" }
+
+-- save
+maps.n["<C-s>"] = { "<cmd> w <CR>", desc = "save file" }
+maps.n["<leader><CR>"] = { "<cmd> w <CR>", desc = "save file" }
+
+-- Copy all
+maps.n["<C-c>"] = { "<cmd> %y+ <CR>", desc = "copy whole file" }
+
+maps.n["gD"] = { function() vim.lsp.buf.declaration() end, desc = "lsp declaration" }
+maps.n["gd"] = { function() vim.lsp.buf.definition() end, desc = "lsp definition" }
+maps.n["K"] = { function() vim.lsp.buf.hover() end, desc = "lsp hover" }
+maps.n["gi"] = { function() vim.lsp.buf.implementation() end, desc = "lsp implementation" }
+maps.n["<leader>ls"] = { function() vim.lsp.buf.signature_help() end, desc = "lsp signature_help" }
+maps.n["<leader>D"] = { function() vim.lsp.buf.type_definition() end, desc = "lsp definition type" }
+-- maps.n["<leader>ra"] = { function() require("nvchad_ui.renamer").open() end, desc = "lsp rename" }
+
+maps.n["<leader>ca"] = { function() vim.lsp.buf.code_action() end, desc = "lsp code_action" }
+maps.n["gr"] = { function() vim.lsp.buf.references() end, desc = "lsp references" }
+maps.n["<leader>f"] = { function() vim.diagnostic.open_float() end, desc = "floating diagnostic" }
+maps.n["[d"] = { function() vim.diagnostic.goto_prev() end, desc = "goto prev" }
+maps.n["d]"] = { function() vim.diagnostic.goto_next() end, desc = "goto_next" }
+maps.n["<leader>q"] = { function() vim.diagnostic.setloclist() end, desc = "diagnostic setloclist" }
+maps.n["<leader>fm"] = { function() vim.lsp.buf.format { async = true } end, desc = "lsp formatting" }
+maps.n["<leader>wa"] = { function() vim.lsp.buf.add_workspace_folder() end, desc = "add workspace folder" }
+maps.n["<leader>wr"] = { function() vim.lsp.buf.remove_workspace_folder() end, desc = "remove workspace folder" }
+maps.n["<leader>wl"] = {
+  function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+  desc = "list workspace folders",
+}
+
+maps.i["<F2>"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Rename action" }
+maps.n["<leader>ra"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Rename action" }
+maps.v["<leader>ra"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Rename action" }
+
+maps.n["<leader>s"] = sections.s
+maps.n["<leader>ss"] = { '<cmd>lua require("spectre").open()<CR>', desc = "Open Spectre" }
+maps.n["<leader>sw"] =
+  { '<cmd>lua require("spectre").open_visual({select_word={ue})<CR>', desc = "Search current word" }
+maps.v["<leader>sw"] = { '<esc><cmd>lua require("spectre").open_visual()<CR>', desc = "Search current word" }
+maps.n["<leader>sp"] = {
+  '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+  desc = "Search on current file",
+}
 -- End User --
-
 
 -- Normal --
 -- Standard Operations
@@ -63,7 +101,7 @@ maps.v["j"] = maps.n.j
 maps.v["k"] = maps.n.k
 maps.n["<leader>w"] = { "<cmd>w<cr>", desc = "Save" }
 maps.n["<leader>q"] = { "<cmd>confirm q<cr>", desc = "Quit" }
-maps.n["<leader>n"] = { "<cmd>enew<cr>", desc = "New File" }
+-- maps.n["<leader>n"] = { "<cmd>enew<cr>", desc = "New File" }
 maps.n["gx"] = { utils.system_open, desc = "Open the file under cursor with system app" }
 maps.n["<C-s>"] = { "<cmd>w!<cr>", desc = "Force write" }
 maps.n["<C-q>"] = { "<cmd>q!<cr>", desc = "Force quit" }
@@ -85,11 +123,17 @@ maps.n["<leader>pv"] = { "<cmd>AstroVersion<cr>", desc = "AstroNvim Version" }
 maps.n["<leader>pl"] = { "<cmd>AstroChangelog<cr>", desc = "AstroNvim Changelog" }
 
 -- Manage Buffers
-maps.n["<leader>c"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" }
-maps.n["<leader>C"] = { function() require("astronvim.utils.buffer").close(0, true) end, desc = "Force close buffer" }
+maps.n["<leader>x"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" }
+-- maps.n["<leader>C"] = { function() require("astronvim.utils.buffer").close(0, true) end, desc = "Force close buffer" }
+maps.n["<Tab>"] =
+  { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
 maps.n["]b"] =
   { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
 maps.n["[b"] = {
+  function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+  desc = "Previous buffer",
+}
+maps.n["<S-Tab>"] = {
   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
   desc = "Previous buffer",
 }
@@ -163,7 +207,13 @@ if is_available "Comment.nvim" then
     function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
     desc = "Comment line",
   }
+  maps.n["<leader>cc"] = {
+    function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+    desc = "Comment line",
+  }
   maps.v["<leader>/"] =
+    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+  maps.v["<leader>cc"] =
     { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 end
 
@@ -273,22 +323,25 @@ if is_available "telescope.nvim" then
     desc = "Find AstroNvim config files",
   }
   maps.n["<leader>fb"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers" }
+  maps.n["<leader>n"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers" }
   maps.n["<leader>fc"] =
     { function() require("telescope.builtin").grep_string() end, desc = "Find for word under cursor" }
   maps.n["<leader>fC"] = { function() require("telescope.builtin").commands() end, desc = "Find commands" }
   maps.n["<leader>ff"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" }
+  maps.n["<leader>`"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" }
   maps.n["<leader>fF"] = {
     function() require("telescope.builtin").find_files { hidden = true, no_ignore = true } end,
     desc = "Find all files",
   }
   maps.n["<leader>fh"] = { function() require("telescope.builtin").help_tags() end, desc = "Find help" }
   maps.n["<leader>fk"] = { function() require("telescope.builtin").keymaps() end, desc = "Find keymaps" }
-  maps.n["<leader>fm"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
+  -- maps.n["<leader>fm"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
   if is_available "nvim-notify" then
     maps.n["<leader>fn"] =
       { function() require("telescope").extensions.notify.notify() end, desc = "Find notifications" }
   end
   maps.n["<leader>fo"] = { function() require("telescope.builtin").oldfiles() end, desc = "Find history" }
+  maps.n["<leader>m"] = { function() require("telescope.builtin").oldfiles() end, desc = "Find history" }
   maps.n["<leader>fr"] = { function() require("telescope.builtin").registers() end, desc = "Find registers" }
   maps.n["<leader>ft"] =
     { function() require("telescope.builtin").colorscheme { enable_preview = true } end, desc = "Find themes" }
@@ -383,8 +436,8 @@ if is_available "nvim-ufo" then
 end
 
 -- Stay in indent mode
-maps.v["<S-Tab>"] = { "<gv", desc = "unindent line" }
-maps.v["<Tab>"] = { ">gv", desc = "indent line" }
+-- maps.v["<S-Tab>"] = { "<gv", desc = "unindent line" }
+-- maps.v["<Tab>"] = { ">gv", desc = "indent line" }
 
 -- Improved Terminal Navigation
 maps.t["<C-h>"] = { "<cmd>wincmd h<cr>", desc = "Terminal left window navigation" }
