@@ -24,6 +24,7 @@ return {
     "rcarriga/nvim-notify",
     enabled = false,
   },
+  { "lukas-reineke/indent-blankline.nvim", enabled = false },
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
   --

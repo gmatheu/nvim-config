@@ -72,6 +72,11 @@ return {
     lazy = true,
     config = function(_, _) require("refactoring").setup {} end,
   },
+  {
+    "ThePrimeagen/harpoon",
+    event = "VeryLazy",
+    lazy = false,
+  },
 
   {
     "windwp/nvim-spectre",
