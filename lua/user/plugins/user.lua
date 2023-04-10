@@ -1,17 +1,19 @@
 return {
-  {
-    "navarasu/onedark.nvim",
-    config = function()
-      require("onedark").setup {
-        style = "warmer",
-      }
-      require("onedark").load()
-    end,
-  },
+  -- {
+  --   "navarasu/onedark.nvim",
+  --   config = function()
+  --     require("onedark").setup {
+  --       style = "warmer",
+  --     }
+  --     require("onedark").load()
+  --   end,
+  -- },
+  -- { "ellisonleao/gruvbox.nvim", lazy = false },
+  { "luisiacc/gruvbox-baby", lazy = false },
   { "mbbill/undotree", lazy = true, cmd = { "UndotreeToggle" } },
   {
     "kylechui/nvim-surround",
-    lazy = false,
+    event = "VeryLazy",
     config = function() require("nvim-surround").setup {} end,
   },
   { "tpope/vim-fugitive", cmd = { "Git" } },
