@@ -13,6 +13,7 @@ local sections = {
   f = { name = "󰍉 Find" },
   p = { name = "󰏖 Packages" },
   l = { name = " LSP" },
+  c = { name = " Code" },
   u = { name = " UI" },
   b = { name = "󰓩 Buffers" },
   d = { name = " Debugger" },
