@@ -57,11 +57,17 @@ maps.n["<leader><CR>"] = { "<cmd> w <CR>", desc = "save file" }
 -- Copy all
 maps.n["<C-c>"] = { "<cmd> %y+ <CR>", desc = "copy whole file" }
 
+maps.n["<leader>c"] = sections.c
+maps.n["<leader>cD"] = { function() vim.lsp.buf.declaration() end, desc = "lsp declaration" }
+maps.n["<leader>cd"] = { function() vim.lsp.buf.definition() end, desc = "lsp definition" }
 maps.n["gD"] = { function() vim.lsp.buf.declaration() end, desc = "lsp declaration" }
 maps.n["gd"] = { function() vim.lsp.buf.definition() end, desc = "lsp definition" }
 maps.n["K"] = { function() vim.lsp.buf.hover() end, desc = "lsp hover" }
+maps.n["<leader>cK"] = { function() vim.lsp.buf.hover() end, desc = "lsp hover" }
 maps.n["gi"] = { function() vim.lsp.buf.implementation() end, desc = "lsp implementation" }
+maps.n["<leader>ci"] = { function() vim.lsp.buf.implementation() end, desc = "lsp implementation" }
 maps.n["<leader>ls"] = { function() vim.lsp.buf.signature_help() end, desc = "lsp signature_help" }
+maps.n["<leader>cs"] = { function() vim.lsp.buf.signature_help() end, desc = "lsp signature_help" }
 maps.n["<leader>D"] = { function() vim.lsp.buf.type_definition() end, desc = "lsp definition type" }
 -- maps.n["<leader>ra"] = { function() require("nvchad_ui.renamer").open() end, desc = "lsp rename" }
 
@@ -86,12 +92,15 @@ maps.v["<leader>ra"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Ren
 maps.n["<leader>s"] = sections.s
 maps.n["<leader>ss"] = { '<cmd>lua require("spectre").open()<CR>', desc = "Open Spectre" }
 maps.n["<leader>sw"] =
-  { '<cmd>lua require("spectre").open_visual({select_word={ue})<CR>', desc = "Search current word" }
+{ '<cmd>lua require("spectre").open_visual({select_word={ue})<CR>', desc = "Search current word" }
 maps.v["<leader>sw"] = { '<esc><cmd>lua require("spectre").open_visual()<CR>', desc = "Search current word" }
 maps.n["<leader>sp"] = {
   '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
   desc = "Search on current file",
 }
+
+maps.n["<leader>tt"] = { '<cmd>TroubleToggle<CR>', desc = "Toggle Trouble" }
+maps.n["<leader>td"] = { '<cmd>TroubleToggle document_diagnotics<CR>', desc = "Toggle Trouble on document" }
 -- End User --
 
 -- Normal --
@@ -127,9 +136,9 @@ maps.n["<leader>pl"] = { "<cmd>AstroChangelog<cr>", desc = "AstroNvim Changelog"
 maps.n["<leader>x"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" }
 -- maps.n["<leader>C"] = { function() require("astronvim.utils.buffer").close(0, true) end, desc = "Force close buffer" }
 maps.n["<Tab>"] =
-  { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
+{ function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
 maps.n["]b"] =
-  { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
+{ function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
 maps.n["[b"] = {
   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
   desc = "Previous buffer",
@@ -149,7 +158,7 @@ maps.n["<b"] = {
 
 maps.n["<leader>b"] = sections.b
 maps.n["<leader>bc"] =
-  { function() require("astronvim.utils.buffer").close_all(true) end, desc = "Close all buffers except current" }
+{ function() require("astronvim.utils.buffer").close_all(true) end, desc = "Close all buffers except current" }
 maps.n["<leader>bC"] = { function() require("astronvim.utils.buffer").close_all() end, desc = "Close all buffers" }
 maps.n["<leader>bb"] = {
   function()
@@ -213,9 +222,9 @@ if is_available "Comment.nvim" then
     desc = "Comment line",
   }
   maps.v["<leader>/"] =
-    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
   maps.v["<leader>cc"] =
-    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 end
 
 -- GitSigns
@@ -233,9 +242,7 @@ if is_available "gitsigns.nvim" then
   maps.n["<leader>gD"] = { function() require("gitsigns").diffthis() end, desc = "View Git diff" }
 end
 if is_available "vim-fugitive" then
-  maps.n["<leader>gst"] = { function()
-    vim.cmd.Git()
-  end, desc = "Unstage Git hunk" }
+  maps.n["<leader>gst"] = { function() vim.cmd.Git() end, desc = "Unstage Git hunk" }
 end
 
 -- NeoTree
@@ -262,7 +269,7 @@ if is_available "neovim-session-manager" then
   maps.n["<leader>Sd"] = { "<cmd>SessionManager! delete_session<cr>", desc = "Delete session" }
   maps.n["<leader>Sf"] = { "<cmd>SessionManager! load_session<cr>", desc = "Search sessions" }
   maps.n["<leader>S."] =
-    { "<cmd>SessionManager! load_current_dir_session<cr>", desc = "Load current directory session" }
+  { "<cmd>SessionManager! load_current_dir_session<cr>", desc = "Load current directory session" }
 end
 
 -- Package Manager
@@ -311,11 +318,11 @@ if is_available "telescope.nvim" then
     function()
       local cwd = vim.fn.stdpath "config" .. "/.."
       local search_dirs = {}
-      for _, dir in ipairs(astronvim.supported_configs) do -- search all supported config locations
-        if dir == astronvim.install.home then dir = dir .. "/lua/user" end -- don't search the astronvim core files
+      for _, dir in ipairs(astronvim.supported_configs) do                      -- search all supported config locations
+        if dir == astronvim.install.home then dir = dir .. "/lua/user" end      -- don't search the astronvim core files
         if vim.fn.isdirectory(dir) == 1 then table.insert(search_dirs, dir) end -- add directory to search if exists
       end
-      if vim.tbl_isempty(search_dirs) then -- if no config folders found, show warning
+      if vim.tbl_isempty(search_dirs) then                                      -- if no config folders found, show warning
         utils.notify("No user configuration files found", "warn")
       else
         if #search_dirs == 1 then cwd = search_dirs[1] end -- if only one directory, focus cwd
@@ -331,7 +338,7 @@ if is_available "telescope.nvim" then
   maps.n["<leader>fb"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers" }
   maps.n["<leader>n"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers" }
   maps.n["<leader>fc"] =
-    { function() require("telescope.builtin").grep_string() end, desc = "Find for word under cursor" }
+  { function() require("telescope.builtin").grep_string() end, desc = "Find for word under cursor" }
   maps.n["<leader>fC"] = { function() require("telescope.builtin").commands() end, desc = "Find commands" }
   maps.n["<leader>ff"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" }
   maps.n["<leader>`"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" }
@@ -344,13 +351,13 @@ if is_available "telescope.nvim" then
   -- maps.n["<leader>fm"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
   if is_available "nvim-notify" then
     maps.n["<leader>fn"] =
-      { function() require("telescope").extensions.notify.notify() end, desc = "Find notifications" }
+    { function() require("telescope").extensions.notify.notify() end, desc = "Find notifications" }
   end
   maps.n["<leader>fo"] = { function() require("telescope.builtin").oldfiles() end, desc = "Find history" }
   maps.n["<leader>m"] = { function() require("telescope.builtin").oldfiles() end, desc = "Find history" }
   maps.n["<leader>fr"] = { function() require("telescope.builtin").registers() end, desc = "Find registers" }
   maps.n["<leader>ft"] =
-    { function() require("telescope.builtin").colorscheme { enable_preview = true } end, desc = "Find themes" }
+  { function() require("telescope.builtin").colorscheme { enable_preview = true } end, desc = "Find themes" }
   maps.n["<leader>fw"] = { function() require("telescope.builtin").live_grep() end, desc = "Find words" }
   maps.n["<leader>fW"] = {
     function()
@@ -359,6 +366,10 @@ if is_available "telescope.nvim" then
       }
     end,
     desc = "Find words in all files",
+  }
+  maps.n["<leader>fq"] = {
+    function() require("telescope.builtin").grep_string { search = vim.fn.expand "<cword>" } end,
+    desc = "Find from selected word",
   }
   maps.n["<leader>l"] = sections.l
   maps.n["<leader>lD"] = { function() require("telescope.builtin").diagnostics() end, desc = "Search diagnostics" }
@@ -408,7 +419,7 @@ if is_available "nvim-dap" then
   -- modified function keys found with `showkey -a` in the terminal to get key code
   -- run `nvim -V3log +quit` and search through the "Terminal info" in the `log` file for the correct keyname
   maps.n["<F5>"] = { function() require("dap").continue() end, desc = "Debugger: Start" }
-  maps.n["<F17>"] = { function() require("dap").terminate() end, desc = "Debugger: Stop" } -- Shift+F5
+  maps.n["<F17>"] = { function() require("dap").terminate() end, desc = "Debugger: Stop" }        -- Shift+F5
   maps.n["<F29>"] = { function() require("dap").restart_frame() end, desc = "Debugger: Restart" } -- Control+F5
   maps.n["<F6>"] = { function() require("dap").pause() end, desc = "Debugger: Pause" }
   maps.n["<F9>"] = { function() require("dap").toggle_breakpoint() end, desc = "Debugger: Toggle Breakpoint" }
@@ -455,7 +466,9 @@ maps.n["<leader>u"] = sections.u
 -- Custom menu for modification of the user experience
 if is_available "nvim-autopairs" then maps.n["<leader>ua"] = { ui.toggle_autopairs, desc = "Toggle autopairs" } end
 maps.n["<leader>ub"] = { ui.toggle_background, desc = "Toggle background" }
-if is_available "nvim-cmp" then maps.n["<leader>uc"] = { ui.toggle_cmp, desc = "Toggle autocompletion" } end
+if is_available "nvim-cmp" then
+  maps.n["<leader>uc"] = { ui.toggle_cmp, desc = "Toggle autocompletion" }
+end
 if is_available "nvim-colorizer.lua" then
   maps.n["<leader>uC"] = { "<cmd>ColorizerToggle<cr>", desc = "Toggle color highlight" }
 end

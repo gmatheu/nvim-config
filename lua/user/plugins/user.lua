@@ -10,13 +10,13 @@ return {
   -- },
   -- { "ellisonleao/gruvbox.nvim", lazy = false },
   { "luisiacc/gruvbox-baby", lazy = false },
-  { "mbbill/undotree", lazy = true, cmd = { "UndotreeToggle" } },
+  { "mbbill/undotree",       lazy = true, cmd = { "UndotreeToggle" } },
   {
     "kylechui/nvim-surround",
     event = "VeryLazy",
     config = function() require("nvim-surround").setup {} end,
   },
-  { "tpope/vim-fugitive", cmd = { "Git" } },
+  { "tpope/vim-fugitive",    cmd = { "Git" } },
 
   {
     "filipdutescu/renamer.nvim",
@@ -151,6 +151,80 @@ return {
           annotate = false,
         },
         mappings = {},
+      }
+    end,
+  },
+
+  { "echasnovski/mini.nvim", version = false },
+  { "folke/trouble.nvim",    cmd = "TroubleToggle" },
+
+  {
+    "ggandor/leap.nvim",
+    keys = {
+      { "s",  mode = { "n", "x", "o" }, desc = "Leap forward to" },
+      { "S",  mode = { "n", "x", "o" }, desc = "Leap backward to" },
+      { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
+    },
+    config = function(_, opts)
+      local leap = require "leap"
+      for k, v in pairs(opts) do
+        leap.opts[k] = v
+      end
+      leap.add_default_mappings(true)
+      vim.keymap.del({ "x", "o" }, "x")
+      vim.keymap.del({ "x", "o" }, "X")
+    end,
+  },
+  { "tpope/vim-repeat", event = "VeryLazy" },
+
+  {
+    "RRethy/vim-illuminate",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = { delay = 200 },
+    config = function(_, opts)
+      require("illuminate").configure(opts)
+
+      local function map(key, dir, buffer)
+        vim.keymap.set(
+          "n",
+          key,
+          function() require("illuminate")["goto_" .. dir .. "_reference"](false) end,
+          { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer }
+        )
+      end
+
+      map("]]", "next")
+      map("[[", "prev")
+
+      -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          local buffer = vim.api.nvim_get_current_buf()
+          map("]]", "next", buffer)
+          map("[[", "prev", buffer)
+        end,
+      })
+    end,
+    keys = {
+      { "]]", desc = "Next Reference" },
+      { "[[", desc = "Prev Reference" },
+    },
+  },
+
+  {
+    "echasnovski/mini.bufremove",
+    keys = {
+      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
+      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end,  desc = "Delete Buffer (Force)" },
+    },
+  },
+
+  {
+    "Wansmer/treesj",
+    keys = { "<space>m", "<space>j", "<space>s" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("treesj").setup { --[[ your config ]]
       }
     end,
   },

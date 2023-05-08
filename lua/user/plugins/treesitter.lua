@@ -1,7 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
-    ensure_installed = { "help", "lua", "python", "javascript", "typescript", "java", "sql", "tsx", "json" },
+    ensure_installed = { "lua", "python", "javascript", "typescript", "java", "sql", "tsx", "json" },
     auto_install = true,
     highlight = {
       -- `false` will disable the whole extension
