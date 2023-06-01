@@ -109,7 +109,8 @@ maps.n["j"] = { "v:count ? 'j' : 'gj'", expr = true, desc = "Move cursor down" }
 maps.n["k"] = { "v:count ? 'k' : 'gk'", expr = true, desc = "Move cursor up" }
 maps.v["j"] = maps.n.j
 maps.v["k"] = maps.n.k
-maps.n["<leader>w"] = { "<cmd>w<cr>", desc = "Save" }
+-- maps.n["<leader>w"] = { "<cmd>w<cr>", desc = "Save" }
+maps.n["<leader>w"] = false
 maps.n["<leader>q"] = { "<cmd>confirm q<cr>", desc = "Quit" }
 -- maps.n["<leader>n"] = { "<cmd>enew<cr>", desc = "New File" }
 maps.n["gx"] = { utils.system_open, desc = "Open the file under cursor with system app" }
@@ -191,6 +192,12 @@ maps.n["<leader>b|"] = {
     end)
   end,
   desc = "Vertical split buffer from tabline",
+}
+maps.n["<leader>wp"] = {
+  function()
+    local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
+    vim.api.nvim_set_current_win(picked_window_id)
+  end
 }
 
 -- Navigate tabs
