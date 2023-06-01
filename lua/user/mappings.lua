@@ -90,14 +90,14 @@ maps.n["<leader>ra"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Ren
 maps.v["<leader>ra"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Rename action" }
 
 maps.n["<leader>s"] = sections.s
-maps.n["<leader>ss"] = { '<cmd>lua require("spectre").open()<CR>', desc = "Open Spectre" }
-maps.n["<leader>sw"] =
-{ '<cmd>lua require("spectre").open_visual({select_word={ue})<CR>', desc = "Search current word" }
-maps.v["<leader>sw"] = { '<esc><cmd>lua require("spectre").open_visual()<CR>', desc = "Search current word" }
-maps.n["<leader>sp"] = {
-  '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
-  desc = "Search on current file",
-}
+maps.n["<leader>ss"] = { '<cmd>MurenToggle<CR>', desc = "Open multiple replace" }
+-- maps.n["<leader>sw"] =
+-- { '<cmd>lua require("spectre").open_visual({select_word={ue})<CR>', desc = "Search current word" }
+-- maps.v["<leader>sw"] = { '<esc><cmd>lua require("spectre").open_visual()<CR>', desc = "Search current word" }
+-- maps.n["<leader>sp"] = {
+--   '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+--   desc = "Search on current file",
+-- }
 
 maps.n["<leader>tt"] = { '<cmd>TroubleToggle<CR>', desc = "Toggle Trouble" }
 maps.n["<leader>td"] = { '<cmd>TroubleToggle document_diagnotics<CR>', desc = "Toggle Trouble on document" }
