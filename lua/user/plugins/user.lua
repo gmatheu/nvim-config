@@ -303,14 +303,20 @@ return {
     "LeonGr/neovim-expand-selection",
     cmd = { "ExpSel" },
     keys = {
-      { "<A-j>", function () require("expand-selection").expsel() end, desc = "Expand selection" }
+      { "<A-j>", function() require("expand-selection").expsel() end, desc = "Expand selection" },
     },
   },
 
   {
     "mfussenegger/nvim-treehopper",
     keys = {
-      { "<A-j>", function () require("tsht").nodes() end, desc = "Expand hop selection" }
-    }
-  }
+      { "<A-j>", function() require("tsht").nodes() end, desc = "Expand hop selection" },
+    },
+  },
+
+  {
+    "stevearc/overseer.nvim",
+    cmd = { "OverseerToggle", "OverseerRun", "OverseerQuickAction" },
+    opts = {},
+  },
 }

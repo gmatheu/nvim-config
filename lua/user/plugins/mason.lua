@@ -13,7 +13,7 @@ return {
       --   - true: All servers set up via lspconfig are automatically installed.
       --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
       --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-      automatic_installation = false,
+      automatic_installation = true,
     },
   },
   -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
@@ -26,7 +26,7 @@ return {
       -- Will automatically install masons tools based on selected sources in `null-ls`.
       -- Can also be an exclusion list.
       -- Example: `automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }`
-      automatic_installation = false,
+      automatic_installation = true,
       -- Whether sources that are installed in mason should be automatically set up in null-ls.
       -- Removes the need to set up null-ls manually.
       -- Can either be:
@@ -60,7 +60,7 @@ return {
       -- 	- true: Dap is automatically configured.
       -- 	- {adapters: {ADAPTER: {}, }, configurations: {configuration: {}, }, filetypes: {filetype: {}, }}. Allows overriding default configuration.
       -- 	- {adapters: function(default), configurations: function(default), filetypes: function(default), }. Allows modifying the default configuration passed in via function.
-      automatic_setup = false,
+      automatic_setup = true,
     },
   },
 }
