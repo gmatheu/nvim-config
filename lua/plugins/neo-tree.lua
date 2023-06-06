@@ -7,14 +7,15 @@ return {
   opts = {
     auto_clean_after_session_restore = true,
     close_if_last_window = true,
+    sources = { "filesystem", "buffers", "git_status" },
     source_selector = {
       winbar = true,
       content_layout = "center",
       sources = {
-        { source = "filesystem", display_name = get_icon "FolderClosed" .. " File" },
-        { source = "buffers", display_name = get_icon "DefaultFile" .. " Bufs" },
-        { source = "git_status", display_name = get_icon "Git" .. " Git" },
-        { source = "diagnostics", display_name = get_icon "Diagnostic" .. " Diagnostic" },
+        { source = "filesystem", display_name = get_icon("FolderClosed", 1, true) .. "File" },
+        { source = "buffers", display_name = get_icon("DefaultFile", 1, true) .. "Bufs" },
+        { source = "git_status", display_name = get_icon("Git", 1, true) .. "Git" },
+        { source = "diagnostics", display_name = get_icon("Diagnostic", 1, true) .. "Diagnostic" },
       },
     },
     default_component_configs = {
@@ -23,6 +24,7 @@ return {
         folder_closed = get_icon "FolderClosed",
         folder_open = get_icon "FolderOpen",
         folder_empty = get_icon "FolderEmpty",
+        folder_empty_open = get_icon "FolderEmpty",
         default = get_icon "DefaultFile",
       },
       modified = { symbol = get_icon "FileModified" },
