@@ -319,4 +319,65 @@ return {
     cmd = { "OverseerToggle", "OverseerRun", "OverseerQuickAction" },
     opts = {},
   },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    keys = {
+      { "<space>fb", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>", desc = "Open file browser" },
+    },
+    config = function()
+      require("telescope").setup {
+        extensions = {
+          file_browser = {
+            hijack_netrw = true,
+          },
+        },
+      }
+      require("telescope").load_extension "file_browser"
+    end,
+  },
+  {
+    "mawkler/modicator.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.cursorline = true
+      vim.o.number = true
+      vim.o.termguicolors = true
+    end,
+    config = function() require("modicator").setup() end,
+  },
+
+  {
+    "folke/neodev.nvim",
+    opts = {},
+    config = function()
+      require("neodev").setup {
+        library = { plugins = { "neotest" }, types = true },
+      }
+    end,
+  },
+  {
+    "nvim-neotest/neotest",
+    dependencies = { "haydenmeade/neotest-jest" },
+    config = function()
+      require("neotest").setup {
+        adapters = {
+          require "neotest-jest" {
+            jestCommand = "npx jest --",
+            env = { CI = true },
+            cwd = function(_) return vim.fn.getcwd() end,
+          },
+        },
+      }
+    end,
+  },
+
+  -- To try
+  -- https://github.com/Theo-Steiner/theosteiner.de/issues/2#issuecomment-new
+  -- https://github.com/nvim-neotest/neotest
+  -- https://github.com/theHamsta/nvim-dap-virtual-text``
+  -- https://github.com/mg979/vim-visual-multi
+  -- https://github.com/gbprod/yanky.nvim--
+  --
+  --
+  --
 }

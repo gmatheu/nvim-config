@@ -41,7 +41,7 @@ return {
     "jay-babu/mason-nvim-dap.nvim",
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = {
-      ensure_installed = { "python" },
+      ensure_installed = { "python", "typescript", "javascript" },
       -- NOTE: this is left here for future porting in case needed
       -- Whether adapters that are set up (via dap) should be automatically installed if they're not already installed.
       -- This setting has no relation with the `ensure_installed` setting.
