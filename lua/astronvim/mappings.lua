@@ -1,3 +1,4 @@
+-- TODO: replace <leader> to <Leader> everywhere in AstroNvim v4 to match vimdoc
 local utils = require "astronvim.utils"
 local get_icon = utils.get_icon
 local is_available = utils.is_available
@@ -9,7 +10,7 @@ local sections = {
   f = { desc = get_icon("Search", 1, true) .. "Find" },
   p = { desc = get_icon("Package", 1, true) .. "Packages" },
   l = { desc = get_icon("ActiveLSP", 1, true) .. "LSP" },
-  u = { desc = get_icon("Window", 1, true) .. "UI" },
+  u = { desc = get_icon("Window", 1, true) .. "UI/UX" },
   b = { desc = get_icon("Tab", 1, true) .. "Buffers" },
   bs = { desc = get_icon("Sort", 1, true) .. "Sort Buffers" },
   d = { desc = get_icon("Debugger", 1, true) .. "Debugger" },
@@ -69,13 +70,13 @@ maps.n["<leader>bc"] =
 maps.n["<leader>bC"] = { function() require("astronvim.utils.buffer").close_all() end, desc = "Close all buffers" }
 maps.n["<leader>bb"] = {
   function()
-    require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) vim.api.nvim_win_set_buf(0, bufnr) end)
+    require("astronvim.utils.status.heirline").buffer_picker(function(bufnr) vim.api.nvim_win_set_buf(0, bufnr) end)
   end,
   desc = "Select buffer from tabline",
 }
 maps.n["<leader>bd"] = {
   function()
-    require("astronvim.utils.status").heirline.buffer_picker(
+    require("astronvim.utils.status.heirline").buffer_picker(
       function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
     )
   end,
@@ -83,6 +84,7 @@ maps.n["<leader>bd"] = {
 }
 maps.n["<leader>bl"] =
   { function() require("astronvim.utils.buffer").close_left() end, desc = "Close all buffers to the left" }
+maps.n["<leader>bp"] = { function() require("astronvim.utils.buffer").prev() end, desc = "Previous buffer" }
 maps.n["<leader>br"] =
   { function() require("astronvim.utils.buffer").close_right() end, desc = "Close all buffers to the right" }
 maps.n["<leader>bs"] = sections.bs
@@ -94,7 +96,7 @@ maps.n["<leader>bsi"] = { function() require("astronvim.utils.buffer").sort "buf
 maps.n["<leader>bsm"] = { function() require("astronvim.utils.buffer").sort "modified" end, desc = "By modification" }
 maps.n["<leader>b\\"] = {
   function()
-    require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+    require("astronvim.utils.status.heirline").buffer_picker(function(bufnr)
       vim.cmd.split()
       vim.api.nvim_win_set_buf(0, bufnr)
     end)
@@ -103,7 +105,7 @@ maps.n["<leader>b\\"] = {
 }
 maps.n["<leader>b|"] = {
   function()
-    require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+    require("astronvim.utils.status.heirline").buffer_picker(function(bufnr)
       vim.cmd.vsplit()
       vim.api.nvim_win_set_buf(0, bufnr)
     end)
@@ -336,7 +338,7 @@ if is_available "nvim-dap" then
   -- run `nvim -V3log +quit` and search through the "Terminal info" in the `log` file for the correct keyname
   maps.n["<F5>"] = { function() require("dap").continue() end, desc = "Debugger: Start" }
   maps.n["<F17>"] = { function() require("dap").terminate() end, desc = "Debugger: Stop" } -- Shift+F5
-  maps.n["<F21>"] = {
+  maps.n["<F21>"] = { -- Shift+F9
     function()
       vim.ui.input({ prompt = "Condition: " }, function(condition)
         if condition then require("dap").set_breakpoint(condition) end
@@ -419,7 +421,7 @@ maps.n["<leader>ui"] = { ui.set_indent, desc = "Change indent setting" }
 maps.n["<leader>ul"] = { ui.toggle_statusline, desc = "Toggle statusline" }
 maps.n["<leader>uL"] = { ui.toggle_codelens, desc = "Toggle CodeLens" }
 maps.n["<leader>un"] = { ui.change_number, desc = "Change line numbering" }
-maps.n["<leader>uN"] = { ui.toggle_ui_notifications, desc = "Toggle UI notifications" }
+maps.n["<leader>uN"] = { ui.toggle_ui_notifications, desc = "Toggle Notifications" }
 maps.n["<leader>up"] = { ui.toggle_paste, desc = "Toggle paste mode" }
 maps.n["<leader>us"] = { ui.toggle_spell, desc = "Toggle spellcheck" }
 maps.n["<leader>uS"] = { ui.toggle_conceal, desc = "Toggle conceal" }
