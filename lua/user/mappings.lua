@@ -202,12 +202,12 @@ maps.n["<leader>b|"] = {
   end,
   desc = "Vertical split buffer from tabline",
 }
-maps.n["<leader>wp"] = {
-  function()
-    local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
-    vim.api.nvim_set_current_win(picked_window_id)
-  end,
-}
+-- maps.n["<leader>wp"] = {
+--   function()
+--     local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
+--     vim.api.nvim_set_current_win(picked_window_id)
+--   end,
+-- }
 
 -- Navigate tabs
 maps.n["]t"] = { function() vim.cmd.tabnext() end, desc = "Next tab" }
