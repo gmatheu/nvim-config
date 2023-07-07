@@ -258,7 +258,8 @@ if is_available "gitsigns.nvim" then
   maps.n["<leader>gD"] = { function() require("gitsigns").diffthis() end, desc = "View Git diff" }
 end
 if is_available "vim-fugitive" then
-  maps.n["<leader>gst"] = { function() vim.cmd.Git() end, desc = "Unstage Git hunk" }
+  maps.n["<leader>gst"] = { function() vim.cmd.Git() end, desc = "Git vim-fugitive" }
+  maps.n["<leader>gg"] = { function() vim.cmd.Git() end, desc = "Git vim-fugitive" }
 end
 
 -- NeoTree
