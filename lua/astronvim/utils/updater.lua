@@ -37,6 +37,7 @@ function M.generate_snapshot(write)
     prev_snapshot[plugin[1]] = plugin
   end
   local plugins = assert(require("lazy").plugins())
+  table.sort(plugins, function(l, r) return l[1] < r[1] end)
   local function git_commit(dir)
     local commit = assert(utils.cmd({ "git", "-C", dir, "rev-parse", "HEAD" }, false))
     if commit then return vim.trim(commit) end
@@ -46,7 +47,6 @@ function M.generate_snapshot(write)
     file:write "return {\n"
   end
   local snapshot = vim.tbl_map(function(plugin)
-    if not plugin[1] and plugin.name == "lazy.nvim" then plugin[1] = "folke/lazy.nvim" end
     plugin = { plugin[1], commit = git_commit(plugin.dir), version = plugin.version }
     if prev_snapshot[plugin[1]] and prev_snapshot[plugin[1]].version then
       plugin.version = prev_snapshot[plugin[1]].version
@@ -63,7 +63,7 @@ function M.generate_snapshot(write)
     return plugin
   end, plugins)
   if file then
-    file:write "}"
+    file:write "}\n"
     file:close()
   end
   return snapshot
@@ -75,7 +75,7 @@ end
 function M.version(quiet)
   local version = astronvim.install.version or git.current_version(false) or "unknown"
   if astronvim.updater.options.channel ~= "stable" then version = ("nightly (%s)"):format(version) end
-  if version and not quiet then notify("Version: " .. version) end
+  if version and not quiet then notify(("Version: *%s*"):format(version)) end
   return version
 end
 
@@ -147,7 +147,7 @@ function M.update_available(opts)
   -- if the git command is not available, then throw an error
   if not git.available() then
     notify(
-      "git command is not available, please verify it is accessible in a command line. This may be an issue with your PATH",
+      "`git` command is not available, please verify it is accessible in a command line. This may be an issue with your `PATH`",
       vim.log.levels.ERROR
     )
     return
