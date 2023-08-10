@@ -72,10 +72,45 @@ return {
     lazy = true,
     config = function(_, _) require("refactoring").setup {} end,
   },
+
   {
     "ThePrimeagen/harpoon",
-    event = "VeryLazy",
-    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    cmd = { "Harpoon" },
+    keys = {
+      { "<leader>a" .. "a", function() require("harpoon.mark").add_file() end, desc = "Add file" },
+      { "<leader>a" .. "e", function() require("harpoon.ui").toggle_quick_menu() end, desc = "Toggle quick menu" },
+      {
+        "<C-x>",
+        function()
+          vim.ui.input({ prompt = "Harpoon mark index: " }, function(input)
+            local num = tonumber(input)
+            if num then require("harpoon.ui").nav_file(num) end
+          end)
+        end,
+        desc = "Goto index of mark",
+      },
+      { "<C-p>", function() require("harpoon.ui").nav_prev() end, desc = "Goto previous mark" },
+      { "<C-n>", function() require("harpoon.ui").nav_next() end, desc = "Goto next mark" },
+      { "<leader>a1", function() require("harpoon.ui").nav_file(1) end, desc = "Goto mark 1" },
+      { "<leader>a2", function() require("harpoon.ui").nav_file(2) end, desc = "Goto mark 2" },
+      { "<leader>a3", function() require("harpoon.ui").nav_file(3) end, desc = "Goto mark 3" },
+      { "<leader>a4", function() require("harpoon.ui").nav_file(4) end, desc = "Goto mark 4" },
+      { "<leader>a " .. "m", "<cmd>Telescope harpoon marks<CR>", desc = "Show marks in Telescope" },
+      --{
+      --  prefix .. "t",
+      --  function()
+      --    vim.ui.input({ prompt = term_string .. " window number: " }, function(input)
+      --      local num = tonumber(input)
+      --      if num then require("harpoon." .. term_string).gotoTerminal(num) end
+      --    end)
+      --  end,
+      --  desc = "Go to " .. term_string .. " window",
+      --},
+    },
   },
 
   {
@@ -214,14 +249,32 @@ return {
     end,
   },
 
-  { "echasnovski/mini.nvim", version = false },
-  { "folke/trouble.nvim",    cmd = "TroubleToggle" },
+  -- { "echasnovski/mini.nvim", version = false },
+  {
+    "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
+    opts = {
+      use_diagnostic_signs = true,
+      action_keys = {
+        close = { "q", "<esc>" },
+        cancel = "<c-e>",
+      },
+    },
+  },
+  {
+    "folke/edgy.nvim",
+    optional = true,
+    opts = function(_, opts)
+      if not opts.bottom then opts.bottom = {} end
+      table.insert(opts.bottom, "Trouble")
+    end,
+  },
 
   {
     "ggandor/leap.nvim",
     keys = {
-      { "s",  mode = { "n", "x", "o" }, desc = "Leap forward to" },
-      { "S",  mode = { "n", "x", "o" }, desc = "Leap backward to" },
+      { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
+      { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
       { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
     },
     config = function(_, opts)
@@ -274,7 +327,7 @@ return {
     "echasnovski/mini.bufremove",
     keys = {
       { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
-      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end,  desc = "Delete Buffer (Force)" },
+      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
     },
   },
 
