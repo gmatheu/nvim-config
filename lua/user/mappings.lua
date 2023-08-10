@@ -39,8 +39,8 @@ maps.n["<F4>"] = { "<cmd> UndotreeToggle <CR>", desc = "Toggle Undo Tree" }
 
 maps.n["U"] = { "<C-r>", desc = "Redo" }
 maps.n["<leader>,"] = { "<cmd> :e#<CR>", desc = "Switch Last buffer" }
-maps.n[" "] = { "<leader>", desc = "alternative leader" }
-maps.n[";"] = { ":", desc = "enter command mode" }
+-- maps.n[" "] = { "<leader>", desc = "alternative leader" }
+-- maps.n[";"] = { ":", desc = "enter command mode" }
 
 maps.n["<ESC>"] = { "<cmd> noh <CR>", desc = "no highlight" }
 maps.n["<ESC><ESC>"] = { "<cmd> nohlsearch<CR>", desc = "no highlight" }
@@ -48,8 +48,8 @@ maps.n["<ESC><ESC>"] = { "<cmd> nohlsearch<CR>", desc = "no highlight" }
 -- switch between windows
 maps.n["<C-h>"] = { "<C-w>h", desc = "window left" }
 maps.n["<C-l>"] = { "<C-w>l", desc = "window right" }
-maps.n["<C-j>"] = { "<C-w>j", desc = "window down" }
-maps.n["<C-k>"] = { "<C-w>k", desc = "window up" }
+-- maps.n["<C-j>"] = { "<C-w>j", desc = "window down" }
+-- maps.n["<C-k>"] = { "<C-w>k", desc = "window up" }
 
 -- save
 maps.n["<C-s>"] = { "<cmd> w <CR>", desc = "save file" }
@@ -110,6 +110,12 @@ maps.n["<leader>q"] = sections.q
 maps.n["<leader>qr"] = { "<cmd>OverseerRun<CR>", desc = "Run tasks" }
 maps.n["<leader>qt"] = { "<cmd>OverseerToggle<CR>", desc = "Overseer toggle" }
 maps.n["<leader>qa"] = { "<cmd>OverseerQuickAction<CR>", desc = "Quick actions" }
+
+
+
+  -- "fedepujol/move.nvim",
+maps.n["<C-j>"] = { "<cmd>MoveLine 1<CR>", desc = "Move line down" }
+maps.n["<C-k>"] = { "<cmd>MoveLine -1<CR>", desc = "Move line up" }
 -- End User --
 
 -- Normal --
@@ -298,8 +304,8 @@ end
 -- Smart Splits
 if is_available "smart-splits.nvim" then
   maps.n["<C-h>"] = { function() require("smart-splits").move_cursor_left() end, desc = "Move to left split" }
-  maps.n["<C-j>"] = { function() require("smart-splits").move_cursor_down() end, desc = "Move to below split" }
-  maps.n["<C-k>"] = { function() require("smart-splits").move_cursor_up() end, desc = "Move to above split" }
+  -- maps.n["<C-j>"] = { function() require("smart-splits").move_cursor_down() end, desc = "Move to below split" }
+  -- maps.n["<C-k>"] = { function() require("smart-splits").move_cursor_up() end, desc = "Move to above split" }
   maps.n["<C-l>"] = { function() require("smart-splits").move_cursor_right() end, desc = "Move to right split" }
   maps.n["<C-Up>"] = { function() require("smart-splits").resize_up() end, desc = "Resize split up" }
   maps.n["<C-Down>"] = { function() require("smart-splits").resize_down() end, desc = "Resize split down" }
@@ -307,8 +313,8 @@ if is_available "smart-splits.nvim" then
   maps.n["<C-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" }
 else
   maps.n["<C-h>"] = { "<C-w>h", desc = "Move to left split" }
-  maps.n["<C-j>"] = { "<C-w>j", desc = "Move to below split" }
-  maps.n["<C-k>"] = { "<C-w>k", desc = "Move to above split" }
+  -- maps.n["<C-j>"] = { "<C-w>j", desc = "Move to below split" }
+  -- maps.n["<C-k>"] = { "<C-w>k", desc = "Move to above split" }
   maps.n["<C-l>"] = { "<C-w>l", desc = "Move to right split" }
   maps.n["<C-Up>"] = { "<cmd>resize -2<CR>", desc = "Resize split up" }
   maps.n["<C-Down>"] = { "<cmd>resize +2<CR>", desc = "Resize split down" }
