@@ -24,6 +24,7 @@ return {
     "rcarriga/nvim-notify",
     enabled = false,
   },
+  { "Shatur/neovim-session-manager", enabled = false},
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
   {
     "rebelot/heirline.nvim",
