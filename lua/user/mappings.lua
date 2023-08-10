@@ -100,8 +100,10 @@ maps.n["<leader>ss"] = { "<cmd>MurenToggle<CR>", desc = "Open multiple replace" 
 --   desc = "Search on current file",
 -- }
 
-maps.n["<leader>tt"] = { "<cmd>TroubleToggle<CR>", desc = "Toggle Trouble" }
-maps.n["<leader>td"] = { "<cmd>TroubleToggle document_diagnotics<CR>", desc = "Toggle Trouble on document" }
+maps.n["<leader>tt"] = { "<cmd>TroubleToggle document_diagnostics<CR>", desc = "[T]oggle [T]rouble" }
+maps.n["<leader>tl"] = { "<cmd>TroubleToggle loclist<CR>", desc = "[T]oggle [L]oclist (Trouble)" }
+maps.n["<leader>tw"] = { "<cmd>TroubleToggle workspace_diagnostics<CR>", desc = "[T]oggle [W]orskpace diagnostics (Trouble)" }
+maps.n["<leader>td"] = { "<cmd>TroubleToggle document_diagnostics<CR>", desc = "[T]oggle [D]document diagnostics (Trouble)" }
 
 maps.n["<A-j>"] = { function() require("expand-selection").expsel() end, desc = "Expand selection" }
 maps.n["<A-e>"] = { function() require("tsht").nodes() end, desc = "Expand selection" }
