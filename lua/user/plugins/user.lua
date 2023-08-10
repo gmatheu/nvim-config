@@ -399,27 +399,18 @@ return {
     config = function() require("modicator").setup() end,
   },
 
+
+  -- Maybe https://github.com/ggandor/flit.nvim
   {
-    "folke/neodev.nvim",
-    opts = {},
+    "ggandor/flit.nvim",
+    event = "VeryLazy",
     config = function()
-      require("neodev").setup {
-        library = { plugins = { "neotest" }, types = true },
-      }
-    end,
-  },
-  {
-    "nvim-neotest/neotest",
-    dependencies = { "haydenmeade/neotest-jest" },
-    config = function()
-      require("neotest").setup {
-        adapters = {
-          require "neotest-jest" {
-            jestCommand = "npx jest --",
-            env = { CI = true },
-            cwd = function(_) return vim.fn.getcwd() end,
-          },
-        },
+      require("flit").setup {
+        keys = { f = "f", F = "F", t = "t", T = "T" },
+        -- A string like "nv", "nvo", "o", etc.
+        labeled_modes = "v",
+        multiline = false,
+        opts = {},
       }
     end,
   },
