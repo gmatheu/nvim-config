@@ -1,4 +1,7 @@
 return {
+  StatusLine = {
+      bg = "#572e33"
+  },
   LineNr = {
     fg = "yellow",
   },

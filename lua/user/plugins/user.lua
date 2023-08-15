@@ -428,7 +428,7 @@ return {
 
   {
     "mickael-menu/zk-nvim",
-    cmd = { "ZkIndex", "ZkNew" },
+    cmd = { "ZkIndex", "ZkNew", "ZkNotes" },
     config = function()
       require("zk").setup {
         -- See Setup section below

@@ -24,15 +24,17 @@ return {
     "rcarriga/nvim-notify",
     enabled = false,
   },
-  { "Shatur/neovim-session-manager", enabled = false},
+  { "stevearc/resession.nvim", enabled = true },
+  { "Shatur/neovim-session-manager", enabled = false },
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
   {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
       local status = require "astronvim.utils.status"
       opts.statusline = {
-                                                                                     -- statusline
+        -- statusline
         hl = { fg = "fg", bg = "bg" },
+        -- status.hl,
         status.component.mode { mode_text = { padding = { left = 1, right = 1 } } }, -- add the mode text
         status.component.git_branch(),
         status.component.file_info { filetype = false, filename = {}, file_modified = {} },
@@ -57,9 +59,7 @@ return {
     -- event = 'VeryLazy',
     version = "2.*",
     opts = { use_winbar = "smart" },
-    config = function()
-      require("window-picker").setup()
-    end,
+    config = function() require("window-picker").setup() end,
   },
 
   {
@@ -73,7 +73,7 @@ return {
         -- this can be used if your configuration lives in ~/.config/nvim
         -- if your configuration lives in ~/.config/astronvim, the full path
         -- must be specified in the next line
-        paths = { "~/.config/astronvim/lua/user/snippets" }
+        paths = { "~/.config/astronvim/lua/user/snippets" },
       }
     end,
   },
