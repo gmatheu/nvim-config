@@ -118,6 +118,11 @@ maps.n["<leader>qa"] = { "<cmd>OverseerQuickAction<CR>", desc = "Quick actions" 
   -- "fedepujol/move.nvim",
 maps.n["<C-j>"] = { "<cmd>MoveLine 1<CR>", desc = "Move line down" }
 maps.n["<C-k>"] = { "<cmd>MoveLine -1<CR>", desc = "Move line up" }
+
+  -- "mickael-menu/zk-nvim",
+maps.n["<leader>zl"] = { "<cmd>ZkLinks<CR>", desc = "List notes links (zk)" }
+maps.n["<leader>zt"] = { "<cmd>ZkTags<CR>", desc = "List tags (zk)" }
+maps.n["<leader>zn"] = { "<cmd>ZkNew<CR>", desc = "New note (zk)" }
 -- End User --
 
 -- Normal --

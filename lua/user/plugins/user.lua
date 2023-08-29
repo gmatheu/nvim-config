@@ -190,6 +190,7 @@ return {
 
   {
     "otavioschwanck/tmux-awesome-manager.nvim",
+    event = "VeryLazy",
     config = function()
       require("tmux-awesome-manager").setup {
         per_project_commands = {
@@ -333,10 +334,17 @@ return {
 
   {
     "Wansmer/treesj",
-    keys = { "<space>m", "<space>j", "<space>s" },
+    keys = {
+      {"<space>m", function() require('treesj').toggle() end, desc = "Toggle Split-Join code block with autodetect (treesj)" },
+      {"<space>s", function() require('treesj').split() end, desc = "Split code block (treesj)" },
+      {"<space>j", function() require('treesj').join() end, desc = "Join code block (treesj)" },
+    },
+    cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      require("treesj").setup { --[[ your config ]]
+      require("treesj").setup {
+          dot_repeat = true,
+          use_default_keymaps = true,
       }
     end,
   },
@@ -428,7 +436,7 @@ return {
 
   {
     "mickael-menu/zk-nvim",
-    cmd = { "ZkIndex", "ZkNew", "ZkNotes" },
+    cmd = { "ZkIndex", "ZkNew", "ZkNotes", "ZkLinks", "ZkTags" },
     config = function()
       require("zk").setup {
         -- See Setup section below
