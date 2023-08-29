@@ -462,6 +462,29 @@ return {
   },
   {
     "fedepujol/move.nvim",
-    cmd = { "MoveLine", "MoveBlock"}
+    cmd = { "MoveLine", "MoveBlock" },
+  },
+
+  {
+    "scheisa/relpointers.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("relpointers").setup {
+        amount = 1,
+        distance = 10,
+
+        hl_properties = { underline = true },
+
+        pointer_style = "line region",
+
+        white_space_rendering = "\t",
+
+        virtual_pointer_position = -4,
+        virtual_pointer_text = "@",
+
+        enable_autocmd = true,
+        autocmd_pattern = "*",
+      }
+    end,
   },
 }
