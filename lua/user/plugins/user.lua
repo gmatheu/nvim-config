@@ -68,12 +68,6 @@ return {
   },
 
   {
-    "ThePrimeagen/refactoring.nvim",
-    lazy = true,
-    config = function(_, _) require("refactoring").setup {} end,
-  },
-
-  {
     "ThePrimeagen/harpoon",
     dependencies = {
       "nvim-lua/plenary.nvim",
