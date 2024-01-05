@@ -487,4 +487,77 @@ return {
       }
     end,
   },
+
+  {
+    "yorickpeterse/nvim-window",
+    keys = {
+      { "<leader>w" .. "w", function() require("nvim-window").pick() end, desc = "Show Windows picker [nvim-window]" },
+    },
+    config = function()
+      require("nvim-window").setup {
+        -- The characters available for hinting windows.
+        chars = {
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+        },
+
+        -- A group to use for overwriting the Normal highlight group in the floating
+        -- window. This can be used to change the background color.
+        normal_hl = "Normal",
+
+        -- The highlight group to apply to the line that contains the hint characters.
+        -- This is used to make them stand out more.
+        hint_hl = "Bold",
+
+        -- The border style to use for the floating window.
+        border = "single",
+      }
+    end,
+  },
+  {
+    "nvim-focus/focus.nvim",
+    version = false,
+    cmd = { "FocusSplitNicely", "FocusToggle", "FocusSplitRight", "FocusSplitDown" },
+    keys = {
+      { "<leader>w" .. "n", function() require("focus").split_nicely() end, desc = "Split nicely [focus]" },
+    },
+    config = function()
+      require("focus").setup {
+        enable = true, -- Enable module
+        commands = true, -- Create Focus commands
+          autoresize = {
+          enable = true, -- Enable or disable auto-resizing of splits
+          width = 0, -- Force width for the focused window
+          height = 0, -- Force height for the focused window
+          minwidth = 0, -- Force minimum width for the unfocused window
+          minheight = 0, -- Force minimum height for the unfocused window
+          height_quickfix = 10, -- Set the height of quickfix panel
+        },
+        split = {
+          bufnew = false, -- Create blank buffer for new split windows
+          tmux = false, -- Create tmux splits instead of neovim splits
+        },
+        ui = {
+          number = false, -- Display line numbers in the focussed window only
+          relativenumber = false, -- Display relative line numbers in the focussed window only
+          hybridnumber = false, -- Display hybrid line numbers in the focussed window only
+          absolutenumber_unfocussed = false, -- Preserve absolute numbers in the unfocussed windows
+
+          cursorline = true, -- Display a cursorline in the focussed window only
+          cursorcolumn = false, -- Display cursorcolumn in the focussed window only
+          colorcolumn = {
+            enable = false, -- Display colorcolumn in the foccused window only
+            list = "+1", -- Set the comma-saperated list for the colorcolumn
+          },
+          signcolumn = true, -- Display signcolumn in the focussed window only
+          winhighlight = false, -- Auto highlighting for focussed/unfocussed windows
+        },
+      }
+    end,
+  },
+
 }

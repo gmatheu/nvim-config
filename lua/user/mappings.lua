@@ -138,8 +138,14 @@ maps.n["<leader>w"] = false
 maps.n["gx"] = { utils.system_open, desc = "Open the file under cursor with system app" }
 maps.n["<C-s>"] = { "<cmd>w!<cr>", desc = "Force write" }
 maps.n["<C-q>"] = { "<cmd>q!<cr>", desc = "Force quit" }
-maps.n["|"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" }
-maps.n["\\"] = { "<cmd>split<cr>", desc = "Horizontal Split" }
+
+if is_available "focus.nvim" then
+  maps.n["|"] = { "<cmd>FocusSplitDown<cr>", desc = "Vertical Split [focus]" }
+  maps.n["\\"] = { "<cmd>FocusSplitRight<cr>", desc = "Horizontal Split [focus]" }
+else
+  maps.n["|"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" }
+  maps.n["\\"] = { "<cmd>split<cr>", desc = "Horizontal Split" }
+end
 
 -- Plugin Manager
 maps.n["<leader>p"] = sections.p
