@@ -329,16 +329,20 @@ return {
   {
     "Wansmer/treesj",
     keys = {
-      {"<space>m", function() require('treesj').toggle() end, desc = "Toggle Split-Join code block with autodetect (treesj)" },
-      {"<space>s", function() require('treesj').split() end, desc = "Split code block (treesj)" },
-      {"<space>j", function() require('treesj').join() end, desc = "Join code block (treesj)" },
+      {
+        "<space>m",
+        function() require("treesj").toggle() end,
+        desc = "Toggle Split-Join code block with autodetect (treesj)",
+      },
+      { "<space>s", function() require("treesj").split() end, desc = "Split code block (treesj)" },
+      { "<space>j", function() require("treesj").join() end, desc = "Join code block (treesj)" },
     },
     cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("treesj").setup {
-          dot_repeat = true,
-          use_default_keymaps = true,
+        dot_repeat = true,
+        use_default_keymaps = true,
       }
     end,
   },
@@ -364,6 +368,7 @@ return {
 
   {
     "mfussenegger/nvim-treehopper",
+    enabled = false,
     keys = {
       { "<A-j>", function() require("tsht").nodes() end, desc = "Expand hop selection" },
     },
