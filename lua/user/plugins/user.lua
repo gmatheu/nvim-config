@@ -488,6 +488,49 @@ return {
   },
 
   {
+    "cappyzawa/trim.nvim",
+    opts = {
+      trim_on_write = true,
+      trim_trailing = true,
+      trim_last_line = true,
+      trim_first_line = true,
+    },
+    event = "BufWritePre",
+    cmd = { "Trim", "TrimToggle" },
+  },
+
+  {
+    "jokajak/keyseer.nvim",
+    version = false,
+    config = function() require("keyseer").setup() end,
+    cmd = { "KeySeer" },
+  },
+
+  {
+    "00sapo/visual.nvim",
+    opts = { treesitter_textobjects = true },
+    dependencies = { "nvim-treesitter", "nvim-treesitter-textobjects" },
+    config = function()
+      require("visual").setup {
+        serendipity = {
+          highlight = "guibg=LightCyan guifg=none",
+        },
+      }
+    end,
+    enabled = false,
+    event = "VeryLazy", -- this is for making sure our keymaps are applied after the others: we call the previous mapppings, but other plugins/configs usually not!
+  },
+
+  {
+    "rmagatti/auto-session",
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+      }
+    end,
+  },
+  {
     "yorickpeterse/nvim-window",
     keys = {
       { "<leader>w" .. "w", function() require("nvim-window").pick() end, desc = "Show Windows picker [nvim-window]" },
