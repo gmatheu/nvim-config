@@ -22,8 +22,8 @@ If you wish to contribute to AstroNvim, you should:
     - for https:
        ```shell
        $ git remote add upstream https://github.com/AstroNvim/AstroNvim.git
-       ```  
-4. any time you create a branch to do some work, use 
+       ```
+4. any time you create a branch to do some work, use
    ```shell
    $ git fetch upstream && git checkout -b dev-myFEAT upstream/main
    ```
@@ -68,17 +68,17 @@ If you wish to contribute to AstroNvim, you should:
   ```
   <details><summary>Example</summary>
   <p>
-  
+
   ```shell
   $ git rebase -i HEAD~4
   ```
-  
+
   ```shell
   pick 28b2dcb feat: statusline add lsp status
   pick dad9a39 fix: typo
   pick 68f72f1 add clickable btn for exiting nvim
   pick b281b53 avoid using q! for quitting vim
-  
+
   # Rebase 52b655b..b281b53 onto 52b655b (4 commands)
   #
   # Commands:
@@ -105,7 +105,7 @@ If you wish to contribute to AstroNvim, you should:
   #
   # Note that empty commits are commented out
   ```
-  
+
   </p>
   </details>
 
@@ -113,13 +113,13 @@ If you wish to contribute to AstroNvim, you should:
 
   <details><summary>Example</summary>
   <p>
-  
+
   ```shell {3,4}
   pick 28b2dcb feat: statusline add lsp status
   squash dad9a39 fix: typo
   edit 68f72f1 add clickable btn for exiting nvim
   d b281b53 avoid using q! for quitting vim
-  
+
   # Rebase 52b655b..b281b53 onto 52b655b (4 commands)
   #
   # Commands:
@@ -146,7 +146,7 @@ If you wish to contribute to AstroNvim, you should:
   #
   # Note that empty commits are commented out
   ```
-  
+
   </p>
   </details>
 

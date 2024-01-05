@@ -4,4 +4,3 @@ build-image:
 
 run-image:
 	docker run -it nvim-config /bin/bash
-
