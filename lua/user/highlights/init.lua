@@ -1,6 +1,6 @@
 return {
   StatusLine = {
-      bg = "#572e33"
+    bg = "#572e33",
   },
   LineNr = {
     fg = "yellow",
@@ -11,6 +11,6 @@ return {
   LeapLabelPrimary = {
     fg = "#fb4934",
     bg = "#572e33",
-    underline = true
-  }
+    underline = true,
+  },
 }

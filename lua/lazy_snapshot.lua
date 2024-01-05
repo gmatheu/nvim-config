@@ -1,6 +1,10 @@
 return {
   { "AstroNvim/astrotheme", version = "^2", optional = true },
-  { "JoosepAlviste/nvim-ts-context-commentstring", commit = "e9062e2dfb9854e6a927370f2d720de354c88524", optional = true },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    commit = "e9062e2dfb9854e6a927370f2d720de354c88524",
+    optional = true,
+  },
   { "L3MON4D3/LuaSnip", version = "^2", optional = true },
   { "MunifTanjim/nui.nvim", version = "^0.1", optional = true },
   { "NMAC427/guess-indent.nvim", commit = "b8ae749fce17aa4c267eec80a6984130b94f80b2", optional = true },
@@ -36,7 +40,11 @@ return {
   { "nvim-telescope/telescope.nvim", version = "^0.1", optional = true },
   { "nvim-tree/nvim-web-devicons", commit = "ab899311f8ae00a47eae8e0879506cead8eb1561", optional = true },
   { "nvim-treesitter/nvim-treesitter", commit = "251fe95efda3a7282ccbe97e9cf623d9be71e483", optional = true },
-  { "nvim-treesitter/nvim-treesitter-textobjects", commit = "9e519b6146512c8e2e702faf8ac48420f4f5deec", optional = true },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    commit = "9e519b6146512c8e2e702faf8ac48420f4f5deec",
+    optional = true,
+  },
   { "onsails/lspkind.nvim", commit = "57610d5ab560c073c465d6faf0c19f200cb67e6e", optional = true },
   { "rafamadriz/friendly-snippets", commit = "bc38057e513458cb2486b6cd82d365fa294ee398", optional = true },
   { "rcarriga/cmp-dap", commit = "d16f14a210cd28988b97ca8339d504533b7e09a4", optional = true },

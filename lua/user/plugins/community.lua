@@ -8,8 +8,8 @@ return {
   -- { import = "astrocommunity.colorscheme.catppuccin" }
 
   { import = "astrocommunity.debugging.nvim-bqf" },
-  { "junegunn/fzf", event = "VeryLazy"},
-  { "junegunn/fzf.vim", event = "VeryLazy"},
+  { "junegunn/fzf", event = "VeryLazy" },
+  { "junegunn/fzf.vim", event = "VeryLazy" },
 
   -- { import = "astrocommunity.diagnostics.lsp_lines-nvim"},
   { import = "astrocommunity.git.git-blame-nvim" },

@@ -5,7 +5,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     -- overrides `require("mason-lspconfig").setup(...)`
     opts = {
-      ensure_installed = { "lua_ls", "tsserver", "ruff", "sqlls", "bashls", "dockerls", "pylsp"},
+      ensure_installed = { "lua_ls", "tsserver", "ruff", "sqlls", "bashls", "dockerls", "pylsp" },
       -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
       -- This setting has no relation with the `ensure_installed` setting.
       -- Can either be:

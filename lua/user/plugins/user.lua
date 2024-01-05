@@ -406,7 +406,6 @@ return {
     config = function() require("modicator").setup() end,
   },
 
-
   -- Maybe https://github.com/ggandor/flit.nvim
   {
     "ggandor/flit.nvim",
@@ -571,7 +570,7 @@ return {
       require("focus").setup {
         enable = true, -- Enable module
         commands = true, -- Create Focus commands
-          autoresize = {
+        autoresize = {
           enable = true, -- Enable or disable auto-resizing of splits
           width = 0, -- Force width for the focused window
           height = 0, -- Force height for the focused window
@@ -601,5 +600,4 @@ return {
       }
     end,
   },
-
 }
