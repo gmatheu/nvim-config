@@ -139,6 +139,7 @@ end
 ---@param bufnr? number The buffer to close or the current buffer if not provided
 ---@param force? boolean Whether or not to foce close the buffers or confirm changes (default: false)
 function M.close(bufnr, force)
+  if not bufnr or bufnr == 0 then bufnr = vim.api.nvim_get_current_buf() end
   if utils.is_available "mini.bufremove" and M.is_valid(bufnr) and #vim.t.bufs > 1 then
     if not force and vim.api.nvim_get_option_value("modified", { buf = bufnr }) then
       local bufname = vim.fn.expand "%"
@@ -156,7 +157,8 @@ function M.close(bufnr, force)
     end
     require("mini.bufremove").delete(bufnr, force)
   else
-    vim.cmd((force and "bd!" or "confirm bd") .. (bufnr == nil and "" or bufnr))
+    local buftype = vim.api.nvim_get_option_value("buftype", { buf = bufnr })
+    vim.cmd(("silent! %s %d"):format((force or buftype == "terminal") and "bdelete!" or "confirm bdelete", bufnr))
   end
 end
 
@@ -209,12 +211,14 @@ function M.sort(compare_func, skip_autocmd)
   return false
 end
 
---- Close the current tab
-function M.close_tab()
+--- Close a given tab
+---@param tabpage? integer The tabpage to close or the current tab if not provided
+function M.close_tab(tabpage)
   if #vim.api.nvim_list_tabpages() > 1 then
-    vim.t.bufs = nil
+    tabpage = tabpage or vim.api.nvim_get_current_tabpage()
+    vim.t[tabpage].bufs = nil
     utils.event "BufsUpdated"
-    vim.cmd.tabclose()
+    vim.cmd.tabclose(vim.api.nvim_tabpage_get_number(tabpage))
   end
 end
 

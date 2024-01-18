@@ -2,6 +2,7 @@ return {
   {
     "nvim-tree/nvim-web-devicons",
     enabled = vim.g.icons_enabled,
+    lazy = true,
     opts = {
       override = {
         default_icon = { icon = require("astronvim.utils").get_icon "DefaultFile" },
@@ -22,6 +23,7 @@ return {
   },
   {
     "onsails/lspkind.nvim",
+    lazy = true,
     opts = {
       mode = "symbol",
       symbol_map = {
@@ -49,6 +51,7 @@ return {
   },
   {
     "rcarriga/nvim-notify",
+    lazy = true,
     init = function() require("astronvim.utils").load_plugin_with_func("nvim-notify", vim, "notify") end,
     opts = {
       on_open = function(win)
@@ -65,6 +68,7 @@ return {
   },
   {
     "stevearc/dressing.nvim",
+    lazy = true,
     init = function() require("astronvim.utils").load_plugin_with_func("dressing.nvim", vim.ui, { "input", "select" }) end,
     opts = {
       input = { default_prompt = "➤ " },
@@ -80,50 +84,28 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "User AstroFile",
+    main = "ibl",
     opts = {
-      buftype_exclude = {
-        "nofile",
-        "terminal",
+      indent = { char = "▏" },
+      scope = { show_start = false, show_end = false },
+      exclude = {
+        buftypes = {
+          "nofile",
+          "terminal",
+        },
+        filetypes = {
+          "help",
+          "startify",
+          "aerial",
+          "alpha",
+          "dashboard",
+          "lazy",
+          "neogitstatus",
+          "NvimTree",
+          "neo-tree",
+          "Trouble",
+        },
       },
-      filetype_exclude = {
-        "help",
-        "startify",
-        "aerial",
-        "alpha",
-        "dashboard",
-        "lazy",
-        "neogitstatus",
-        "NvimTree",
-        "neo-tree",
-        "Trouble",
-      },
-      context_patterns = {
-        "class",
-        "return",
-        "function",
-        "method",
-        "^if",
-        "^while",
-        "jsx_element",
-        "^for",
-        "^object",
-        "^table",
-        "block",
-        "arguments",
-        "if_statement",
-        "else_clause",
-        "jsx_element",
-        "jsx_self_closing_element",
-        "try_statement",
-        "catch_clause",
-        "import_statement",
-        "operation_type",
-      },
-      show_trailing_blankline_indent = false,
-      use_treesitter = true,
-      char = "▏",
-      context_char = "▏",
-      show_current_context = true,
     },
   },
 }
