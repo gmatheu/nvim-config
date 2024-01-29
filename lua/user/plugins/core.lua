@@ -64,6 +64,8 @@ return {
 
   {
     "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp",
     dependencies = { "rafamadriz/friendly-snippets" },
     config = function(plugin, opts)
       -- include the default astronvim config that calls the setup call
@@ -73,7 +75,9 @@ return {
         -- this can be used if your configuration lives in ~/.config/nvim
         -- if your configuration lives in ~/.config/astronvim, the full path
         -- must be specified in the next line
-        paths = { "~/.config/astronvim/lua/user/snippets" },
+        paths = {
+          vim.fn.stdpath "config" .. "/lua/user/snippets",
+        },
       }
     end,
   },
