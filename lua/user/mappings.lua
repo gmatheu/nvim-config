@@ -190,10 +190,8 @@ maps.n["<leader>bc"] =
   { function() require("astronvim.utils.buffer").close_all(true) end, desc = "Close all buffers except current" }
 maps.n["<leader>bC"] = { function() require("astronvim.utils.buffer").close_all() end, desc = "Close all buffers" }
 maps.n["<leader>bb"] = {
-  function()
-    require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) vim.api.nvim_win_set_buf(0, bufnr) end)
-  end,
-  desc = "Select buffer from tabline",
+  function() require("bufferchad").BufferChadListBuffers() end,
+  desc = "List buffers [bufferchad]",
 }
 maps.n["<leader>bd"] = {
   function()
