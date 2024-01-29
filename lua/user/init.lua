@@ -52,6 +52,11 @@ return {
   -- Configure require("lazy").setup() options
   lazy = {
     defaults = { lazy = true },
+    change_detection = {
+      enabled = false,
+      notify = false,
+    },
+    lockfile = vim.fn.stdpath "config" .. "/lua/user/lazy-lock.json",
     performance = {
       rtp = {
         -- customize default disabled vim plugins
