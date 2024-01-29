@@ -69,41 +69,31 @@ return {
 
   {
     "ThePrimeagen/harpoon",
+    branch = "harpoon2",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
     },
+    config = function() require("harpoon"):setup {} end,
     cmd = { "Harpoon" },
     keys = {
-      { "<leader>a" .. "a", function() require("harpoon.mark").add_file() end, desc = "Add file" },
-      { "<leader>a" .. "e", function() require("harpoon.ui").toggle_quick_menu() end, desc = "Toggle quick menu" },
+      { "<leader>A", function() require("harpoon"):list():append() end, desc = "harpoon file" },
+      { "<leader>a" .. "a", function() require("harpoon"):list():append() end, desc = "harpoon file" },
       {
-        "<C-x>",
+        "<leader>a" .. "e",
         function()
-          vim.ui.input({ prompt = "Harpoon mark index: " }, function(input)
-            local num = tonumber(input)
-            if num then require("harpoon.ui").nav_file(num) end
-          end)
+          local harpoon = require "harpoon"
+          harpoon.ui:toggle_quick_menu(harpoon:list())
         end,
-        desc = "Goto index of mark",
+        desc = "harpoon quick menu",
       },
-      { "<C-p>", function() require("harpoon.ui").nav_prev() end, desc = "Goto previous mark" },
-      { "<C-n>", function() require("harpoon.ui").nav_next() end, desc = "Goto next mark" },
-      { "<leader>a1", function() require("harpoon.ui").nav_file(1) end, desc = "Goto mark 1" },
-      { "<leader>a2", function() require("harpoon.ui").nav_file(2) end, desc = "Goto mark 2" },
-      { "<leader>a3", function() require("harpoon.ui").nav_file(3) end, desc = "Goto mark 3" },
-      { "<leader>a4", function() require("harpoon.ui").nav_file(4) end, desc = "Goto mark 4" },
-      { "<leader>a " .. "m", "<cmd>Telescope harpoon marks<CR>", desc = "Show marks in Telescope" },
-      --{
-      --  prefix .. "t",
-      --  function()
-      --    vim.ui.input({ prompt = term_string .. " window number: " }, function(input)
-      --      local num = tonumber(input)
-      --      if num then require("harpoon." .. term_string).gotoTerminal(num) end
-      --    end)
-      --  end,
-      --  desc = "Go to " .. term_string .. " window",
-      --},
+      { "<leader>a" .. "r", function() require("harpoon"):list():remove() end, desc = "remove file harpoon" },
+      { "<leader>a" .. "c", function() require("harpoon"):list():clear() end, desc = "clear all files harpoon" },
+      { "<leader>1", function() require("harpoon"):list():select(1) end, desc = "harpoon to file 1" },
+      { "<leader>2", function() require("harpoon"):list():select(2) end, desc = "harpoon to file 2" },
+      { "<leader>3", function() require("harpoon"):list():select(3) end, desc = "harpoon to file 3" },
+      { "<leader>4", function() require("harpoon"):list():select(4) end, desc = "harpoon to file 4" },
+      { "<leader>5", function() require("harpoon"):list():select(5) end, desc = "harpoon to file 5" },
     },
   },
 
