@@ -19,7 +19,7 @@ return {
     config = function()
       require("noice").setup {
         cmdline = {
-          view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+          view = "cmdline", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
         },
         lsp = {
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
