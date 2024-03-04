@@ -24,7 +24,7 @@ return {
     "rcarriga/nvim-notify",
     enabled = false,
   },
-  { "stevearc/resession.nvim", enabled = true },
+  { "stevearc/resession.nvim", enabled = false },
   { "Shatur/neovim-session-manager", enabled = false },
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
   {
@@ -66,7 +66,10 @@ return {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
     build = "make install_jsregexp",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      "hrsh7th/cmp-cmdline",
+    },
     config = function(plugin, opts)
       -- include the default astronvim config that calls the setup call
       require "plugins.configs.luasnip"(plugin, opts)

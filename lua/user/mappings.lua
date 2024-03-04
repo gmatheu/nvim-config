@@ -296,14 +296,20 @@ if is_available "neo-tree.nvim" then
 end
 
 -- Session Manager
-if is_available "neovim-session-manager" then
-  maps.n["<leader>S"] = sections.S
-  maps.n["<leader>Sl"] = { "<cmd>SessionManager! load_last_session<cr>", desc = "Load last session" }
-  maps.n["<leader>Ss"] = { "<cmd>SessionManager! save_current_session<cr>", desc = "Save this session" }
-  maps.n["<leader>Sd"] = { "<cmd>SessionManager! delete_session<cr>", desc = "Delete session" }
-  maps.n["<leader>Sf"] = { "<cmd>SessionManager! load_session<cr>", desc = "Search sessions" }
-  maps.n["<leader>S."] =
-    { "<cmd>SessionManager! load_current_dir_session<cr>", desc = "Load current directory session" }
+maps.n["<leader>S"] = sections.S
+-- if is_available "neovim-session-manager" then
+--   maps.n["<leader>Sl"] = { "<cmd>SessionManager! load_last_session<cr>", desc = "Load last session" }
+--   maps.n["<leader>Ss"] = { "<cmd>SessionManager! save_current_session<cr>", desc = "Save this session" }
+--   maps.n["<leader>Sd"] = { "<cmd>SessionManager! delete_session<cr>", desc = "Delete session" }
+--   maps.n["<leader>Sf"] = { "<cmd>SessionManager! load_session<cr>", desc = "Search sessions" }
+--   maps.n["<leader>S."] =
+--     { "<cmd>SessionManager! load_current_dir_session<cr>", desc = "Load current directory session" }
+-- end
+if is_available "auto-session" then
+  maps.n["<leader>Sl"] = { "<cmd>Autosession search<cr>", desc = "List sessions [auto-session]" }
+  maps.n["<leader>Ss"] = { "<cmd>SessionSave<cr>", desc = "Save this session [auto-session]" }
+  maps.n["<leader>Sd"] = { "<cmd>Autosession delete<cr>", desc = "Delete sessions [auto-session]" }
+  maps.n["<leader>Sr"] = { "<cmd>SessionRestore<cr>", desc = "Search sessions [auto-session]" }
 end
 
 -- Package Manager
