@@ -20,10 +20,7 @@ return {
       return opts
     end,
   },
-  {
-    "rcarriga/nvim-notify",
-    enabled = false,
-  },
+  { "rcarriga/nvim-notify", enabled = true },
   { "stevearc/resession.nvim", enabled = false },
   { "Shatur/neovim-session-manager", enabled = false },
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
