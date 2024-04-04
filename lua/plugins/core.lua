@@ -61,52 +61,54 @@ return {
     config = function() require("window-picker").setup() end,
   },
 
+  {
+    "L3MON4D3/LuaSnip",
+    build = "make install_jsregexp",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      "hrsh7th/cmp-cmdline",
+    },
+    config = function(plugin, opts)
+      require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
+      -- add more custom luasnip configuration such as filetype extend or custom snippets
+      local luasnip = require "luasnip"
+      luasnip.filetype_extend("javascript", { "javascriptreact" })
+      --
+      -- load snippets paths
+      require("luasnip.loaders.from_vscode").lazy_load {
+        -- this can be used if your configuration lives in ~/.config/nvim
+        -- if your configuration lives in ~/.config/astronvim, the full path
+        -- must be specified in the next line
+        paths = {
+          vim.fn.stdpath "config" .. "snippets",
+        },
+      }
+      local cmp = require "cmp"
+      -- `/` cmdline setup.
+      cmp.setup.cmdline("/", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      -- `:` cmdline setup.
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          {
+            name = "cmdline",
+            option = {
+              ignore_cmds = { "Man", "!" },
+            },
+          },
+        }),
+      })
+    end,
+  },
   -- TODO: Check migration to v4
-  -- {
-  --   "L3MON4D3/LuaSnip",
-  --   version = "v2.*",
-  --   build = "make install_jsregexp",
-  --   dependencies = {
-  --     "rafamadriz/friendly-snippets",
-  --     "hrsh7th/cmp-cmdline",
-  --   },
-  --   config = function(plugin, opts)
-  --     -- include the default astronvim config that calls the setup call
-  --     require "plugins.configs.luasnip"(plugin, opts)
-  --     -- load snippets paths
-  --     require("luasnip.loaders.from_vscode").lazy_load {
-  --       -- this can be used if your configuration lives in ~/.config/nvim
-  --       -- if your configuration lives in ~/.config/astronvim, the full path
-  --       -- must be specified in the next line
-  --       paths = {
-  --         vim.fn.stdpath "config" .. "/lua/user/snippets",
-  --       },
-  --     }
-  --     local cmp = require "cmp"
-  --     -- `/` cmdline setup.
-  --     cmp.setup.cmdline("/", {
-  --       mapping = cmp.mapping.preset.cmdline(),
-  --       sources = {
-  --         { name = "buffer" },
-  --       },
-  --     })
-  --
-  --     -- `:` cmdline setup.
-  --     cmp.setup.cmdline(":", {
-  --       mapping = cmp.mapping.preset.cmdline(),
-  --       sources = cmp.config.sources({
-  --         { name = "path" },
-  --       }, {
-  --         {
-  --           name = "cmdline",
-  --           option = {
-  --             ignore_cmds = { "Man", "!" },
-  --           },
-  --         },
-  --       }),
-  --     })
-  --   end,
-  -- },
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
   --
