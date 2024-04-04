@@ -5,7 +5,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     -- overrides `require("mason-lspconfig").setup(...)`
     opts = {
-      ensure_installed = { "lua_ls", "tsserver", "ruff", "sqlls", "bashls", "dockerls", "pylsp" },
+      ensure_installed = { "lua_ls", "tsserver", "sqlls", "bashls", "dockerls" },
       -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
       -- This setting has no relation with the `ensure_installed` setting.
       -- Can either be:
@@ -50,7 +50,7 @@ return {
       --   - true: All adapters set up via dap are automatically installed.
       --   - { exclude: string[] }: All adapters set up via mason-nvim-dap, except the ones provided in the list, are automatically installed.
       --       Example: automatic_installation = { exclude = { "python", "delve" } }
-      automatic_installation = false,
+      automatic_installation = true,
       -- Whether adapters that are installed in mason should be automatically set up in dap.
       -- Removes the need to set up dap manually.
       -- See mappings.adapters and mappings.configurations for settings.

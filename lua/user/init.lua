@@ -28,12 +28,12 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = false, -- enable or disable format on save globally
+        enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
-          -- "go",
+          "lua",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
-          -- "python",
+          "python",
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
@@ -44,6 +44,11 @@ return {
       --   return true
       -- end
     },
+    flags = {
+      allow_incremental_sync = false,
+      debounce_text_changes = 500,
+    },
+
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
