@@ -60,9 +60,101 @@ return {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
       -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   `nvim-notify` is only needtrueed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
+    },
+  },
+
+  {
+    "jinh0/eyeliner.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("eyeliner").setup {
+        highlight_on_key = false, -- show highlights only after keypress
+        dim = false, -- dim all other characters if set to true (recommended!)
+      }
+    end,
+  },
+  {
+    "mg979/vim-visual-multi",
+    event = "VeryLazy",
+  },
+
+  {
+    "ecthelionvi/NeoComposer.nvim",
+    event = "VeryLazy",
+    dependencies = { "kkharji/sqlite.lua" },
+    opts = {},
+  },
+
+  { "wakatime/vim-wakatime", lazy = false },
+
+  {
+    "danymat/neogen",
+    enabled = false,
+    cmd = { "Neogen" },
+    config = true,
+    -- Uncomment next line if you want to follow only stable versions
+    -- version = "*"
+  },
+
+  {
+    "nvim-java/nvim-java",
+    dependencies = {
+      "nvim-java/lua-async-await",
+      "nvim-java/nvim-java-core",
+      "nvim-java/nvim-java-test",
+      "nvim-java/nvim-java-dap",
+      "MunifTanjim/nui.nvim",
+      "neovim/nvim-lspconfig",
+      "mfussenegger/nvim-dap",
+      {
+        "williamboman/mason.nvim",
+        opts = {
+          registries = {
+            "github:nvim-java/mason-registry",
+            "github:mason-org/mason-registry",
+          },
+        },
+      },
+    },
+  },
+
+  {
+    "sourcegraph/sg.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
+    },
+    keys = {
+      {
+        "<leader>f" .. "s",
+        function() require("sg.extensions.telescope").fuzzy_search_results() end,
+        desc = "Cody search [sg.nvim]",
+      },
+    },
+    config = function() require("sg").setup {} end,
+    build = "nvim -l build/init.lua",
+  },
+  {
+    {
+      "codota/tabnine-nvim",
+      enabled = false,
+      event = "VeryLazy",
+      build = "./dl_binaries.sh",
+      config = function()
+        require("tabnine").setup {
+          disable_auto_comment = true,
+          accept_keymap = "<Tab>",
+          dismiss_keymap = "<C-]>",
+          debounce_ms = 800,
+          suggestion_color = { gui = "#808080", cterm = 244 },
+          exclude_filetypes = { "TelescopePrompt", "NvimTree" },
+          log_file_path = nil, -- absolute path to Tabnine log file
+        }
+      end,
     },
   },
 }
