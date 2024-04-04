@@ -14,7 +14,20 @@ return {
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
-        -- Normal = { bg = "#000000" },
+        StatusLine = {
+          bg = "#572e33",
+        },
+        LineNr = {
+          fg = "yellow",
+        },
+        LeapMatch = {
+          fg = "#fb4934",
+        },
+        LeapLabelPrimary = {
+          fg = "#fb4934",
+          bg = "#572e33",
+          underline = true,
+        },
       },
       astrotheme = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },
