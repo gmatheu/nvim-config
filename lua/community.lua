@@ -18,12 +18,17 @@ return {
   { import = "astrocommunity.git.git-blame-nvim" },
 
   { import = "astrocommunity.workflow.hardtime-nvim" },
-  { import = "astrocommunity.workflow.bad-practices-nvim" },
+  -- {
+  --   import = "astrocommunity.workflow.bad-practices-nvim",
+  --   opts = {
+  --     most_splits = 10,
+  --   },
+  -- },
 
   { import = "astrocommunity.project.project-nvim" },
 
   { import = "astrocommunity.pack.lua" },
-  -- { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.python" },
   -- { import = "astrocommunity.pack.java" },
 
   { import = "astrocommunity.editing-support.refactoring-nvim" },
