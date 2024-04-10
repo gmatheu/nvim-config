@@ -29,6 +29,11 @@ return {
 
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.svelte" },
+  { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.bash" },
+  { import = "astrocommunity.pack.html-css" },
+  { import = "astrocommunity.pack.json" },
   -- { import = "astrocommunity.pack.java" },
 
   { import = "astrocommunity.editing-support.refactoring-nvim" },
