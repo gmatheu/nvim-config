@@ -159,6 +159,80 @@ return {
   },
 
   {
+    "jackMort/ChatGPT.nvim",
+    enabled = true,
+    -- event = "VeryLazy",
+    cmd = {
+      "ChatGPT",
+      "ChatGPTActAs",
+      "ChatGPTEditWithInstructions",
+      "ChatGPTRun",
+      "ChatGPTCompleteCode",
+    },
+    config = function() require("chatgpt").setup() end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
+
+  {
+    "olimorris/codecompanion.nvim",
+    cmd = {
+      "CodeCompanion",
+      "CodeCompanionChat",
+      "CodeCompanionInline",
+      "CodeCompanionEdit",
+      "CodeCompanionAdd",
+      "CodeCompanionToggle",
+      "CodeCompanionActions",
+    },
+    config = function()
+      require("codecompanion").setup {
+        strategies = {
+          chat = "anthropic",
+          inline = "anthropic",
+        },
+      }
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-telescope/telescope.nvim", -- Optional
+      {
+        "stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
+        opts = {},
+      },
+      {
+        "folke/edgy.nvim",
+        event = "VeryLazy",
+        init = function()
+          vim.opt.laststatus = 3
+          vim.opt.splitkeep = "screen"
+        end,
+        opts = {
+          right = {
+            { ft = "codecompanion", title = "Code Companion Chat", size = { width = 0.45 } },
+          },
+        },
+      },
+    },
+  },
+  --
+  -- To try
+  -- https://github.com/Theo-Steiner/theosteiner.de/issues/2#issuecomment-new
+  -- https://github.com/nvim-neotest/neotest
+  -- https://github.com/theHamsta/nvim-dap-virtual-text``
+  -- https://github.com/mg979/vim-visual-multi
+  -- https://github.com/gbprod/yanky.nvim--
+  --
+  --
+  --
+  --
+
+  {
     "Exafunction/codeium.vim",
     event = "BufEnter",
     cmd = { "Codeium", "CodeiumEnable", "CodeiumDisable" },

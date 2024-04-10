@@ -411,17 +411,6 @@ return {
     end,
   },
 
-  -- To try
-  -- https://github.com/Theo-Steiner/theosteiner.de/issues/2#issuecomment-new
-  -- https://github.com/nvim-neotest/neotest
-  -- https://github.com/theHamsta/nvim-dap-virtual-text``
-  -- https://github.com/mg979/vim-visual-multi
-  -- https://github.com/gbprod/yanky.nvim--
-  --
-  --
-  --
-  --
-
   {
     "mickael-menu/zk-nvim",
     cmd = { "ZkIndex", "ZkNew", "ZkNotes", "ZkLinks", "ZkTags" },
