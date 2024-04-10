@@ -157,4 +157,36 @@ return {
       end,
     },
   },
+
+  {
+    "Exafunction/codeium.vim",
+    event = "BufEnter",
+    cmd = { "Codeium", "CodeiumEnable", "CodeiumDisable" },
+    keys = {
+      {
+        "<C-g>",
+        function() return vim.fn["codeium#Accept"]() end,
+        desc = "Accept suggestion [Codeium]",
+        mode = "i",
+        expr = true,
+        silent = true,
+      },
+      {
+        "<C-;>",
+        function() return vim.fn["codeium#CycleCompletion"](1) end,
+        desc = "Cycle suggestion up [Codeium]",
+        mode = "i",
+        expr = true,
+        silent = true,
+      },
+      {
+        "<C-,>",
+        function() return vim.fn["codeium#CycleCompletion"](-1) end,
+        desc = "Cycle suggestion down [Codeium]",
+        mode = "i",
+        expr = true,
+        silent = true,
+      },
+    },
+  },
 }
