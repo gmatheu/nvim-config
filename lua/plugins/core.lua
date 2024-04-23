@@ -65,7 +65,6 @@ return {
     build = "make install_jsregexp",
     dependencies = {
       "rafamadriz/friendly-snippets",
-      "hrsh7th/cmp-cmdline",
     },
     config = function(plugin, opts)
       require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
@@ -82,29 +81,6 @@ return {
           vim.fn.stdpath "config" .. "snippets",
         },
       }
-      local cmp = require "cmp"
-      -- `/` cmdline setup.
-      cmp.setup.cmdline("/", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
-        },
-      })
-
-      -- `:` cmdline setup.
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" },
-        }, {
-          {
-            name = "cmdline",
-            option = {
-              ignore_cmds = { "Man", "!" },
-            },
-          },
-        }),
-      })
     end,
   },
   -- TODO: Check migration to v4

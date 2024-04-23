@@ -99,8 +99,22 @@ return {
     },
   },
 
+  -- For debugging: export DEBUG_CODEIUM=trace
+  {
+    "Exafunction/codeium.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup {
+        enable_chat = true,
+      }
+    end,
+  },
   {
     "Exafunction/codeium.vim",
+    enabled = false,
     event = "BufEnter",
     cmd = { "Codeium", "CodeiumEnable", "CodeiumDisable" },
     keys = {
