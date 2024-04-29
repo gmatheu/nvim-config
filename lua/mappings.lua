@@ -1,5 +1,4 @@
 local astrocore = require "astrocore"
-local is_available = astrocore.is_available
 
 local maps = {
   i = {},
@@ -126,13 +125,10 @@ maps.n["<Leader>zt"] = { "<cmd>ZkTags<CR>", desc = "List tags (zk)" }
 maps.n["<Leader>zn"] = { "<cmd>ZkNew<CR>", desc = "New note (zk)" }
 -- End User --
 
-if is_available "focus.nvim" then
-  maps.n["|"] = { "<cmd>FocusSplitDown<cr>", desc = "Vertical Split [focus]" }
-  maps.n["\\"] = { "<cmd>FocusSplitRight<cr>", desc = "Horizontal Split [focus]" }
-else
-  maps.n["|"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" }
-  maps.n["\\"] = { "<cmd>split<cr>", desc = "Horizontal Split" }
-end
+maps.n["|"] = { "<cmd>FocusSplitDown<cr>", desc = "Vertical Split [focus]" }
+maps.n["\\"] = { "<cmd>FocusSplitRight<cr>", desc = "Horizontal Split [focus]" }
+-- maps.n["|"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" }
+-- maps.n["\\"] = { "<cmd>split<cr>", desc = "Horizontal Split" }
 
 maps.n["<Leader>x"] = { "<cmd>bd<cr>", desc = "Close buffer" }
 
@@ -141,79 +137,69 @@ maps.n["]t"] = { function() vim.cmd.tabnext() end, desc = "Next tab" }
 maps.n["[t"] = { function() vim.cmd.tabprevious() end, desc = "Previous tab" }
 
 -- Comment
-if is_available "Comment.nvim" then
-  maps.n["<Leader>/"] = {
-    function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
-    desc = "Comment line",
-  }
-  maps.n["<Leader>cc"] = {
-    function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
-    desc = "Comment line",
-  }
-  maps.v["<Leader>/"] =
-    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
-  maps.v["<Leader>cc"] =
-    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
-end
+maps.n["<Leader>/"] = {
+  function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+  desc = "Comment line",
+}
+maps.n["<Leader>cc"] = {
+  function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+  desc = "Comment line",
+}
+maps.v["<Leader>/"] =
+  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+maps.v["<Leader>cc"] =
+  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 
--- if is_available "vim-fugitive" then
 maps.n["<Leader>gst"] = { "<cmd>Git<cr>", desc = "Git vim-fugitive" }
 maps.n["<Leader>gg"] = { "<cmd>Git<cr>", desc = "Git vim-fugitive" }
 
 -- NeoTree
-if is_available "neo-tree.nvim" then
-  maps.n["<Leader>e"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" }
-  maps.n["<F3>"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" }
-  maps.n["<Leader>o"] = {
-    function()
-      if vim.bo.filetype == "neo-tree" then
-        vim.cmd.wincmd "p"
-      else
-        vim.cmd.Neotree "focus"
-      end
-    end,
-    desc = "Toggle Explorer Focus",
-  }
-end
+maps.n["<Leader>e"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" }
+maps.n["<F3>"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" }
+maps.n["<Leader>o"] = {
+  function()
+    if vim.bo.filetype == "neo-tree" then
+      vim.cmd.wincmd "p"
+    else
+      vim.cmd.Neotree "focus"
+    end
+  end,
+  desc = "Toggle Explorer Focus",
+}
 
 -- Session Manager
 maps.n["<Leader>S"] = sections.S
--- if is_available "auto-session" then
 maps.n["<Leader>Sl"] = { "<cmd>Autosession search<cr>", desc = "List sessions [auto-session]" }
 maps.n["<Leader>Ss"] = { "<cmd>SessionSave<cr>", desc = "Save this session [auto-session]" }
 maps.n["<Leader>Sd"] = { "<cmd>Autosession delete<cr>", desc = "Delete sessions [auto-session]" }
 maps.n["<Leader>Sr"] = { "<cmd>SessionRestore<cr>", desc = "Search sessions [auto-session]" }
 
 -- Smart Splits
-if is_available "smart-splits.nvim" then
-  maps.n["<C-h>"] = { function() require("smart-splits").move_cursor_left() end, desc = "Move to left split" }
-  -- maps.n["<C-j>"] = { function() require("smart-splits").move_cursor_down() end, desc = "Move to below split" }
-  -- maps.n["<C-k>"] = { function() require("smart-splits").move_cursor_up() end, desc = "Move to above split" }
-  maps.n["<C-l>"] = { function() require("smart-splits").move_cursor_right() end, desc = "Move to right split" }
-  maps.n["<C-Up>"] = { function() require("smart-splits").resize_up() end, desc = "Resize split up" }
-  maps.n["<C-Down>"] = { function() require("smart-splits").resize_down() end, desc = "Resize split down" }
-  maps.n["<C-Left>"] = { function() require("smart-splits").resize_left() end, desc = "Resize split left" }
-  maps.n["<C-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" }
-else
-  maps.n["<C-h>"] = { "<C-w>h", desc = "Move to left split" }
-  -- maps.n["<C-j>"] = { "<C-w>j", desc = "Move to below split" }
-  -- maps.n["<C-k>"] = { "<C-w>k", desc = "Move to above split" }
-  maps.n["<C-l>"] = { "<C-w>l", desc = "Move to right split" }
-  maps.n["<C-Up>"] = { "<cmd>resize -2<CR>", desc = "Resize split up" }
-  maps.n["<C-Down>"] = { "<cmd>resize +2<CR>", desc = "Resize split down" }
-  maps.n["<C-Left>"] = { "<cmd>vertical resize -2<CR>", desc = "Resize split left" }
-  maps.n["<C-Right>"] = { "<cmd>vertical resize +2<CR>", desc = "Resize split right" }
-end
+maps.n["<C-h>"] = { function() require("smart-splits").move_cursor_left() end, desc = "Move to left split" }
+-- maps.n["<C-j>"] = { function() require("smart-splits").move_cursor_down() end, desc = "Move to below split" }
+-- maps.n["<C-k>"] = { function() require("smart-splits").move_cursor_up() end, desc = "Move to above split" }
+maps.n["<C-l>"] = { function() require("smart-splits").move_cursor_right() end, desc = "Move to right split" }
+maps.n["<C-Up>"] = { function() require("smart-splits").resize_up() end, desc = "Resize split up" }
+maps.n["<C-Down>"] = { function() require("smart-splits").resize_down() end, desc = "Resize split down" }
+maps.n["<C-Left>"] = { function() require("smart-splits").resize_left() end, desc = "Resize split left" }
+maps.n["<C-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" }
+-- maps.n["<C-h>"] = { "<C-w>h", desc = "Move to left split" }
+-- -- maps.n["<C-j>"] = { "<C-w>j", desc = "Move to below split" }
+-- -- maps.n["<C-k>"] = { "<C-w>k", desc = "Move to above split" }
+-- maps.n["<C-l>"] = { "<C-w>l", desc = "Move to right split" }
+-- maps.n["<C-Up>"] = { "<cmd>resize -2<CR>", desc = "Resize split up" }
+-- maps.n["<C-Down>"] = { "<cmd>resize +2<CR>", desc = "Resize split down" }
+-- maps.n["<C-Left>"] = { "<cmd>vertical resize -2<CR>", desc = "Resize split left" }
+-- maps.n["<C-Right>"] = { "<cmd>vertical resize +2<CR>", desc = "Resize split right" }
 
 -- Telescope
-if is_available "telescope.nvim" then
-  maps.n["<Leader>n"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers" }
-  maps.n["<Leader>`"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" }
-  maps.n["<Leader>m"] = { function() require("telescope.builtin").oldfiles() end, desc = "Find history" }
-  maps.n["<Leader>fq"] = {
-    function() require("telescope.builtin").grep_string { search = vim.fn.expand "<cword>" } end,
-    desc = "Find from selected word",
-  }
-end
+maps.n["<Leader>n"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers" }
+maps.n["<Leader>`"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" }
+maps.n["<Leader>m"] = { function() require("telescope.builtin").oldfiles() end, desc = "Find history" }
+maps.n["<Leader>w"] = { function() require("telescope.builtin").live_grep() end, desc = "Live grep" }
+maps.n["<Leader>fq"] = {
+  function() require("telescope.builtin").grep_string { search = vim.fn.expand "<cword>" } end,
+  desc = "Find from selected word",
+}
 
 return maps
