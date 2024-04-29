@@ -67,11 +67,69 @@ return {
       "CodeCompanionToggle",
       "CodeCompanionActions",
     },
+    keys = {
+      { "<LocalLeader>a", "<cmd>CodeCompanionToggle<CR>", desc = "Toogle chat [CodeCompanion]", mode = "n" },
+      { "<LocalLeader>q", "<cmd>CodeCompanionActions<CR>", desc = "Actions [CodeCompanion]", mode = "n" },
+      {
+        "<LocalLeader>ca",
+        "<cmd>CodeCompanionChat anthropic<CR>",
+        desc = "Anthropic chat [CodeCompanion]",
+        mode = "n",
+      },
+      { "<LocalLeader>co", "<cmd>CodeCompanionChat openai<CR>", desc = "OpenAI chat [CodeCompanion]", mode = "n" },
+    },
     config = function()
       require("codecompanion").setup {
+        adapters = {
+          anthropic = require("codecompanion.adapters").use("anthropic", {
+            schema = {
+              model = {
+                default = "claude-3-sonnet-20240229",
+              },
+            },
+          }),
+          openai = require("codecompanion.adapters").use("openai", {
+            schema = {
+              model = {
+                default = "gpt-4-turbo",
+              },
+            },
+          }),
+        },
         strategies = {
           chat = "anthropic",
           inline = "anthropic",
+        },
+        display = {
+          action_palette = {
+            width = 95,
+            height = 10,
+          },
+          chat = { -- Options for the chat strategy
+            type = "buffer", -- float|buffer
+            show_settings = true, -- Show the model settings in the chat buffer?
+            show_token_count = true, -- Show the token count for the current chat in the buffer?
+            buf_options = { -- Buffer options for the chat buffer
+              buflisted = false,
+            },
+            float_options = { -- Float window options if the type is "float"
+              border = "single",
+              buflisted = false,
+              max_height = 0,
+              max_width = 0,
+              padding = 1,
+            },
+            win_options = { -- Window options for the chat buffer
+              cursorcolumn = false,
+              cursorline = false,
+              foldcolumn = "0",
+              linebreak = true,
+              list = false,
+              signcolumn = "no",
+              spell = false,
+              wrap = true,
+            },
+          },
         },
       }
     end,
