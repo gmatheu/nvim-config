@@ -157,6 +157,39 @@ return {
     },
   },
 
+  {
+    "piersolenski/wtf.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    opts = {
+      popup_type = "vertical",
+      openai_model_id = "gpt-3.5-turbo",
+      context = true,
+      language = "english",
+      -- additional_instructions = "Start the reply with 'OH HAI THERE'",
+      search_engine = "phind",
+      hooks = {
+        request_started = nil,
+        request_finished = nil,
+      },
+    },
+    keys = {
+      {
+        "<LocalLeader>ta",
+        mode = { "n", "x" },
+        function() require("wtf").ai() end,
+        desc = "Debug diagnostic with AI",
+      },
+      {
+        "<LocalLeader>to",
+        mode = { "n" },
+        function() require("wtf").search() end,
+        desc = "Search diagnostic with browser",
+      },
+    },
+  },
+
   -- For debugging: export DEBUG_CODEIUM=trace
   {
     "Exafunction/codeium.nvim",
