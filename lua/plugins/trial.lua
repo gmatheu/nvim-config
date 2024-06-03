@@ -146,6 +146,48 @@ return {
     -- available after the first executing of it or after a keymap of text-case.nvim has been used.
     lazy = false,
   },
+  {
+    "Makaze/watch.nvim",
+    cmd = { "WatchStart", "WatchStop", "WatchFile" },
+  },
+
+  {
+    "tris203/precognition.nvim",
+    keys = {
+      { "<LocalLeader>Xp", mode = { "n" }, desc = "Precognition" },
+      {
+        "<LocalLeader>Xpp",
+        function() require("precognition").peek() end,
+        mode = { "n" },
+        desc = "Peek [Precognition]",
+      },
+      {
+        "<LocalLeader>pt",
+        function() require("precognition").toggle() end,
+        mode = { "n" },
+        desc = "Toggle [Precognition]",
+      },
+    },
+    config = {
+      startVisible = false,
+      -- hints = {
+      --     ["^"] = { text = "^", prio = 1 },
+      --     ["$"] = { text = "$", prio = 1 },
+      --     ["w"] = { text = "w", prio = 10 },
+      --     ["b"] = { text = "b", prio = 10 },
+      --     ["e"] = { text = "e", prio = 10 },
+      -- },
+      -- gutterHints = {
+      --     --prio is not currentlt used for gutter hints
+      --     ["G"] = { text = "G", prio = 1 },
+      --     ["gg"] = { text = "gg", prio = 1 },
+      --     ["{"] = { text = "{", prio = 1 },
+      --     ["}"] = { text = "}", prio = 1 },
+      -- },
+    },
+  },
+
+  { "ii14/neorepl.nvim", enabled = false, cmd = { "Repl" } },
   --
   -- To try
   -- https://github.com/Theo-Steiner/theosteiner.de/issues/2#issuecomment-new
@@ -157,4 +199,22 @@ return {
   --
   --
   --
+  --
+  {
+    "gmatheu/keymap-stats.nvim",
+    event = "VeryLazy",
+    config = function() require("keymap-stats").setup() end,
+    cmd = { "KeymapStats" },
+    enabled = true,
+    priority = 0,
+    dev = false,
+  },
+
+  {
+    "kiyoon/jupynium.nvim",
+    enabled = false,
+    build = "pip3 install --user .",
+    -- build = "conda run --no-capture-output -n jupynium pip install .",
+    -- enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
+  },
 }
