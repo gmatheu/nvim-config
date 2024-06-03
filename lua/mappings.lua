@@ -21,6 +21,8 @@ local sections = {
 }
 if not vim.g.icons_enabled then vim.tbl_map(function(opts) opts.name = opts.name:gsub("^.* ", "") end, sections) end
 
+maps.n["<LocalLeader>c"] = { name = "AI assisted" }
+
 -- User --
 -- go to  beginning and end
 maps.i["<C-b>"] = { "<ESC>^i", desc = "beginning of line" }
@@ -200,4 +202,21 @@ maps.n["<Leader>fq"] = {
   desc = "Find from selected word",
 }
 
+-- Experimental commands, not meant to be called with the keymaps, but wuti fuzzy finder
+maps.n["<LocalLeader>X"] = { name = "Experimental commands" }
+maps.n["<LocalLeader>Xi"] = { name = "Instrument" }
+maps.n["<LocalLeader>Xir"] = {
+  function()
+    vim.ui.input({ prompt = "Save profile to:", completion = "file", default = "profile.log" }, function(filename)
+      if filename then require("plenary").start(filename) end
+    end)
+  end,
+  desc = "Record profile [Plenary]",
+}
+maps.n["<LocalLeader>Xis"] = {
+  function() require("plenary.profile").stop() end,
+  desc = "Stop recording profile [Plenary]",
+}
+
+maps.n["J"] = { "j", desc = "Next line" }
 return maps

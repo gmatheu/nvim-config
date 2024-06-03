@@ -20,7 +20,11 @@ return {
       return opts
     end,
   },
-  { "rcarriga/nvim-notify", enabled = true },
+  { "folke/which-key.nvim", enabled = true },
+  { "rcarriga/nvim-notify", enabled = true, opts = {
+    render = "minimal",
+    top_down = false,
+  } },
   { "stevearc/resession.nvim", enabled = false },
   { "Shatur/neovim-session-manager", enabled = false },
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
