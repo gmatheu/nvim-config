@@ -1,5 +1,3 @@
-local astrocore = require "astrocore"
-
 local maps = {
   i = {},
   n = {},

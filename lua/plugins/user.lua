@@ -373,7 +373,15 @@ return {
   {
     "nvim-telescope/telescope-file-browser.nvim",
     keys = {
-      { "<space>fb", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>", desc = "Open file browser" },
+      {
+        "<space>f",
+        desc = "telescope-file-browser",
+      },
+      {
+        "<space>fb",
+        "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
+        desc = "Open file browser [telescope-file-browser]",
+      },
     },
     config = function()
       require("telescope").setup {
