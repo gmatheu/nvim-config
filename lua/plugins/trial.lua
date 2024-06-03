@@ -188,18 +188,7 @@ return {
   },
 
   { "ii14/neorepl.nvim", enabled = false, cmd = { "Repl" } },
-  --
-  -- To try
-  -- https://github.com/Theo-Steiner/theosteiner.de/issues/2#issuecomment-new
-  -- https://github.com/nvim-neotest/neotest
-  -- https://github.com/theHamsta/nvim-dap-virtual-text``
-  -- https://github.com/mg979/vim-visual-multi
-  -- https://github.com/gbprod/yanky.nvim--
-  --
-  --
-  --
-  --
-  --
+
   {
     "gmatheu/keymap-stats.nvim",
     event = "VeryLazy",
@@ -217,4 +206,13 @@ return {
     -- build = "conda run --no-capture-output -n jupynium pip install .",
     -- enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
   },
+  --
+  --
+  -- To try
+  -- https://github.com/Theo-Steiner/theosteiner.de/issues/2#issuecomment-new
+  -- https://github.com/nvim-neotest/neotest
+  -- https://github.com/theHamsta/nvim-dap-virtual-text``
+  -- https://github.com/mg979/vim-visual-multi
+  -- https://github.com/gbprod/yanky.nvim--
+  -- https://github.com/SUSTech-data/wildfire.nvim
 }

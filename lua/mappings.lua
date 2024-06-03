@@ -97,17 +97,10 @@ maps.n["<Leader>ss"] = { "<cmd>MurenToggle<CR>", desc = "Open multiple replace" 
 --   desc = "Search on current file",
 -- }
 
-maps.n["<Leader>tt"] = { "<cmd>TroubleToggle document_diagnostics<CR>", desc = "[T]oggle [T]rouble" }
-maps.n["<Leader>tl"] = { "<cmd>TroubleToggle loclist<CR>", desc = "[T]oggle [L]oclist (Trouble)" }
-maps.n["<Leader>tw"] =
-  { "<cmd>TroubleToggle workspace_diagnostics<CR>", desc = "[T]oggle [W]orskpace diagnostics (Trouble)" }
-maps.n["<Leader>td"] =
-  { "<cmd>TroubleToggle document_diagnostics<CR>", desc = "[T]oggle [D]document diagnostics (Trouble)" }
-
 maps.n["<A-j>"] = { function() require("expand-selection").expsel() end, desc = "Expand selection" }
 
 -- TODO Review
-maps.n["<A-e>"] = { function() require("tsht").nodes() end, desc = "Expand selection" }
+-- maps.n["<A-e>"] = { function() require("tsht").nodes() end, desc = "Expand selection" }
 
 maps.n["<Leader>q"] = sections.q
 maps.n["<Leader>qr"] = { "<cmd>OverseerRun<CR>", desc = "Run tasks" }
