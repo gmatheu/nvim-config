@@ -340,7 +340,8 @@ return {
 
   -- For debugging: export DEBUG_CODEIUM=trace
   {
-    "Exafunction/codeium.nvim",
+    "gmatheu/codeium.nvim",
+    dev = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
