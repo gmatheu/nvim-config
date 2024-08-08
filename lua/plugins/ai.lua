@@ -1,22 +1,5 @@
 return {
   {
-    "sourcegraph/sg.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
-    },
-    keys = {
-      {
-        "<leader>f" .. "s",
-        function() require("sg.extensions.telescope").fuzzy_search_results() end,
-        desc = "Cody search [sg.nvim]",
-      },
-    },
-    config = function() require("sg").setup {} end,
-    build = "nvim -l build/init.lua",
-  },
-  {
     {
       "codota/tabnine-nvim",
       enabled = false,
@@ -37,7 +20,8 @@ return {
   },
 
   {
-    "jackMort/ChatGPT.nvim",
+    "gmatheu/ChatGPT.nvim",
+    dev = true,
     enabled = true,
     -- event = "VeryLazy",
     cmd = {
@@ -54,8 +38,87 @@ return {
         desc = "Open Chat [ChatGPT]",
         mode = "n",
       },
+      {
+        "<LocalLeader>ce",
+        "<cmd>ChatGPTEditWithInstruction<CR>",
+        desc = "Edit with instruction [ChatGPT]",
+        mode = "n",
+      },
     },
-    config = function() require("chatgpt").setup() end,
+    config = function()
+      require("chatgpt").setup {
+        openai_params = {
+          model = "gpt-4-turbo",
+          frequency_penalty = 0,
+          presence_penalty = 0,
+          max_tokens = 300,
+          temperature = 0,
+          top_p = 1,
+          n = 1,
+        },
+        openai_edit_params = {
+          model = "gpt-4-turbo",
+          frequency_penalty = 0,
+          presence_penalty = 0,
+          temperature = 0,
+          top_p = 1,
+          n = 1,
+        },
+        popup_window = {
+          border = {
+            highlight = "FloatBorder",
+            style = "rounded",
+            text = {
+              top = " ChatGPT ",
+            },
+          },
+          win_options = {
+            wrap = true,
+            linebreak = true,
+            foldcolumn = "1",
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+            relativenumber = true,
+          },
+          buf_options = {
+            filetype = "markdown",
+          },
+        },
+        system_window = {
+          border = {
+            highlight = "FloatBorder",
+            style = "rounded",
+            text = {
+              top = " SYSTEM ",
+            },
+          },
+          win_options = {
+            wrap = true,
+            linebreak = true,
+            foldcolumn = "2",
+            relativenumber = true,
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+          },
+        },
+        popup_input = {
+          prompt = "  ",
+          border = {
+            highlight = "FloatBorder",
+            style = "rounded",
+            text = {
+              top_align = "center",
+              top = " Prompt ",
+            },
+          },
+          win_options = {
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+            relativenumber = true,
+          },
+          submit = "<C-Enter>",
+          submit_n = "<Enter>",
+          max_visible_lines = 20,
+        },
+      }
+    end,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
