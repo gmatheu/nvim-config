@@ -88,6 +88,7 @@ return {
         Package = "",
         String = "",
         Codeium = "",
+        Supermaven = "",
       }
     end,
   },

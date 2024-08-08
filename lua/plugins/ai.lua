@@ -129,7 +129,7 @@ return {
 
   {
     "olimorris/codecompanion.nvim",
-    enabled = false,
+    enabled = true,
     cmd = {
       "CodeCompanion",
       "CodeCompanionChat",
@@ -230,7 +230,17 @@ return {
   },
 
   {
+    "dpayne/CodeGPT.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function() require "codegpt.config" end,
+    cmd = { "" },
+  },
+  {
     "huynle/ogpt.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       default_provider = "anthropic",
@@ -446,5 +456,49 @@ return {
         silent = true,
       },
     },
+  },
+  {
+    "supermaven-inc/supermaven-nvim",
+    cmd = { "SupermavenStatus", "SupermavenToggle" },
+    config = function()
+      require("supermaven-nvim").setup {
+        keymaps = {
+          accept_suggestion = "<Tab>",
+          clear_suggestion = "<C-]>",
+          accept_word = "<C-j>",
+        },
+        ignore_filetypes = { cpp = true },
+        color = {
+          suggestion_color = "#ffffff",
+          cterm = 244,
+        },
+        log_level = "info", -- set to "off" to disable logging completely
+        disable_inline_completion = false,
+        disable_keymaps = false,
+      }
+    end,
+  },
+  {
+    "sourcegraph/sg.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
+    },
+    keys = {
+      {
+        "<leader>f" .. "s",
+        function() require("sg.extensions.telescope").fuzzy_search_results() end,
+        desc = "Cody search [sg.nvim]",
+      },
+    },
+    config = function() require("sg").setup {} end,
+  },
+
+  {
+    "kiddos/gemini.nvim",
+    enabled = false,
+    build = { "pip install -r requirements.txt", ":UpdateRemotePlugins" },
+    config = function() require("gemini").setup() end,
   },
 }
