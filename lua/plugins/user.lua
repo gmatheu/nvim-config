@@ -15,11 +15,14 @@ return {
   -- { "ellisonleao/gruvbox.nvim", lazy = false },
   -- { "luisiacc/gruvbox-baby", lazy = false },
   { "mbbill/undotree", lazy = true, cmd = { "UndotreeToggle" } },
+
   {
     "kylechui/nvim-surround",
+    enabled = true,
     event = "VeryLazy",
     config = function() require("nvim-surround").setup() end,
   },
+
   { "tpope/vim-fugitive", cmd = { "Git" } },
 
   {
@@ -668,5 +671,54 @@ return {
     --    {"stevearc/dressing.nvim"},
     --    {"nvim-telescope/telescope.nvim"} -- needed for fuzzy search, but should work fine even without it
     -- }
+  },
+
+  {
+    "m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    opts = {
+      max_count = 5,
+      hint = true,
+      notification = true,
+      disabled_filetypes = {
+        "NvimTree",
+        "TelescopePrompt",
+        "aerial",
+        "alpha",
+        "checkhealth",
+        "dapui*",
+        "Diffview*",
+        "Dressing*",
+        "help",
+        "httpResult",
+        "lazy",
+        "lspinfo",
+        "Neogit*",
+        "mason",
+        "neotest%-summary",
+        "minifiles",
+        "neo%-tree*",
+        "netrw",
+        "noice",
+        "notify",
+        "prompt",
+        "qf",
+        "query",
+        "oil",
+        "undotree",
+        "trouble",
+        "Trouble",
+        "fugitive",
+        "markdown",
+        "chatgpt-input",
+      },
+      disabled_keys = {
+        ["<Insert>"] = { "", "i" },
+        ["<Home>"] = { "", "i" },
+        ["<End>"] = { "", "i" },
+        ["<PageUp>"] = { "", "i" },
+        ["<PageDown>"] = { "", "i" },
+      },
+    },
   },
 }

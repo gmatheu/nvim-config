@@ -211,5 +211,6 @@ maps.n["<LocalLeader>Xis"] = {
   desc = "Stop recording profile [Plenary]",
 }
 
-maps.n["J"] = { "j", desc = "Next line" }
+-- maps.n["J"] = { "j", desc = "Next line" }
+
 return maps

@@ -16,8 +16,7 @@ return {
 
   -- { import = "astrocommunity.diagnostics.lsp_lines-nvim"},
   { import = "astrocommunity.git.git-blame-nvim" },
-
-  { import = "astrocommunity.workflow.hardtime-nvim" },
+  --
   -- {
   --   import = "astrocommunity.workflow.bad-practices-nvim",
   --   opts = {
