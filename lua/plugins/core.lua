@@ -25,8 +25,8 @@ return {
     render = "minimal",
     top_down = false,
   } },
-  { "stevearc/resession.nvim", enabled = false },
-  { "Shatur/neovim-session-manager", enabled = false },
+  -- { "stevearc/resession.nvim", enabled = false },
+  -- { "Shatur/neovim-session-manager", enabled = false },
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
 
   {
