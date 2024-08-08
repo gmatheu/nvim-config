@@ -76,9 +76,29 @@ return {
       }
     end,
   },
+
+  { "anuvyklack/keymap-amend.nvim" },
+
   {
     "mg979/vim-visual-multi",
-    event = "VeryLazy",
+    keys = {
+      { "<c-n>", "<Plug>(VM-Find-Under)", mode = { "n" }, desc = "VM Find Under [vim-visual-multi]" },
+    },
+  },
+  {
+    "gbprod/yanky.nvim",
+    keys = {
+      { "<c-p>", "<Plug>(YankyNextEntry)", mode = { "n" }, desc = "Prev yank ring item [yanky]" },
+      { "p", "<Plug>(YankyPutAfter)", mode = { "n" }, desc = "Put after [yanky]" },
+      { "P", "<Plug>(YankyPutBefore)", mode = { "n" }, desc = "Put before [yanky]" },
+      { "gp", "<Plug>(YankyGPutAfter)", mode = { "n" }, desc = "Put after and leaver cursor [yanky]" },
+      { "gP", "<Plug>(YankyGPutBefore)", mode = { "n" }, desc = "Put before and leaver cursor [yanky]" },
+    },
+    config = function()
+      require("yanky").setup()
+      require("telescope").load_extension "yank_history"
+    end,
+    opts = {},
   },
 
   {
