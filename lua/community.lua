@@ -10,7 +10,7 @@ return {
 
   -- { import = "astrocommunity.colorscheme.catppuccin" }
 
-  { import = "astrocommunity.debugging.nvim-bqf" },
+  { import = "astrocommunity.quickfix.nvim-bqf" },
   { "junegunn/fzf", event = "VeryLazy" },
   { "junegunn/fzf.vim", event = "VeryLazy" },
 

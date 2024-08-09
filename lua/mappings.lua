@@ -5,22 +5,6 @@ local maps = {
   t = {},
 }
 
-local sections = {
-  f = { name = "󰍉 Find" },
-  p = { name = "󰏖 Packages" },
-  l = { name = " LSP" },
-  c = { name = " Code" },
-  u = { name = " UI" },
-  b = { name = "󰓩 Buffers" },
-  d = { name = " Debugger" },
-  g = { name = " Git" },
-  s = { name = "Search" },
-  S = { name = "󱂬 Session" },
-  t = { name = " Terminal" },
-  q = { name = " Quick Actions" },
-}
-if not vim.g.icons_enabled then vim.tbl_map(function(opts) opts.name = opts.name:gsub("^.* ", "") end, sections) end
-
 maps.n["<LocalLeader>c"] = { name = "AI assisted" }
 
 -- User --
@@ -55,7 +39,6 @@ maps.n["<Leader><CR>"] = { "<cmd> w <CR>", desc = "save file" }
 -- Copy all
 maps.n["<C-c>"] = { "<cmd> %y+ <CR>", desc = "copy whole file" }
 
-maps.n["<Leader>c"] = sections.c
 maps.n["<Leader>cD"] = { function() vim.lsp.buf.declaration() end, desc = "lsp declaration" }
 maps.n["<Leader>cd"] = { function() vim.lsp.buf.definition() end, desc = "lsp definition" }
 maps.n["gD"] = { function() vim.lsp.buf.declaration() end, desc = "lsp declaration" }
@@ -87,7 +70,6 @@ maps.i["<F2>"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Rename ac
 maps.n["<Leader>ra"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Rename action" }
 maps.v["<Leader>ra"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Rename action" }
 
-maps.n["<Leader>s"] = sections.s
 maps.n["<Leader>ss"] = { "<cmd>MurenToggle<CR>", desc = "Open multiple replace" }
 -- maps.n["<Leader>sw"] =
 -- { '<cmd>lua require("spectre").open_visual({select_word={ue})<CR>', desc = "Search current word" }
@@ -102,7 +84,6 @@ maps.n["<A-j>"] = { function() require("expand-selection").expsel() end, desc = 
 -- TODO Review
 -- maps.n["<A-e>"] = { function() require("tsht").nodes() end, desc = "Expand selection" }
 
-maps.n["<Leader>q"] = sections.q
 maps.n["<Leader>qr"] = { "<cmd>OverseerRun<CR>", desc = "Run tasks" }
 maps.n["<Leader>qt"] = { "<cmd>OverseerToggle<CR>", desc = "Overseer toggle" }
 maps.n["<Leader>qa"] = { "<cmd>OverseerQuickAction<CR>", desc = "Quick actions" }
@@ -161,11 +142,10 @@ maps.n["<Leader>o"] = {
 }
 
 -- Session Manager
-maps.n["<Leader>S"] = sections.S
-maps.n["<Leader>Sl"] = { "<cmd>Autosession search<cr>", desc = "List sessions [auto-session]" }
-maps.n["<Leader>Ss"] = { "<cmd>SessionSave<cr>", desc = "Save this session [auto-session]" }
-maps.n["<Leader>Sd"] = { "<cmd>Autosession delete<cr>", desc = "Delete sessions [auto-session]" }
-maps.n["<Leader>Sr"] = { "<cmd>SessionRestore<cr>", desc = "Search sessions [auto-session]" }
+-- maps.n["<Leader>Sl"] = { "<cmd>Autosession search<cr>", desc = "List sessions [auto-session]" }
+-- maps.n["<Leader>Ss"] = { "<cmd>SessionSave<cr>", desc = "Save this session [auto-session]" }
+-- maps.n["<Leader>Sd"] = { "<cmd>Autosession delete<cr>", desc = "Delete sessions [auto-session]" }
+-- maps.n["<Leader>Sr"] = { "<cmd>SessionRestore<cr>", desc = "Search sessions [auto-session]" }
 
 -- Smart Splits
 maps.n["<C-h>"] = { function() require("smart-splits").move_cursor_left() end, desc = "Move to left split" }
