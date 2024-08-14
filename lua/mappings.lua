@@ -8,6 +8,8 @@ local maps = {
 maps.n["<LocalLeader>c"] = { name = "AI assisted" }
 
 -- User --
+maps.n["<Leader>q"] = { "", desc = "do nothing [was: quit]" }
+maps.n["<Leader>c"] = { "", desc = "do nothing [was: close buffer]" }
 -- go to  beginning and end
 maps.i["<C-b>"] = { "<ESC>^i", desc = "beginning of line" }
 maps.i["<C-e>"] = { "<End>", desc = "end of line" }

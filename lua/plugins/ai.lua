@@ -156,21 +156,21 @@ return {
           anthropic = require("codecompanion.adapters").use("anthropic", {
             schema = {
               model = {
-                default = "claude-3-sonnet-20240229",
+                default = "claude-3-5-sonnet-20240620",
               },
             },
           }),
           openai = require("codecompanion.adapters").use("openai", {
             schema = {
               model = {
-                default = "gpt-4-turbo",
+                default = "gpt-4o",
               },
             },
           }),
         },
         strategies = {
-          chat = "anthropic",
-          inline = "anthropic",
+          chat = { adapter = "anthropic" },
+          inline = { adapter = "anthropic" },
         },
         display = {
           action_palette = {

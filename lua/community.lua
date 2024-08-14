@@ -5,6 +5,7 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.telescope-lsp-mappings" },
   { import = "astrocommunity.editing-support/rainbow-delimiters-nvim" },
   -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
