@@ -12,7 +12,7 @@ return {
         "sqlls",
         "bashls",
         "dockerls",
-        "pylsp",
+        -- "pylsp",
       })
 
       opts.automatic_installation = true
@@ -28,7 +28,7 @@ return {
         "prettier",
         "stylua",
         "ruff",
-        "pylint",
+        -- "pylint",
       })
       opts.automatic_setup = true
       opts.automatic_installation = true
