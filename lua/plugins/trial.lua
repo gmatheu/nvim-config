@@ -211,12 +211,15 @@ return {
 
   {
     "gmatheu/keymap-stats.nvim",
-    event = "VeryLazy",
-    config = function() require("keymap-stats").setup() end,
-    cmd = { "KeymapStats" },
     enabled = true,
+    event = "VeryLazy",
+    config = function() require("keymap-stats").setup { autoinstrument = false } end,
+    cmd = { "KeymapStats" },
     priority = 0,
-    dev = false,
+    dev = true,
+    dependencies = {
+      { "anuvyklack/keymap-amend.nvim" },
+    },
   },
 
   {
@@ -226,6 +229,28 @@ return {
     -- build = "conda run --no-capture-output -n jupynium pip install .",
     -- enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
   },
+
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("hlchunk").setup {
+        chunk = {
+          enable = true,
+        },
+        indent = {
+          enable = true,
+        },
+        line_num = {
+          enable = true,
+        },
+        blank = {
+          enable = true,
+        },
+      }
+    end,
+  },
+
   --
   --
   -- To try

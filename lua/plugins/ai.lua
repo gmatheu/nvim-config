@@ -153,20 +153,30 @@ return {
     config = function()
       require("codecompanion").setup {
         adapters = {
-          anthropic = require("codecompanion.adapters").use("anthropic", {
-            schema = {
-              model = {
-                default = "claude-3-5-sonnet-20240620",
+          anthropic = function()
+            return require("codecompanion.adapters").extend("anthropic", {
+              env = {
+                api_key = "cmd:pass show intive/anthropic/gm-org/api-key",
               },
-            },
-          }),
-          openai = require("codecompanion.adapters").use("openai", {
-            schema = {
-              model = {
-                default = "gpt-4o",
+              schema = {
+                model = {
+                  default = "claude-3-5-sonnet-20240620",
+                },
               },
-            },
-          }),
+            })
+          end,
+          openai = function()
+            return require("codecompanion.adapters").extend("openai", {
+              env = {
+                api_key = "cmd:pass show intive/openai/gm-org/api-key",
+              },
+              schema = {
+                model = {
+                  default = "gpt-4o",
+                },
+              },
+            })
+          end,
         },
         strategies = {
           chat = { adapter = "anthropic" },
@@ -463,7 +473,7 @@ return {
     config = function()
       require("supermaven-nvim").setup {
         keymaps = {
-          accept_suggestion = "<Tab>",
+          accept_suggestion = "<LocalLeader><space>",
           clear_suggestion = "<C-]>",
           accept_word = "<C-j>",
         },
