@@ -31,3 +31,34 @@ function load_log_file() end
 --
 vim.opt.path:append { "**" }
 vim.opt.wildmenu = true
+
+local function disable_completion()
+  -- Assuming you are using nvim-compe or a similar completion plugin
+  -- For nvim-compe:
+  vim.g.completion_enable_auto_popup = 0
+  -- For nvim-cmp:
+  require("cmp").setup.buffer { enabled = false }
+end
+vim.api.nvim_create_augroup("DisableCompletionForCodeCompanion", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = "DisableCompletionForCodeCompanion",
+  pattern = "codecompanion",
+  callback = disable_completion,
+})
+
+-- https://github.com/monkoose/neocodeium?tab=readme-ov-file#-tips
+local cmp = require "cmp"
+local neocodeium = require "neocodeium"
+-- local commands = require "neocodeium.commands"
+
+cmp.event:on("menu_opened", function() neocodeium.clear() end)
+
+neocodeium.setup {
+  filter = function() return not cmp.visible() end,
+}
+
+cmp.setup {
+  completion = {
+    autocomplete = false,
+  },
+}

@@ -47,6 +47,7 @@ return {
     },
     config = function()
       require("chatgpt").setup {
+        api_key_cmd = "pass show intive/openai/gm-org/api-key",
         openai_params = {
           model = "gpt-4o",
           frequency_penalty = 0,
@@ -129,6 +130,7 @@ return {
 
   {
     "olimorris/codecompanion.nvim",
+    dev = true,
     enabled = true,
     cmd = {
       "CodeCompanion",
@@ -425,6 +427,7 @@ return {
   {
     "gmatheu/codeium.nvim",
     dev = false,
+    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
@@ -467,6 +470,28 @@ return {
       },
     },
   },
+  {
+    "monkoose/neocodeium",
+    cmd = { "NeoCodeium" },
+    keys = {
+      { "<A-f>", mode = "i" },
+      { "<A-w>", mode = "i" },
+      { "<A-a>", mode = "i" },
+      { "<A-r>", mode = "i" },
+      { "<A-c>", mode = "i" },
+    },
+    config = function()
+      local neocodeium = require "neocodeium"
+      neocodeium.setup()
+      vim.keymap.set("i", "<A-f>", function() neocodeium.accept() end)
+      vim.keymap.set("i", "<A-w>", function() neocodeium.accept_word() end)
+      vim.keymap.set("i", "<A-a>", function() neocodeium.accept_line() end)
+      vim.keymap.set("i", "<A-r>", function() neocodeium.cycle_or_complete() end)
+      -- vim.keymap.set("i", "<A-r>", function() neocodeium.cycle_or_complete(-1) end)
+      vim.keymap.set("i", "<A-c>", function() neocodeium.clear() end)
+    end,
+  },
+
   {
     "supermaven-inc/supermaven-nvim",
     cmd = { "SupermavenStatus", "SupermavenToggle" },
