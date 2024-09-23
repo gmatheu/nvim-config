@@ -10,6 +10,13 @@ return {
           modemsg = false,
         },
       }
+      require("reactive").setup {
+        builtin = {
+          cursorline = true,
+          cursor = true,
+          modemsg = false,
+        },
+      }
     end,
   },
 
@@ -251,9 +258,37 @@ return {
     end,
   },
 
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    config = function() require("telescope").load_extension "frecency" end,
+  },
+  {
+    "stevearc/quicker.nvim",
+    event = "FileType qf",
+    ---@module "quicker"
+    ---@type quicker.SetupOptions
+    opts = {},
+    config = function()
+      require("quicker").setup {
+        keys = {
+          {
+            ">",
+            function() require("quicker").expand { before = 2, after = 2, add_to_existing = true } end,
+            desc = "Expand quickfix context",
+          },
+          {
+            "<",
+            function() require("quicker").collapse() end,
+            desc = "Collapse quickfix context",
+          },
+        },
+      }
+    end,
+  },
   --
   --
   -- To try
+  -- https://github.com/brenton-leighton/multiple-cursors.nvim
   -- https://github.com/Theo-Steiner/theosteiner.de/issues/2#issuecomment-new
   -- https://github.com/nvim-neotest/neotest
   -- https://github.com/theHamsta/nvim-dap-virtual-text``

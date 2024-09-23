@@ -170,7 +170,7 @@ maps.n["<C-Right>"] = { function() require("smart-splits").resize_right() end, d
 -- Telescope
 maps.n["<Leader>n"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers" }
 maps.n["<Leader>`"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" }
-maps.n["<Leader>m"] = { function() require("telescope.builtin").oldfiles() end, desc = "Find history" }
+maps.n["<Leader>m"] = { "<cmd>Telescope frecency<cr>", desc = "Find history [frecency]" }
 maps.n["<Leader>w"] = { function() require("telescope.builtin").live_grep() end, desc = "Live grep" }
 maps.n["<Leader>fq"] = {
   function() require("telescope.builtin").grep_string { search = vim.fn.expand "<cword>" } end,
