@@ -86,19 +86,14 @@ maps.n["<A-j>"] = { function() require("expand-selection").expsel() end, desc = 
 -- TODO Review
 -- maps.n["<A-e>"] = { function() require("tsht").nodes() end, desc = "Expand selection" }
 
-maps.n["<Leader>qr"] = { "<cmd>OverseerRun<CR>", desc = "Run tasks" }
-maps.n["<Leader>qt"] = { "<cmd>OverseerToggle<CR>", desc = "Overseer toggle" }
-maps.n["<Leader>qa"] = { "<cmd>OverseerQuickAction<CR>", desc = "Quick actions" }
+-- maps.n["<Leader>qr"] = { "<cmd>OverseerRun<CR>", desc = "Run tasks [overseer]" }
+-- maps.n["<Leader>qt"] = { "<cmd>OverseerToggle<CR>", desc = "Overseer toggle [overseer]" }
+-- maps.n["<Leader>qa"] = { "<cmd>OverseerQuickAction<CR>", desc = "Quick actions [overseer]" }
 
 -- "fedepujol/move.nvim",
 -- TODO Review
 maps.n["<C-j>"] = { "<cmd>MoveLine 1<CR>", desc = "Move line down" }
 maps.n["<C-k>"] = { "<cmd>MoveLine -1<CR>", desc = "Move line up" }
-
--- "mickael-menu/zk-nvim",
-maps.n["<Leader>zl"] = { "<cmd>ZkLinks<CR>", desc = "List notes links (zk)" }
-maps.n["<Leader>zt"] = { "<cmd>ZkTags<CR>", desc = "List tags (zk)" }
-maps.n["<Leader>zn"] = { "<cmd>ZkNew<CR>", desc = "New note (zk)" }
 -- End User --
 
 maps.n["|"] = { "<cmd>FocusSplitDown<cr>", desc = "Vertical Split [focus]" }

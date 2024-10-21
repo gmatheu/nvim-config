@@ -458,6 +458,12 @@ return {
   {
     "mickael-menu/zk-nvim",
     cmd = { "ZkIndex", "ZkNew", "ZkNotes", "ZkLinks", "ZkTags" },
+    keys = {
+      { "<Leader>zl", "<cmd>ZkLinks<CR>", desc = "List notes links (zk)" },
+      { "<Leader>zt", "<cmd>ZkTags<CR>", desc = "List tags (zk)" },
+      { "<Leader>zn", "<cmd>ZkNew<CR>", desc = "New note (zk)" },
+      { "<Leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", desc = "Open Notes (zk)" },
+    },
     config = function()
       require("zk").setup {
         -- See Setup section below
