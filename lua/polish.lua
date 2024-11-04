@@ -31,6 +31,7 @@ function load_log_file() end
 --
 vim.opt.path:append { "**" }
 vim.opt.wildmenu = true
+vim.opt.exrc = true
 
 local function disable_completion()
   -- Assuming you are using nvim-compe or a similar completion plugin
