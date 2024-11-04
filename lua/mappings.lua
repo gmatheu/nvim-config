@@ -125,18 +125,22 @@ maps.n["<Leader>gst"] = { "<cmd>Git<cr>", desc = "Git vim-fugitive" }
 maps.n["<Leader>gg"] = { "<cmd>Git<cr>", desc = "Git vim-fugitive" }
 
 -- NeoTree
-maps.n["<Leader>e"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" }
 maps.n["<F3>"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" }
-maps.n["<Leader>o"] = {
-  function()
-    if vim.bo.filetype == "neo-tree" then
-      vim.cmd.wincmd "p"
-    else
-      vim.cmd.Neotree "focus"
-    end
-  end,
-  desc = "Toggle Explorer Focus",
-}
+
+-- Oil
+maps.n["<Leader>o"] = { "<cmd>Oil<cr>", desc = "Toggle Explorer" }
+maps.n["-"] = { "<cmd>Oil --float<cr>", desc = "Toggle Explorer" }
+-- maps.n["<Leader>e"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" }
+-- maps.n["<Leader>o"] = {
+--   function()
+--     if vim.bo.filetype == "neo-tree" then
+--       vim.cmd.wincmd "p"
+--     else
+--       vim.cmd.Neotree "focus"
+--     end
+--   end,
+--   desc = "Toggle Explorer Focus",
+-- }
 
 -- Session Manager
 -- maps.n["<Leader>Sl"] = { "<cmd>Autosession search<cr>", desc = "List sessions [auto-session]" }
