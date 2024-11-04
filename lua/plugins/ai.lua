@@ -179,6 +179,22 @@ return {
               },
             })
           end,
+          llama3 = function()
+            return require("codecompanion.adapters").extend("ollama", {
+              name = "llama3.2:1b", -- Give this adapter a different name to differentiate it from the default ollama adapter
+              schema = {
+                model = {
+                  default = "llama3.2:1b",
+                },
+                num_ctx = {
+                  default = 16384,
+                },
+                num_predict = {
+                  default = -1,
+                },
+              },
+            })
+          end,
         },
         strategies = {
           chat = { adapter = "anthropic" },
@@ -544,6 +560,7 @@ return {
     opts = {
       -- add any opts here
     },
+    build = "make",
     keys = {
       { "<leader>aa", function() require("avante.api").ask() end, desc = "avante: ask", mode = { "n", "v" } },
       { "<leader>ar", function() require("avante.api").refresh() end, desc = "avante: refresh" },
