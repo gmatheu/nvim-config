@@ -88,10 +88,39 @@ return {
 
   {
     "mg979/vim-visual-multi",
+    enabled = false,
     keys = {
       { "<c-n>", "<Plug>(VM-Find-Under)", mode = { "n" }, desc = "VM Find Under [vim-visual-multi]" },
     },
   },
+  {
+    "jake-stewart/multicursor.nvim",
+    keys = {
+      {
+        "<c-n>",
+        function() require("multicursor-nvim").matchAddCursor(1) end,
+        mode = { "n" },
+        desc = "VM Find Under [multicursor-nvim]",
+      },
+    },
+    config = function()
+      local mc = require "multicursor-nvim"
+
+      mc.setup()
+
+      local set = vim.keymap.set
+      set({ "n", "v" }, "<up>", function() mc.lineAddCursor(-1) end)
+      set({ "n", "v" }, "<down>", function() mc.lineAddCursor(1) end)
+      set({ "n", "v" }, "<leader><up>", function() mc.lineSkipCursor(-1) end)
+      set({ "n", "v" }, "<leader><down>", function() mc.lineSkipCursor(1) end)
+
+      set({ "n", "v" }, "<c-n>", function() mc.matchAddCursor(1) end)
+      set({ "n", "v" }, "<leader>s", function() mc.matchSkipCursor(1) end)
+    end,
+  },
+  -- Alternatives:
+  -- https://github.com/brenton-leighton/multiple-cursors.nvim
+
   {
     "gbprod/yanky.nvim",
     keys = {
@@ -288,8 +317,10 @@ return {
   --
   --
   -- To try
-  -- https://github.com/brenton-leighton/multiple-cursors.nvim
   -- https://github.com/Theo-Steiner/theosteiner.de/issues/2#issuecomment-new
+  -- https://github.com/stevearc/quicker.nvim?tab=readme-ov-file#installation
+  -- https://github.com/MagicDuck/grug-far.nvim?tab=readme-ov-file
+  -- https://github.com/gelguy/wilder.nvim
   -- https://github.com/nvim-neotest/neotest
   -- https://github.com/theHamsta/nvim-dap-virtual-text``
   -- https://github.com/SUSTech-data/wildfire.nvim
