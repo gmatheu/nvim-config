@@ -314,6 +314,24 @@ return {
       }
     end,
   },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      bigfile = { enabled = true },
+      quickfile = { enabled = true },
+      statuscolumn = { enabled = false },
+      words = { enabled = false },
+      notifier = {
+        enabled = true,
+        timeout = 3000,
+      },
+    },
+    keys = {
+      { "<leader>gg", function() require("snacks").lazygit() end, desc = "Lazygit" },
+    },
+  },
   --
   --
   -- To try

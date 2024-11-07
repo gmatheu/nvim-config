@@ -122,7 +122,7 @@ maps.v["<Leader>cc"] =
   { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 
 maps.n["<Leader>gst"] = { "<cmd>Git<cr>", desc = "Git vim-fugitive" }
-maps.n["<Leader>gg"] = { "<cmd>Git<cr>", desc = "Git vim-fugitive" }
+-- maps.n["<Leader>gg"] = { "<cmd>Git<cr>", desc = "Git vim-fugitive" }
 
 -- NeoTree
 maps.n["<F3>"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" }
