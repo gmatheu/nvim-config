@@ -332,6 +332,34 @@ return {
       { "<leader>gg", function() require("snacks").lazygit() end, desc = "Lazygit" },
     },
   },
+
+  {
+    "mawkler/demicolon.nvim",
+    -- keys = { ';', ',', 't', 'f', 'T', 'F', ']', '[', ']d', '[d' }, -- Uncomment this to lazy load
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+    opts = {},
+  },
+
+  {
+    "cbochs/grapple.nvim",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons", lazy = true },
+    },
+  },
+  {
+    "cbochs/portal.nvim",
+    dependencies = {
+      "cbochs/grapple.nvim",
+    },
+    keys = {
+      { "<tab>", "<cmd>Portal jumplist backward<cr>", mode = { "n" }, desc = "Jumplist backward [Portal]" },
+      { "<s-tab>", "<cmd>Portal jumplist forward<cr>", mode = { "n" }, desc = "Jumplist forward [Portal]" },
+    },
+  },
+
   --
   --
   -- To try
