@@ -167,8 +167,9 @@ maps.n["<C-Right>"] = { function() require("smart-splits").resize_right() end, d
 -- maps.n["<C-Right>"] = { "<cmd>vertical resize +2<CR>", desc = "Resize split right" }
 
 -- Telescope
-maps.n["<Leader>n"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers" }
-maps.n["<Leader>`"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" }
+maps.n["<Leader>n"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers [telescope]" }
+maps.n["<Leader>bb"] = { function() require("telescope.builtin").jumplist() end, desc = "Find Jumplist [telescope]" }
+maps.n["<Leader>`"] = { function() require("telescope.builtin").find_files() end, desc = "Find files [telescope]" }
 maps.n["<Leader>m"] = { "<cmd>Telescope frecency<cr>", desc = "Find history [frecency]" }
 maps.n["<Leader>w"] = { function() require("telescope.builtin").live_grep() end, desc = "Live grep" }
 maps.n["<Leader>fq"] = {
