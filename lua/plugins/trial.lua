@@ -368,6 +368,7 @@ return {
   --
   --
   -- To try
+  -- https://github.com/stevearc/stickybuf.nvim
   -- https://github.com/Theo-Steiner/theosteiner.de/issues/2#issuecomment-new
   -- https://github.com/stevearc/quicker.nvim?tab=readme-ov-file#installation
   -- https://github.com/MagicDuck/grug-far.nvim?tab=readme-ov-file
