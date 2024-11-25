@@ -33,6 +33,10 @@ maps.n["<C-h>"] = { "<C-w>h", desc = "window left" }
 maps.n["<C-l>"] = { "<C-w>l", desc = "window right" }
 -- maps.n["<C-j>"] = { "<C-w>j", desc = "window down" }
 -- maps.n["<C-k>"] = { "<C-w>k", desc = "window up" }
+maps.n["<C-w><"] = { "<cmd>vertical resize -25<CR>", desc = "decrease width [window]" }
+maps.n["<C-w>>"] = { "<cmd>vertical resize +25<CR>", desc = "increase width [window]" }
+maps.n["<C-w>+"] = { "<cmd>resize +25<CR>", desc = "increase height [window]" }
+maps.n["<C-w>-"] = { "<cmd>resize -25<CR>", desc = "decrease height [window]" }
 
 -- save
 maps.n["<C-s>"] = { "<cmd> w <CR>", desc = "save file" }
