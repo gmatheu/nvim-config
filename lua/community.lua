@@ -28,6 +28,7 @@ return {
   { import = "astrocommunity.project.project-nvim" },
 
   { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.svelte" },
   { import = "astrocommunity.pack.typescript" },
