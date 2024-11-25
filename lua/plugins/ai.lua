@@ -549,11 +549,54 @@ return {
     -- event = "VeryLazy",
     -- lazy = false,
     opts = {
-      -- add any opts here
+      ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+      provider = "claude", -- Recommend using Claude
+      auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+      claude = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-3-5-sonnet-20241022",
+        temperature = 0,
+        max_tokens = 4096,
+      },
+      behaviour = {
+        auto_suggestions = false, -- Experimental stage
+        euto_set_highlight_group = true,
+        auto_set_keymaps = true,
+        auto_apply_diff_after_generation = false,
+        support_paste_from_clipboard = false,
+        minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
+      },
+      windows = {
+        ---@type "right" | "left" | "top" | "bottom"
+        position = "right", -- the position of the sidebar
+        wrap = true, -- similar to vim.o.wrap
+        width = 40, -- default % based on available width
+        sidebar_header = {
+          enabled = true, -- true, false to enable/disable the header
+          align = "center", -- left, center, right for title
+          rounded = true,
+        },
+        input = {
+          prefix = "> ",
+          height = 10, -- Height of the input window in vertical layout
+        },
+        edit = {
+          border = "rounded",
+          start_insert = true, -- Start insert mode when opening the edit window
+        },
+        ask = {
+          floating = false, -- Open the 'AvanteAsk' prompt in a floating window
+          start_insert = true, -- Start insert mode when opening the ask window
+          border = "rounded",
+          ---@type "ours" | "theirs"
+          focus_on_apply = "ours", -- which diff to focus after applying
+        },
+      },
     },
     build = "make",
     keys = {
       { "<leader>aa", function() require("avante.api").ask() end, desc = "avante: ask", mode = { "n", "v" } },
+      { "<leader>at", function() require("avante.api").toggle() end, desc = "avante: toggle", mode = { "n", "v" } },
       { "<leader>ar", function() require("avante.api").refresh() end, desc = "avante: refresh" },
       { "<leader>ae", function() require("avante.api").edit() end, desc = "avante: edit", mode = "v" },
     },
