@@ -354,6 +354,11 @@ return {
     dependencies = {
       "cbochs/grapple.nvim",
     },
+    config = function()
+      require("portal").setup {
+        labels = { "a", "b", "c", "d", "e", "f", "g" },
+      }
+    end,
     keys = {
       { "<tab>", "<cmd>Portal jumplist backward<cr>", mode = { "n" }, desc = "Jumplist backward [Portal]" },
       { "<s-tab>", "<cmd>Portal jumplist forward<cr>", mode = { "n" }, desc = "Jumplist forward [Portal]" },
