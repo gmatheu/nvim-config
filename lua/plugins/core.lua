@@ -21,10 +21,14 @@ return {
     end,
   },
   { "folke/which-key.nvim", enabled = true },
-  { "rcarriga/nvim-notify", enabled = true, opts = {
-    render = "minimal",
-    top_down = false,
-  } },
+  {
+    "rcarriga/nvim-notify",
+    enabled = false, -- Overidden by snacks.nvim notify
+    opts = {
+      render = "minimal",
+      top_down = false,
+    },
+  },
   -- { "stevearc/resession.nvim", enabled = false },
   -- { "Shatur/neovim-session-manager", enabled = false },
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
