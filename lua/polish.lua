@@ -9,12 +9,16 @@ vim.filetype.add {
 function load_log_file() end
 
 -- https://andrewcourter.substack.com/p/create-autocommands-in-neovim
--- vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
---   callback = function()
---     if vim.bo.filetype ~= "markdown" then vim.wo.relativenumber = true end
---     if vim.bo.filetype ~= "chatgpt-input" then vim.wo.relativenumber = true end
---   end,
--- })
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+  callback = function()
+    if vim.bo.filetype ~= "Avante" then vim.wo.relativenumber = true end
+    if vim.bo.filetype ~= "AvanteInput" then
+      vim.wo.number = true
+      vim.wo.relativenumber = true
+    end
+    if vim.bo.filetype ~= "aerial" then vim.wo.relativenumber = true end
+  end,
+})
 
 -- local keymap = vim.keymap
 -- keymap.amend = require "keymap-amend"
