@@ -145,7 +145,7 @@ return {
     opts = {},
   },
 
-  { "wakatime/vim-wakatime", lazy = false },
+  { "wakatime/vim-wakatime", lazy = false, enabled = not vim.env.ASTRONVIM_SKIP_WAKATIME },
 
   {
     "danymat/neogen",

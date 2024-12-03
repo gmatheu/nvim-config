@@ -480,6 +480,7 @@ return {
   {
     "monkoose/neocodeium",
     cmd = { "NeoCodeium" },
+    enabled = not vim.env.ASTRONVIM_SKIP_NEOCODEIUM,
     keys = {
       { "<A-f>", mode = "i" },
       { "<A-w>", mode = "i" },
