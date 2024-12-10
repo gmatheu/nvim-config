@@ -322,6 +322,9 @@ return {
       bigfile = { enabled = true },
       quickfile = { enabled = true },
       statuscolumn = { enabled = false },
+      profiler = {
+        enabled = true,
+      },
       words = { enabled = false },
       notifier = {
         enabled = true,
@@ -349,7 +352,27 @@ return {
       { "<leader>sn", function() require("snacks").scratch() end, desc = "Toggle Scratch Buffer [snacks]" },
       { "<leader>so", function() require("snacks").scratch.open() end, desc = "Toggle Scratch Buffer [snacks]" },
       { "<leader>sl", function() require("snacks").scratch.select() end, desc = "Select Scratch Buffer [snacks]" },
-      { "<leader>sp", function() require("snacks").profiler.scratch() end, desc = "Profiler Scratch Bufer [snacks]" },
+      { "<leader>sp", function() require("snacks").profiler.scratch() end, desc = "Profiler Scratch Buffer [snacks]" },
+      {
+        "<LocalLeader>Xis",
+        function() require("snacks").profiler.start() end,
+        desc = "Start profiler [snacks]",
+      },
+      {
+        "<LocalLeader>XiS",
+        function() require("snacks").profiler.stop() end,
+        desc = "Stop profiler [snacks]",
+      },
+      {
+        "<LocalLeader>Xih",
+        function() require("snacks").profiler.highlight() end,
+        desc = "Toggle profiler highlights [snacks]",
+      },
+      {
+        "<LocalLeader>Xic",
+        function() vim.notify("Profiler status: " .. require("snacks").profiler.running()) end,
+        desc = "Stop profiler [snacks]",
+      },
     },
   },
 

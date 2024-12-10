@@ -184,18 +184,18 @@ maps.n["<Leader>fq"] = {
 -- Experimental commands, not meant to be called with the keymaps, but wuti fuzzy finder
 maps.n["<LocalLeader>X"] = { name = "Experimental commands" }
 maps.n["<LocalLeader>Xi"] = { name = "Instrument" }
-maps.n["<LocalLeader>Xir"] = {
-  function()
-    vim.ui.input({ prompt = "Save profile to:", completion = "file", default = "profile.log" }, function(filename)
-      if filename then require("plenary").start(filename) end
-    end)
-  end,
-  desc = "Record profile [Plenary]",
-}
-maps.n["<LocalLeader>Xis"] = {
-  function() require("plenary.profile").stop() end,
-  desc = "Stop recording profile [Plenary]",
-}
+-- maps.n["<LocalLeader>Xir"] = {
+--   function()
+--     vim.ui.input({ prompt = "Save profile to:", completion = "file", default = "profile.log" }, function(filename)
+--       if filename then require("plenary").start(filename) end
+--     end)
+--   end,
+--   desc = "Record profile [Plenary]",
+-- }
+-- maps.n["<LocalLeader>Xis"] = {
+--   function() require("plenary.profile").stop() end,
+--   desc = "Stop recording profile [Plenary]",
+-- }
 
 -- maps.n["J"] = { "j", desc = "Next line" }
 
