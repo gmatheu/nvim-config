@@ -348,6 +348,11 @@ return {
       },
     },
     keys = {
+      {
+        "<leader>fn",
+        function() require("snacks").notifier.show_history() end,
+        desc = "Notifications history [snacks]",
+      },
       { "<leader>gg", function() require("snacks").lazygit() end, desc = "Lazygit [snacks]" },
       { "<leader>sn", function() require("snacks").scratch() end, desc = "Toggle Scratch Buffer [snacks]" },
       { "<leader>so", function() require("snacks").scratch.open() end, desc = "Toggle Scratch Buffer [snacks]" },
