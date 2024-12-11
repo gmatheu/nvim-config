@@ -132,8 +132,8 @@ maps.n["<Leader>gst"] = { "<cmd>Git<cr>", desc = "Git vim-fugitive" }
 maps.n["<F3>"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" }
 
 -- Oil
-maps.n["<Leader>o"] = { "<cmd>Oil<cr>", desc = "Toggle Explorer" }
-maps.n["-"] = { "<cmd>Oil --float<cr>", desc = "Toggle Explorer" }
+maps.n["<Leader>o"] = { "<cmd>Oil<cr>", desc = "Open parent directory [oil]" }
+maps.n["-"] = { "<cmd>Oil --float<cr>", desc = "Open parent directory (floating) [oil]" }
 -- maps.n["<Leader>e"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" }
 -- maps.n["<Leader>o"] = {
 --   function()
