@@ -319,13 +319,20 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
+      scroll = {
+        enabled = true,
+        animate = {
+          duration = { step = 10, total = 100 },
+          easing = "linear",
+        },
+      },
       bigfile = { enabled = true },
       quickfile = { enabled = true },
       statuscolumn = { enabled = false },
       profiler = {
         enabled = true,
       },
-      words = { enabled = false },
+      words = { enabled = true },
       notifier = {
         enabled = true,
         timeout = 3000,
@@ -348,6 +355,20 @@ return {
       },
     },
     keys = {
+      -- {
+      --   "]]",
+      --   function() require("snacks").words.jump(vim.v.count1) end,
+      --   desc = "Next Reference [snacks]",
+      --   mode = { "n", "t" },
+      -- },
+      -- {
+      --   "[[",
+      --   function() require("snacks").words.jump(-vim.v.count1) end,
+      --   desc = "Prev Reference [snacks]",
+      --   mode = { "n", "t" },
+      -- },
+      { "<leader>zZ", function() require("snacks").zen() end, desc = "Toggle Zen Mode" },
+      { "<leader>zz", function() require("snacks").zen.zoom() end, desc = "Toggle Zoom" },
       {
         "<leader>fn",
         function() require("snacks").notifier.show_history() end,
