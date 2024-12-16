@@ -23,7 +23,7 @@ return {
   { "folke/which-key.nvim", enabled = true },
   {
     "rcarriga/nvim-notify",
-    enabled = false, -- Overidden by snacks.nvim notify
+    enabled = false, -- Overseeded by snacks.nvim notify
     opts = {
       render = "minimal",
       top_down = false,
