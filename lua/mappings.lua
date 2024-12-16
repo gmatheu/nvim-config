@@ -60,7 +60,7 @@ maps.n["<Leader>D"] = { function() vim.lsp.buf.type_definition() end, desc = "ls
 
 maps.n["<Leader>ca"] = { function() vim.lsp.buf.code_action() end, desc = "lsp code_action" }
 maps.n["gr"] = { function() vim.lsp.buf.references() end, desc = "lsp references" }
-maps.n["<Leader>f"] = { function() vim.diagnostic.open_float() end, desc = "floating diagnostic" }
+-- maps.n["<Leader>f"] = { function() vim.diagnostic.open_float() end, desc = "floating diagnostic" }
 maps.n["[d"] = { function() vim.diagnostic.goto_prev() end, desc = "goto prev" }
 maps.n["d]"] = { function() vim.diagnostic.goto_next() end, desc = "goto_next" }
 maps.n["<Leader>qq"] = { function() vim.diagnostic.setloclist() end, desc = "diagnostic setloclist" }
