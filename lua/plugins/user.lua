@@ -1,6 +1,3 @@
--- You can also add or configure plugins by creating files in this `plugins/` folder
--- Here are some examples:
-
 ---@type LazySpec
 return {
   -- {
@@ -440,30 +437,6 @@ return {
       { "<Leader>qt", "<cmd>OverseerToggle<CR>", desc = "Overseer toggle [overseer]" },
       { "<Leader>qa", "<cmd>OverseerQuickAction<CR>", desc = "Quick actions [overseer]" },
     },
-  },
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-    keys = {
-      {
-        "<space>f",
-        desc = "telescope-file-browser",
-      },
-      {
-        "<space>fb",
-        "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
-        desc = "Open file browser [telescope-file-browser]",
-      },
-    },
-    config = function()
-      require("telescope").setup {
-        extensions = {
-          file_browser = {
-            hijack_netrw = true,
-          },
-        },
-      }
-      require("telescope").load_extension "file_browser"
-    end,
   },
   {
     "mawkler/modicator.nvim",
