@@ -101,17 +101,23 @@ return {
     commands = {
       AiCodeium = {
         function()
-          local supermaven = require "supermaven-nvim.api"
-          if supermaven.is_running() then supermaven.stop() end
+          if require("lazy.core.config").plugins["supermaven-nvim"]._.loaded then
+            local supermaven = require "supermaven-nvim.api"
+            if supermaven.is_running() then supermaven.stop() end
+          end
           require("neocodeium.commands").enable()
+          vim.notify "Codeium enabled"
         end,
         desc = "Enables Codeium for inline completion",
       },
       AiSuperMaven = {
         function()
-          require("neocodeium.commands").disable(true)
+          if require("lazy.core.config").plugins["neocodeium"]._.loaded then
+            require("neocodeium.commands").disable(true)
+          end
           local supermaven = require "supermaven-nvim.api"
           if not supermaven.is_running() then supermaven.start() end
+          vim.notify "SuperMaven enabled"
         end,
         desc = "Enables SuperMaven for inline completion",
       },
