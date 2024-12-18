@@ -21,6 +21,8 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   "codeium.nvim": { "branch": "main", "commit": "09ddd0a07f9186de2e33b37fe19c1d7bb727a51d" },
+  "copilot.lua": { "branch": "master", "commit": "d3783b9283a7c35940ed8d71549030d5f5f9f980" },
+  "copilot.vim": { "branch": "release", "commit": "87038123804796ca7af20d1b71c3428d858a9124" },
   "demicolon.nvim": { "branch": "main", "commit": "ee6e3008c7e70abe3f58103dde49145699700fc5" },
   "dressing.nvim": { "branch": "master", "commit": "43b8f74e0b1e3f41e51f640f8efa3bcd401cea0d" },
   "edgy.nvim": { "branch": "main", "commit": "7e8dedc39abebe40c289b8012cc89b11c69aa7a0" },

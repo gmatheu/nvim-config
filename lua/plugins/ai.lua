@@ -533,6 +533,85 @@ return {
       { "anuvyklack/keymap-amend.nvim" },
     },
   },
+
+  {
+    enabled = false,
+    "github/copilot.vim",
+    cmd = "Copilot",
+    config = function()
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+    end,
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    config = function()
+      require("copilot").setup {
+        panel = {
+          enabled = true,
+          auto_refresh = false,
+          keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<M-CR>",
+          },
+          layout = {
+            position = "right", -- | top | left | right | horizontal | vertical
+            ratio = 0.4,
+          },
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          hide_during_completion = false,
+          debounce = 200,
+          keymap = {
+            -- accept = "<M-l>",
+            -- accept_word = false,
+            -- accept_line = false,
+            -- next = "<M-]>",
+            -- prev = "<M-[>",
+            -- dismiss = "<C-]>",
+          },
+        },
+        filetypes = {
+          yaml = false,
+          markdown = false,
+          help = false,
+          gitcommit = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ["."] = false,
+        },
+        copilot_node_command = "node", -- Node.js version must be > 18.x
+        server_opts_overrides = {},
+      }
+      local keymap = vim.keymap
+      keymap.amend = require "keymap-amend"
+      local suggestion = require "copilot.suggestion"
+      local client = require "copilot.client"
+      local amend_if_running = function(lhs, callback)
+        keymap.amend("i", lhs, function(original)
+          if not client.is_disabled() then
+            callback()
+          else
+            original()
+          end
+        end)
+      end
+      amend_if_running("<A-f>", suggestion.accept)
+      amend_if_running("<A-a>", suggestion.accept_line)
+      amend_if_running("<A-w>", suggestion.accept_word)
+      amend_if_running("<A-r>", suggestion.next)
+      amend_if_running("<A-c>", suggestion.dismiss)
+    end,
+  },
+
   {
     "sourcegraph/sg.nvim",
     enabled = false,

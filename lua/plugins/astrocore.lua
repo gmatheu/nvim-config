@@ -121,6 +121,20 @@ return {
         end,
         desc = "Enables SuperMaven for inline completion",
       },
+      AiCopilot = {
+        function()
+          if require("lazy.core.config").plugins["neocodeium"]._.loaded then
+            require("neocodeium.commands").disable(true)
+          end
+          if require("lazy.core.config").plugins["supermaven-nvim"]._.loaded then
+            local supermaven = require "supermaven-nvim.api"
+            if supermaven.is_running() then supermaven.stop() end
+          end
+          require("copilot.command").enable()
+          vim.notify "Copilot enabled"
+        end,
+        desc = "Enables Copilot for inline completion",
+      },
     },
 
     -- Mappings can be configured through AstroCore as well.
