@@ -98,6 +98,25 @@ return {
       },
     },
 
+    commands = {
+      AiCodeium = {
+        function()
+          local supermaven = require "supermaven-nvim.api"
+          if supermaven.is_running() then supermaven.stop() end
+          require("neocodeium.commands").enable()
+        end,
+        desc = "Enables Codeium for inline completion",
+      },
+      AiSuperMaven = {
+        function()
+          require("neocodeium.commands").disable(true)
+          local supermaven = require "supermaven-nvim.api"
+          if not supermaven.is_running() then supermaven.start() end
+        end,
+        desc = "Enables SuperMaven for inline completion",
+      },
+    },
+
     -- Mappings can be configured through AstroCore as well.
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = require "mappings",

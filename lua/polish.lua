@@ -20,19 +20,6 @@ vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
   end,
 })
 
--- local keymap = vim.keymap
--- keymap.amend = require "keymap-amend"
---
--- keymap.amend("n", "k", function(original)
---   print "k key is amended!"
---   original()
--- end)
---
---
---
---
---vi
---
 vim.opt.path:append { "**" }
 vim.opt.wildmenu = true
 vim.opt.exrc = true

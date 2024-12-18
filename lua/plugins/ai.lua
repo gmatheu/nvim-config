@@ -481,13 +481,6 @@ return {
     "monkoose/neocodeium",
     cmd = { "NeoCodeium" },
     enabled = not vim.env.ASTRONVIM_SKIP_NEOCODEIUM,
-    keys = {
-      { "<A-f>", mode = "i" },
-      { "<A-w>", mode = "i" },
-      { "<A-a>", mode = "i" },
-      { "<A-r>", mode = "i" },
-      { "<A-c>", mode = "i" },
-    },
     config = function()
       local neocodeium = require "neocodeium"
       neocodeium.setup()
@@ -502,24 +495,43 @@ return {
 
   {
     "supermaven-inc/supermaven-nvim",
-    cmd = { "SupermavenStatus", "SupermavenToggle" },
+    cmd = { "SupermavenStatus", "SupermavenToggle", "SupermavenStart" },
     config = function()
       require("supermaven-nvim").setup {
-        keymaps = {
-          accept_suggestion = "<LocalLeader><space>",
-          clear_suggestion = "<C-]>",
-          accept_word = "<C-j>",
-        },
+        disable_keymaps = true,
+        -- keymaps = {
+        --   accept_suggestion = "<A-f>",
+        --   clear_suggestion = "<A-c>",
+        --   accept_word = "<A-w>",
+        -- },
         ignore_filetypes = { cpp = true },
         color = {
-          suggestion_color = "#ffffff",
+          suggestion_color = "#2222ff",
           cterm = 244,
         },
         log_level = "info", -- set to "off" to disable logging completely
         disable_inline_completion = false,
-        disable_keymaps = false,
       }
+      local keymap = vim.keymap
+      keymap.amend = require "keymap-amend"
+      local completion_preview = require "supermaven-nvim.completion_preview"
+      local supermaven = require "supermaven-nvim.api"
+      local amend_if_running = function(lhs, callback)
+        keymap.amend("i", lhs, function(original)
+          if supermaven.is_running() then
+            callback()
+          else
+            original()
+          end
+        end)
+      end
+      amend_if_running("<A-f>", completion_preview.on_accept_suggestion)
+      amend_if_running("<A-w>", completion_preview.on_accept_suggestion_word)
+      amend_if_running("<A-c>", completion_preview.on_dispose_inlay)
     end,
+    dependencies = {
+      { "anuvyklack/keymap-amend.nvim" },
+    },
   },
   {
     "sourcegraph/sg.nvim",

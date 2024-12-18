@@ -6,6 +6,15 @@ local maps = {
 }
 
 maps.n["<LocalLeader>c"] = { name = "AI assisted" }
+maps.n["<LocalLeader>ci"] = { name = "AI Inline completion" }
+maps.n["<LocalLeader>cis"] = {
+  "<cmd>AiSuperMaven<CR>",
+  desc = "Enable SuperMaven for inline completion",
+}
+maps.n["<LocalLeader>cic"] = {
+  "<cmd>AiCodeium<CR>",
+  desc = "Enable Codeium for inline completion",
+}
 
 -- User --
 maps.n["<Leader>q"] = { "", desc = "do nothing [was: quit]" }
