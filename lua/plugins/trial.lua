@@ -249,10 +249,11 @@ return {
     event = "VeryLazy",
     config = function() require("keymap-stats").setup { autoinstrument = false } end,
     cmd = { "KeymapStats" },
-    priority = 0,
+    priority = 999,
     dev = true,
     dependencies = {
-      { "anuvyklack/keymap-amend.nvim" },
+      { "MunifTanjim/nui.nvim" },
+      { "gmatheu/keymap-amend.nvim" },
     },
   },
 
