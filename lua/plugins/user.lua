@@ -736,4 +736,125 @@ return {
       },
     },
   },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      scroll = {
+        enabled = true,
+        animate = {
+          duration = { step = 10, total = 100 },
+          easing = "linear",
+        },
+      },
+      bigfile = { enabled = true },
+      quickfile = { enabled = true },
+      statuscolumn = { enabled = false },
+      profiler = {
+        enabled = true,
+      },
+      words = { enabled = true },
+      notifier = {
+        enabled = true,
+        timeout = 3000,
+      },
+      styles = {
+        scratch = {
+          enabled = true,
+          width = 150,
+          height = 40,
+          bo = { buftype = "", buflisted = false, bufhidden = "hide", swapfile = false },
+          minimal = false,
+          noautocmd = false,
+          -- position = "right",
+          zindex = 20,
+          wo = { winhighlight = "NormalFloat:Normal" },
+          border = "rounded",
+          title_pos = "center",
+          footer_pos = "center",
+        },
+      },
+    },
+    keys = {
+      -- {
+      --   "]]",
+      --   function() require("snacks").words.jump(vim.v.count1) end,
+      --   desc = "Next Reference [snacks]",
+      --   mode = { "n", "t" },
+      -- },
+      -- {
+      --   "[[",
+      --   function() require("snacks").words.jump(-vim.v.count1) end,
+      --   desc = "Prev Reference [snacks]",
+      --   mode = { "n", "t" },
+      -- },
+      { "<leader>zZ", function() require("snacks").zen() end, desc = "Toggle Zen Mode" },
+      { "<leader>zz", function() require("snacks").zen.zoom() end, desc = "Toggle Zoom" },
+      {
+        "<leader>fn",
+        function() require("snacks").notifier.show_history() end,
+        desc = "Notifications history [snacks]",
+      },
+      { "<leader>gg", function() require("snacks").lazygit() end, desc = "Lazygit [snacks]" },
+      { "<leader>sn", function() require("snacks").scratch() end, desc = "Toggle Scratch Buffer [snacks]" },
+      { "<leader>so", function() require("snacks").scratch.open() end, desc = "Toggle Scratch Buffer [snacks]" },
+      { "<leader>sl", function() require("snacks").scratch.select() end, desc = "Select Scratch Buffer [snacks]" },
+      { "<leader>sp", function() require("snacks").profiler.scratch() end, desc = "Profiler Scratch Buffer [snacks]" },
+      {
+        "<LocalLeader>Xis",
+        function() require("snacks").profiler.start() end,
+        desc = "Start profiler [snacks]",
+      },
+      {
+        "<LocalLeader>XiS",
+        function() require("snacks").profiler.stop() end,
+        desc = "Stop profiler [snacks]",
+      },
+      {
+        "<LocalLeader>Xih",
+        function() require("snacks").profiler.highlight() end,
+        desc = "Toggle profiler highlights [snacks]",
+      },
+      {
+        "<LocalLeader>Xic",
+        function() vim.notify("Profiler status: " .. require("snacks").profiler.running()) end,
+        desc = "Stop profiler [snacks]",
+      },
+    },
+  },
+
+  -- The orange letters indicate the unique letter in the word that you can jump to with f/F right away.
+  -- Blue letters indicate that there is no unique letter in the word, but you can get to it with f/F and then a repeat with ;.
+  {
+    "jinh0/eyeliner.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("eyeliner").setup {
+        highlight_on_key = false, -- show highlights only after keypress
+        dim = false, -- dim all other characters if set to true (recommended!)
+      }
+    end,
+  },
+
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("hlchunk").setup {
+        chunk = {
+          enable = true,
+        },
+        indent = {
+          enable = true,
+        },
+        line_num = {
+          enable = true,
+        },
+        blank = {
+          enable = true,
+        },
+      }
+    end,
+  },
 }
