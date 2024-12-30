@@ -691,6 +691,12 @@ return {
   {
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    config = function()
+      require("hardtime").setup()
+      if os.getenv("HARDTIME_NVIM" .. "_DEBUG") or os.getenv("ASTRONVIM" .. "_DEBUG") then
+        vim.notify("Instrumentation completed", vim.log.levels.INFO, { title = "hardtime" })
+      end
+    end,
     opts = {
       max_count = 5,
       hint = true,

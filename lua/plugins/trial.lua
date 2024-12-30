@@ -237,13 +237,26 @@ return {
     "gmatheu/keymap-stats.nvim",
     enabled = true,
     event = "VeryLazy",
-    config = function() require("keymap-stats").setup { autoinstrument = false } end,
+    config = function()
+      require("keymap-stats").setup {
+        autoinstrument = true,
+        notify = false or os.getenv("KEYMAP_STATS_NVIM" .. "_NOTIFY"),
+        debug = false or os.getenv("KEYMAP_STATS_NVIM" .. "_DEBUG") or os.getenv("ASTRONVIM" .. "_DEBUG"),
+        plugins = { which_key = false, hardtime = true, keymap = true },
+      }
+    end,
     cmd = { "KeymapStats" },
-    priority = 999,
+    priority = 990,
     dev = true,
     dependencies = {
       { "MunifTanjim/nui.nvim" },
       { "gmatheu/keymap-amend.nvim" },
+      {
+        "m4xshen/hardtime.nvim",
+        event = "VeryLazy",
+        dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+        priority = 995,
+      },
     },
   },
 
