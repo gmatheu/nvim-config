@@ -324,6 +324,70 @@ return {
     },
   },
 
+  {
+    "philosofonusus/ecolog.nvim",
+    dependencies = {
+      "hrsh7th/nvim-cmp",
+      "ibhagwan/fzf-lua",
+    },
+    cmd = { "EcologGoto", "EcologPeek", "EcologSelect", "EcologFzf" },
+    -- Optional: you can add some keybindings
+    -- (I personally use lspsaga so check out lspsaga integration or lsp integration for a smoother experience without separate keybindings)
+    -- keys = {
+    --   { "<leader>ge", "<cmd>EcologGoto<cr>", desc = "Go to env file" },
+    --   { "<leader>ep", "<cmd>EcologPeek<cr>", desc = "Ecolog peek variable" },
+    --   { "<leader>es", "<cmd>EcologSelect<cr>", desc = "Switch env file" },
+    -- },
+    -- Lazy loading is done internally
+    -- lazy = false,
+    -- opts = {},
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require("ecolog").setup {
+        ---@diagnostic disable-next-line: missing-fields
+        integrations = {
+          nvim_cmp = true,
+          blink_cmp = false,
+          fzf = true,
+        },
+        -- Enables shelter mode for sensitive values
+        shelter = {
+          configuration = {
+            partial_mode = false, -- false by default, disables partial mode, for more control check out shelter partial mode
+            mask_char = "*", -- Character used for masking
+          },
+          modules = {
+            cmp = true, -- Mask values in completion
+            peek = false, -- Mask values in peek view
+            files = false, -- Mask values in files
+            telescope = false, -- Mask values in telescope
+            fzf = false, -- Mask values in fzf picker
+          },
+        },
+        -- true by default, enables built-in types (database_url, url, etc.)
+        types = true,
+        path = vim.fn.getcwd(), -- Path to search for .env files
+        preferred_environment = "development", -- Optional: prioritize specific env files
+
+        load_shell = {
+          enabled = true, -- Enable shell variable loading
+          override = false, -- When false, .env files take precedence over shell variables
+          -- Optional: filter specific shell variables
+          filter = function(key, _value)
+            -- Example: only load specific variables
+            return key:match "^(PATH|HOME|USER)$" ~= nil
+          end,
+          -- Optional: transform shell variables before loading
+          transform = function(_key, value)
+            -- Example: prefix shell variables for clarity
+            return "[shell] " .. value
+          end,
+        },
+      }
+
+      require("telescope").load_extension "ecolog"
+    end,
+  },
   --
   --
   -- To try

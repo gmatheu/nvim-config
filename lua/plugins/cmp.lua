@@ -11,12 +11,13 @@ return { -- override nvim-cmp plugin
     local cmp = require "cmp"
     -- modify the sources part of the options table
     opts.sources = cmp.config.sources {
-      { name = "nvim_lsp", priority = 700 },
-      { name = "luasnip", priority = 800 },
-      { name = "buffer", priority = 500 },
       { name = "path", priority = 250 },
+      { name = "nvim_lsp", priority = 400 },
+      { name = "buffer", priority = 500 },
+      { name = "ecolog", priority = 600 },
       { name = "codeium", priority = 600 },
       { name = "supermaven", priority = 610 },
+      { name = "luasnip", priority = 800 },
     }
   end,
   config = function(_, opts)
