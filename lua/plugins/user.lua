@@ -766,6 +766,31 @@ return {
         timeout = 3000,
       },
       styles = {
+        notification = {
+          border = "rounded",
+          zindex = 100,
+          ft = "markdown",
+          wo = {
+            winblend = 5,
+            wrap = true,
+            conceallevel = 2,
+            colorcolumn = "",
+          },
+          bo = { filetype = "snacks_notif" },
+        },
+        notification_history = {
+          border = "rounded",
+          zindex = 100,
+          width = 0.8,
+          height = 0.8,
+          minimal = false,
+          title = " Notification History ",
+          title_pos = "center",
+          ft = "markdown",
+          bo = { filetype = "snacks_notif_history", modifiable = false },
+          wo = { winhighlight = "Normal:SnacksNotifierHistory", wrap = true },
+          keys = { q = "close" },
+        },
         scratch = {
           enabled = true,
           width = 150,
