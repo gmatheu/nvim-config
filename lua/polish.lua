@@ -11,6 +11,11 @@ function load_log_file() end
 -- https://andrewcourter.substack.com/p/create-autocommands-in-neovim
 vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
   callback = function()
+    if vim.bo.filetype == "TelescopePrompt" then
+      if require("lazy.core.config").plugins["neocodeium"]._.loaded then
+        require("neocodeium.commands").disable_buffer()
+      end
+    end
     if vim.bo.filetype ~= "Avante" then vim.wo.relativenumber = true end
     if vim.bo.filetype ~= "AvanteInput" then
       vim.wo.number = true
