@@ -38,5 +38,4 @@ return {
   -- { import = "astrocommunity.pack.java" },
 
   { import = "astrocommunity.editing-support.refactoring-nvim" },
-  { import = "astrocommunity/file-explorer/oil-nvim" },
 }
