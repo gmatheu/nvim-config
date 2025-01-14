@@ -236,6 +236,7 @@ return {
   {
     "gmatheu/keymap-stats.nvim",
     enabled = true,
+    dev = true,
     event = "VeryLazy",
     config = function()
       require("keymap-stats").setup {
@@ -247,10 +248,9 @@ return {
     end,
     cmd = { "KeymapStats" },
     priority = 990,
-    dev = true,
     dependencies = {
       { "MunifTanjim/nui.nvim" },
-      { "gmatheu/keymap-amend.nvim" },
+      { "gmatheu/keymap-amend.nvim", dev = true },
       {
         "m4xshen/hardtime.nvim",
         event = "VeryLazy",

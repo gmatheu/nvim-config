@@ -12,6 +12,7 @@ function load_log_file() end
 vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
   callback = function()
     if vim.bo.filetype == "TelescopePrompt" then
+      vim.wo.relativenumber = false
       if require("lazy.core.config").plugins["neocodeium"]._.loaded then
         require("neocodeium.commands").disable_buffer()
       end

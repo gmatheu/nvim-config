@@ -64,6 +64,7 @@ return {
     local get_icon = require("astroui").get_icon
     return {
       default_file_explorer = true,
+      show_hidden = true,
       columns = { { "icon", default_file = get_icon "DefaultFile", directory = get_icon "FolderClosed" } },
       lsp_file_methods = {
         -- Enable or disable LSP file operations

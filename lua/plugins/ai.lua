@@ -130,7 +130,7 @@ return {
 
   {
     "olimorris/codecompanion.nvim",
-    dev = true,
+    -- dev = true,
     enabled = true,
     cmd = {
       "CodeCompanion",
@@ -141,6 +141,7 @@ return {
       "CodeCompanionToggle",
       "CodeCompanionActions",
     },
+    lazy = true,
     keys = {
       { "<LocalLeader>a", "<cmd>CodeCompanionToggle<CR>", desc = "Toogle chat [CodeCompanion]", mode = "n" },
       { "<LocalLeader>q", "<cmd>CodeCompanionActions<CR>", desc = "Actions [CodeCompanion]", mode = "n" },
