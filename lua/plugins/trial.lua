@@ -388,8 +388,6 @@ return {
       require("telescope").load_extension "ecolog"
     end,
   },
-  --
-  --
   -- To try
   -- https://github.com/stevearc/stickybuf.nvim
   -- https://github.com/Theo-Steiner/theosteiner.de/issues/2#issuecomment-new

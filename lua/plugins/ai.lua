@@ -484,7 +484,61 @@ return {
     enabled = not vim.env.ASTRONVIM_SKIP_NEOCODEIUM,
     config = function()
       local neocodeium = require "neocodeium"
-      neocodeium.setup()
+      local disabled_filetypes = {
+        "NvimTree",
+        "TelescopePrompt",
+        "aerial",
+        "alpha",
+        "checkhealth",
+        "dapui*",
+        "Diffview*",
+        "Dressing*",
+        "help",
+        "httpResult",
+        "lazy",
+        "lspinfo",
+        "Neogit*",
+        "mason",
+        "neotest%-summary",
+        "minifiles",
+        "neo%-tree*",
+        "netrw",
+        "noice",
+        "notify",
+        "prompt",
+        "qf",
+        "query",
+        "oil",
+        "undotree",
+        "trouble",
+        "Trouble",
+        "fugitive",
+        "markdown",
+      }
+      neocodeium.setup {
+        -- filetypes = {
+        --   TelescopePrompt = false,
+        -- },
+        --
+        -- filter = function(bufnr)
+        --   if vim.tbl_contains(disabled_filetypes, vim.api.nvim_get_option_value("filetype", { buf = bufnr })) then
+        --     vim.notify(
+        --       "NeoCodeium disabled in this buffer"
+        --         .. vim.inspect(vim.api.nvim_get_option_value("filetype", { buf = bufnr })),
+        --       vim.log.levels.INFO,
+        --       { title = "NeoCodeium" }
+        --     )
+        --     return false
+        --   end
+        --   vim.notify(
+        --     "NeoCodeium enabled in this buffer"
+        --       .. vim.inspect(vim.api.nvim_get_option_value("filetype", { buf = bufnr })),
+        --     vim.log.levels.INFO,
+        --     { title = "NeoCodeium" }
+        --   )
+        --   return true
+        -- end,
+      }
       vim.keymap.set("i", "<A-f>", function() neocodeium.accept() end)
       vim.keymap.set("i", "<A-w>", function() neocodeium.accept_word() end)
       vim.keymap.set("i", "<A-a>", function() neocodeium.accept_line() end)
