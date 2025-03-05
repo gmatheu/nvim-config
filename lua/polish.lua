@@ -4,6 +4,7 @@ vim.filetype.add {
   pattern = {
     [".*/i3/config.d/.*.config"] = "i3config",
     [".*.kbd"] = "lisp",
+    [".envrc"] = "bash",
   },
 }
 
