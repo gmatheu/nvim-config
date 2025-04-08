@@ -59,13 +59,16 @@ return {
       autopairs = true, -- enable autopairs at start
       cmp = true, -- enable completion at start
       diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      diagnostics = true,
       highlighturl = true, -- highlight URLs at start
       notifications = true, -- enable notifications at start
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
       virtual_text = true,
+      virtual_lines = { current_line = true },
       underline = true,
+      update_in_insert = false,
     },
     -- vim options can be configured here
     options = {

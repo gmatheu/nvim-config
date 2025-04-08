@@ -16,6 +16,7 @@ return {
       codelens = true, -- enable/disable codelens refresh on start
       inlay_hints = false, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
+      signature_help = true,
     },
     -- customize lsp formatting options
     formatting = {
@@ -102,5 +103,16 @@ return {
       -- this would disable semanticTokensProvider for all clients
       -- client.server_capabilities.semanticTokensProvider = nil
     end,
+    file_operations = {
+      timeout = 10000, -- default timeout in ms for completing LSP operations
+      operations = { -- enable all of the file operations
+        willCreate = true,
+        didCreate = true,
+        willRename = true,
+        didRename = true,
+        willDelete = true,
+        didDelete = true,
+      },
+    },
   },
 }
