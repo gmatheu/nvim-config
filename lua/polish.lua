@@ -34,10 +34,11 @@ vim.opt.exrc = true
 
 local function disable_completion()
   -- Assuming you are using nvim-compe or a similar completion plugin
-  -- For nvim-compe:
+  -- For nvim-completion:
   vim.g.completion_enable_auto_popup = 0
+  -- TODO: Make it work with blink.cmp for v5 migration
   -- For nvim-cmp:
-  require("cmp").setup.buffer { enabled = false }
+  if require("lazy.core.config").plugins["nvim-cmp"]._.loaded then require("cmp").setup.buffer { enabled = false } end
 end
 vim.api.nvim_create_augroup("DisableCompletionForCodeCompanion", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
@@ -48,19 +49,22 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- https://github.com/monkoose/neocodeium?tab=readme-ov-file#-tips
 if not vim.env.ASTRONVIM_SKIP_NEOCODEIUM then
-  local cmp = require "cmp"
-  local neocodeium = require "neocodeium"
-  -- local commands = require "neocodeium.commands"
+  -- TODO: Make it work with blink.cmp for v5 migration
+  if require("lazy.core.config").plugins["nvim-cmp"]._.loaded then
+    local cmp = require "cmp"
+    local neocodeium = require "neocodeium"
+    -- local commands = require "neocodeium.commands"
 
-  cmp.event:on("menu_opened", function() neocodeium.clear() end)
+    cmp.event:on("menu_opened", function() neocodeium.clear() end)
 
-  neocodeium.setup {
-    filter = function() return not cmp.visible() end,
-  }
+    neocodeium.setup {
+      filter = function() return not cmp.visible() end,
+    }
 
-  cmp.setup {
-    completion = {
-      autocomplete = false,
-    },
-  }
+    cmp.setup {
+      completion = {
+        autocomplete = false,
+      },
+    }
+  end
 end
