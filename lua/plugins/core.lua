@@ -1,37 +1,10 @@
 return {
-  -- customize alpha options
-  {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      -- customize the dashboard header
-      opts.section.header.val = {
-        " █████  ███████ ████████ ██████   ██████",
-        "██   ██ ██         ██    ██   ██ ██    ██",
-        "███████ ███████    ██    ██████  ██    ██",
-        "██   ██      ██    ██    ██   ██ ██    ██",
-        "██   ██ ███████    ██    ██   ██  ██████",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
-      }
-      return opts
-    end,
-  },
   { "folke/which-key.nvim", enabled = true },
-  {
-    "rcarriga/nvim-notify",
-    enabled = false, -- Overseeded by snacks.nvim notify
-    opts = {
-      render = "minimal",
-      top_down = false,
-    },
-  },
   -- { "stevearc/resession.nvim", enabled = false },
   -- { "Shatur/neovim-session-manager", enabled = false },
-  { "lukas-reineke/indent-blankline.nvim", enabled = false },
+
+  -- TODO: Remove after v5 migration with v0.11.0 compatiblity
+  { "numToStr/Comment.nvim", enabled = true },
 
   {
     "s1n7ax/nvim-window-picker",
