@@ -106,35 +106,14 @@ return {
           extension = {},
           file = {},
           filetype = {},
-          lsp = {},
+          lsp = {
+            Codeium = "",
+            Supermaven = "",
+          },
           os = {},
 
           use_file_extension = function(ext, file) return true end,
         },
-      }
-    end,
-  },
-  -- TODO: Remove after v5 migration
-  {
-    "onsails/lspkind.nvim",
-    enabled = false,
-    opts = function(_, opts)
-      -- use codicons preset
-      opts.preset = "codicons"
-      opts.maxwidth = function() return math.floor(0.7 * vim.o.columns) end
-      -- set some missing symbol types
-      opts.symbol_map = {
-        Array = "",
-        Boolean = "",
-        Key = "",
-        Namespace = "",
-        Null = "",
-        Number = "",
-        Object = "",
-        Package = "",
-        String = "",
-        Codeium = "",
-        Supermaven = "",
       }
     end,
   },
