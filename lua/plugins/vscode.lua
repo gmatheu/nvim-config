@@ -52,13 +52,20 @@ return {
       maps.n["<Leader>w"] = function() require("vscode-neovim").action "workbench.action.files.save" end
       maps.n["<Leader>n"] = function() require("vscode-neovim").action "welcome.showNewFileEntries" end
 
+      -- maps.n["<Tab>"] = function() require("vscode-neovim").action "workbench.action.navigateForward" end
+      -- maps.n["<S-Tab>"] = function() require("vscode-neovim").action "workbench.action.navigateBack" end
+
+      maps.n["<Esc><Esc>"] = function() require("vscode-neovim").action "workbench.action.closeSidebar" end
+      -- maps.n["<C-i>"] = ""
+      -- maps.n["<C-l>"] = ""
+
       -- splits navigation
       maps.n["|"] = function() require("vscode-neovim").action "workbench.action.splitEditor" end
       maps.n["\\"] = function() require("vscode-neovim").action "workbench.action.splitEditorDown" end
       maps.n["<C-H>"] = function() require("vscode-neovim").action "workbench.action.navigateLeft" end
       maps.n["<C-J>"] = function() require("vscode-neovim").action "workbench.action.navigateDown" end
       maps.n["<C-K>"] = function() require("vscode-neovim").action "workbench.action.navigateUp" end
-      maps.n["<C-L>"] = function() require("vscode-neovim").action "workbench.action.navigateRight" end
+      -- maps.n["<C-L>"] = function() require("vscode-neovim").action "workbench.action.navigateRight" end
 
       -- terminal
       maps.n["<F7>"] = function() require("vscode-neovim").action "workbench.action.terminal.toggleTerminal" end
@@ -68,16 +75,17 @@ return {
       maps.n["]b"] = "<Cmd>Tabnext<CR>"
       maps.n["[b"] = "<Cmd>Tabprevious<CR>"
       maps.n["<Leader>c"] = "<Cmd>Tabclose<CR>"
+      maps.n["<Leader>bd"] = "<Cmd>Tabclose<CR>"
       maps.n["<Leader>C"] = "<Cmd>Tabclose!<CR>"
       maps.n["<Leader>bp"] = "<Cmd>Tablast<CR>"
 
       -- file explorer
-      maps.n["<Leader>e"] = function() require("vscode-neovim").action "workbench.files.action.focusFilesExplorer" end
+      maps.n["<F3>"] = function() require("vscode-neovim").action "workbench.files.action.focusFilesExplorer" end
       maps.n["<Leader>o"] = function() require("vscode-neovim").action "workbench.files.action.focusFilesExplorer" end
 
       -- indentation
-      maps.v["<Tab>"] = function() require("vscode-neovim").action "editor.action.indentLines" end
-      maps.v["<S-Tab>"] = function() require("vscode-neovim").action "editor.action.outdentLines" end
+      -- maps.v["<Tab>"] = function() require("vscode-neovim").action "editor.action.indentLines" end
+      -- maps.v["<S-Tab>"] = function() require("vscode-neovim").action "editor.action.outdentLines" end
 
       -- diagnostics
       maps.n["]d"] = function() require("vscode-neovim").action "editor.action.marker.nextInFiles" end
@@ -88,8 +96,9 @@ return {
         require("vscode-neovim").action("workbench.action.findInFiles", { args = { query = vim.fn.expand "<cword>" } })
       end
       maps.n["<Leader>fk"] = function() require("vscode-neovim").action "workbench.action.showCommands" end
-      -- maps.n["<Leader>ff"] = function() require("vscode-neovim").action "workbench.action.quickOpen" end
+      maps.n["<Leader>ff"] = function() require("vscode-neovim").action "workbench.action.quickOpen" end
       maps.n["<Leader>f`"] = function() require("vscode-neovim").action "workbench.action.quickOpen" end
+      maps.n["<Leader>`"] = function() require("vscode-neovim").action "workbench.action.quickOpen" end
       maps.n["<Leader>fn"] = function() require("vscode-neovim").action "notifications.showList" end
       maps.n["<Leader>fm"] = function() require("vscode-neovim").action "workbench.action.openRecent" end
       maps.n["<Leader>ft"] = function() require("vscode-neovim").action "workbench.action.selectTheme" end
@@ -111,6 +120,8 @@ return {
       maps.n["<Leader>lr"] = function() require("vscode-neovim").action "editor.action.rename" end
       maps.n["<Leader>ls"] = function() require("vscode-neovim").action "workbench.action.gotoSymbol" end
       maps.n["<Leader>lf"] = function() require("vscode-neovim").action "editor.action.formatDocument" end
+
+      maps.n["<leader>tt"] = function() require("vscode-neovim").action "workbench.actions.view.problems" end
     end,
   },
   -- disable colorscheme setting

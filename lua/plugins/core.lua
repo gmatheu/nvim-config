@@ -1,5 +1,14 @@
 return {
   { "folke/which-key.nvim", enabled = true },
+  { "kevinhwang91/nvim-ufo", enabled = false },
+  {
+    "rcarriga/nvim-notify",
+    enabled = false, -- Overseeded by snacks.nvim notify
+    opts = {
+      render = "minimal",
+      top_down = false,
+    },
+  },
   -- { "stevearc/resession.nvim", enabled = false },
   -- { "Shatur/neovim-session-manager", enabled = false },
 

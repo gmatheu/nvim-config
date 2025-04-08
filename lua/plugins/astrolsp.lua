@@ -16,6 +16,7 @@ return {
       codelens = true, -- enable/disable codelens refresh on start
       inlay_hints = false, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
+      signature_help = true,
     },
     -- customize lsp formatting options
     formatting = {
@@ -44,7 +45,23 @@ return {
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
-    config = { lua_ls = { settings = { Lua = { workspace = { checkThirdParty = false } } } } },
+    config = {
+      lua_ls = { settings = { Lua = { workspace = { checkThirdParty = false } } } },
+      denols = {
+        root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
+      },
+      tsserver = {
+        root_dir = require("lspconfig.util").root_pattern "package.json",
+      },
+      eslint = {
+        root_dir = require("lspconfig.util").root_pattern(
+          "package.json",
+          ".eslintrc.json",
+          ".eslintrc.js",
+          "eslint.config.mjs"
+        ),
+      },
+    },
     -- customize how language servers are attached
     handlers = {
       -- a function without a key is simply the default handler, functions take two parameters, the server name and the configured options table for that server
@@ -102,5 +119,16 @@ return {
       -- this would disable semanticTokensProvider for all clients
       -- client.server_capabilities.semanticTokensProvider = nil
     end,
+    file_operations = {
+      timeout = 10000, -- default timeout in ms for completing LSP operations
+      operations = { -- enable all of the file operations
+        willCreate = true,
+        didCreate = true,
+        willRename = true,
+        didRename = true,
+        willDelete = true,
+        didDelete = true,
+      },
+    },
   },
 }

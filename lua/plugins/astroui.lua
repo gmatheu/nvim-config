@@ -9,7 +9,6 @@ return {
     "AstroNvim/astroui",
     ---@type AstroUIOpts
     opts = {
-      -- change colorscheme
       colorscheme = "astrodark",
       -- colorscheme = "astrodark",
       -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
@@ -89,6 +88,20 @@ return {
         LSPLoading8 = "⠧",
         LSPLoading9 = "⠇",
         LSPLoading10 = "⠏",
+      },
+    },
+    dependencies = {
+      {
+        "folke/tokyonight.nvim",
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        priority = 1000, -- make sure to load this before all the other start plugins
+      },
+      {
+        "projekt0n/github-nvim-theme",
+        enabled = false,
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        priority = 1000, -- make sure to load this before all the other start plugins
+        config = function() require("github-theme").setup() end,
       },
     },
   },
