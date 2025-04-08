@@ -92,8 +92,32 @@ return {
       },
     },
   },
+
+  {
+    "echasnovski/mini.icons",
+    version = false,
+    config = function()
+      require("mini.icons").setup {
+        {
+          style = "glyph",
+
+          default = {},
+          directory = {},
+          extension = {},
+          file = {},
+          filetype = {},
+          lsp = {},
+          os = {},
+
+          use_file_extension = function(ext, file) return true end,
+        },
+      }
+    end,
+  },
+  -- TODO: Remove after v5 migration
   {
     "onsails/lspkind.nvim",
+    enabled = false,
     opts = function(_, opts)
       -- use codicons preset
       opts.preset = "codicons"
