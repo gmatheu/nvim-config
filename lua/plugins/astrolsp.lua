@@ -45,7 +45,22 @@ return {
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
-    config = {},
+    config = {
+      denols = {
+        root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
+      },
+      tsserver = {
+        root_dir = require("lspconfig.util").root_pattern "package.json",
+      },
+      eslint = {
+        root_dir = require("lspconfig.util").root_pattern(
+          "package.json",
+          ".eslintrc.json",
+          ".eslintrc.js",
+          "eslint.config.mjs"
+        ),
+      },
+    },
     -- customize how language servers are attached
     handlers = {
       -- a function without a key is simply the default handler, functions take two parameters, the server name and the configured options table for that server

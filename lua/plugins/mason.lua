@@ -25,13 +25,49 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "prettier",
+        -- "prettier",
         "stylua",
         "ruff",
         -- "pylint",
       })
       opts.automatic_setup = true
       opts.automatic_installation = true
+
+      opts.handlers = {
+        -- for prettier
+        prettier = function()
+          require("null-ls").register(require("null-ls").builtins.formatting.prettier.with {
+            condition = function(utils)
+              return utils.root_has_file "package.json"
+                or utils.root_has_file ".prettierrc"
+                or utils.root_has_file ".prettierrc.json"
+                or utils.root_has_file ".prettierrc.js"
+            end,
+          })
+        end,
+        -- for prettierd
+        prettierd = function()
+          require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with {
+            condition = function(utils)
+              return utils.root_has_file "package.json"
+                or utils.root_has_file ".prettierrc"
+                or utils.root_has_file ".prettierrc.json"
+                or utils.root_has_file ".prettierrc.js"
+            end,
+          })
+        end,
+        -- For eslint_d:
+        eslint_d = function()
+          require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with {
+            condition = function(utils)
+              return utils.root_has_file "package.json"
+                or utils.root_has_file "eslint.config.mjs"
+                or utils.root_has_file ".eslintrc.json"
+                or utils.root_has_file ".eslintrc.js"
+            end,
+          })
+        end,
+      }
     end,
   },
   {
