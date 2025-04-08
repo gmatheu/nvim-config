@@ -117,22 +117,31 @@ maps.n["\\"] = { "<cmd>FocusSplitRight<cr>", desc = "Horizontal Split [focus]" }
 maps.n["<Leader>x"] = { "<cmd>bd<cr>", desc = "Close buffer" }
 
 -- Navigate tabs
-maps.n["]t"] = { function() vim.cmd.tabnext() end, desc = "Next tab" }
+-- maps.n["]t"] = { function() vim.cmd.tabnext() end, desc = "Next tab" }
 maps.n["[t"] = { function() vim.cmd.tabprevious() end, desc = "Previous tab" }
 
--- Comment
-maps.n["<Leader>/"] = {
-  function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
-  desc = "Comment line",
-}
-maps.n["<Leader>cc"] = {
-  function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
-  desc = "Comment line",
-}
-maps.v["<Leader>/"] =
-  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
-maps.v["<Leader>cc"] =
-  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+if vim.version().minor >= 11 then
+  maps.n["<Leader>/"] = {
+    "gcc",
+    desc = "Comment line (builtin)",
+    remap = true,
+  }
+  maps.n["<Leader>cc"] = {
+    "gcc",
+    desc = "Comment line (builtin))",
+    remap = true,
+  }
+  maps.v["<Leader>/"] = {
+    "gc",
+    desc = "Toggle comment line (builtin)",
+    remap = true,
+  }
+  maps.v["<Leader>cc"] = {
+    "gc",
+    desc = "Toggle comment line (builtin)",
+    remap = true,
+  }
+end
 
 maps.n["<Leader>gst"] = { "<cmd>Git<cr>", desc = "Git vim-fugitive" }
 -- maps.n["<Leader>gg"] = { "<cmd>Git<cr>", desc = "Git vim-fugitive" }

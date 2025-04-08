@@ -4,7 +4,39 @@ return {
   -- { "Shatur/neovim-session-manager", enabled = false },
 
   -- TODO: Remove after v5 migration with v0.11.0 compatiblity
-  { "numToStr/Comment.nvim", enabled = true },
+  {
+    "numToStr/Comment.nvim",
+    enabled = vim.version().minor <= 10,
+    keys = {
+      {
+        "<Leader>/",
+        function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+        desc = "Comment line [Comment.nvim]",
+        remap = true,
+      },
+      {
+        "<Leader>cc",
+        function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+        desc = "Comment line [Comment.nvim]",
+      },
+      {
+        "<Leader>/",
+        "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
+        desc = "Toggle comment line [Comment.nvim]",
+        mode = "v",
+      },
+      {
+        "<Leader>cc",
+        "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
+        desc = "Toggle comment line [Comment.nvim]",
+        mode = "v",
+      },
+    },
+    config = function()
+      require("Comment").setup()
+      vim.notify("Comment.nvim enabled (v < 0.11)", vim.log.levels.INFO, { title = "AstroNvim" })
+    end,
+  },
 
   {
     "s1n7ax/nvim-window-picker",

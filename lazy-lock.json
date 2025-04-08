@@ -93,6 +93,7 @@
   "nvim-vtsls": { "branch": "main", "commit": "b1f2dfc1ed21d741ebbc211fe02f830ea4545f09" },
   "nvim-web-devicons": { "branch": "master", "commit": "57dfa947cc88cdf1baa2c7e13ed31edddd8fb1d1" },
   "nvim-window": { "branch": "main", "commit": "322809de1cc5d76ea069daa70c4a45f575bf614d" },
+  "nvim-window-picker": { "branch": "main", "commit": "6382540b2ae5de6c793d4aa2e3fe6dbb518505ec" },
   "oil.nvim": { "branch": "master", "commit": "302bbaceeafc690e6419e0c8296e804d60cb9446" },
   "overseer.nvim": { "branch": "master", "commit": "72c68aab0358c92f451168b704c411c4a3e3410e" },
   "package-info.nvim": { "branch": "master", "commit": "3e8914a77668c780fc5ef8b0fbcf3747dfcf6ec5" },
@@ -134,7 +135,6 @@
   "vim-wakatime": { "branch": "master", "commit": "e46d7c4f98ee0f40782008dd60cb2a79c377fb1d" },
   "watch.nvim": { "branch": "master", "commit": "003a21ea41c609e2ad7090bf06b1e5ac49e7db37" },
   "which-key.nvim": { "branch": "main", "commit": "fcbf4eea17cb299c02557d576f0d568878e354a4" },
-  "window-picker": { "branch": "main", "commit": "6382540b2ae5de6c793d4aa2e3fe6dbb518505ec" },
   "wtf.nvim": { "branch": "main", "commit": "22dac666c8847c9cb03afe99229d459f1d0822c4" },
   "yanky.nvim": { "branch": "main", "commit": "98b9c21d3c06d79f68fd9d471dcc28fc6d2d72ef" },
   "zk-nvim": { "branch": "main", "commit": "d0bac443233635d18968affde4701db2cf2435b5" }
