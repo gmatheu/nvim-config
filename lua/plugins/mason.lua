@@ -1,52 +1,55 @@
 ---@type LazySpec
 return {
-  -- use mason-lspconfig to configure LSP installations
   {
-    "williamboman/mason-lspconfig.nvim",
-    -- overrides `require("mason-lspconfig").setup(...)`
-    opts = function(_, opts)
-      -- add more things to the ensure_installed table protecting against community packs modifying it
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "lua_ls",
-        "ts_ls",
-        "sqlls",
-        "bashls",
-        "dockerls",
-        -- "pylsp",
-      })
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    config = function()
+      require("mason-tool-installer").setup {
 
-      opts.automatic_installation = true
+        ensure_installed = {
+          { "bash-language-server", auto_update = true },
+          "lua-language-server",
+          "vim-language-server",
+          "stylua",
+          "shellcheck",
+          "editorconfig-checker",
+          "impl",
+          "json-to-struct",
+          "luacheck",
+          "misspell",
+          "revive",
+          "shellcheck",
+          "shfmt",
+          "staticcheck",
+
+          "typescript-language-server",
+          "sqlls",
+          "dockerfile-language-server",
+          "docker-compose-language-service",
+          "dotenv-linter",
+
+          "prettier",
+          "stylua",
+          "ruff",
+
+          "debugpy",
+          "js-debug-adapter",
+          "java-debug-adapter",
+        },
+        auto_update = false,
+        run_on_start = true,
+        start_delay = 3000, -- 3 second delay
+        debounce_hours = 0, -- at least 5 hours between attempts to install/update
+        integrations = {
+          ["mason-lspconfig"] = true,
+          ["mason-null-ls"] = true,
+          ["mason-nvim-dap"] = true,
+        },
+      }
     end,
-  },
-  -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
-  {
-    "jay-babu/mason-null-ls.nvim",
-    -- overrides `require("mason-null-ls").setup(...)`
-    opts = function(_, opts)
-      -- add more things to the ensure_installed table protecting against community packs modifying it
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "prettier",
-        "stylua",
-        "ruff",
-        -- "pylint",
-      })
-      opts.automatic_setup = true
-      opts.automatic_installation = true
-    end,
-  },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    -- overrides `require("mason-nvim-dap").setup(...)`
-    opts = function(_, opts)
-      -- add more things to the ensure_installed table protecting against community packs modifying it
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "python",
-        "typescript",
-        "javascript",
-        "java",
-      })
-      opts.automatic_setup = true
-      opts.automatic_installation = true
-    end,
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      "jay-babu/mason-null-ls.nvim",
+      "jay-babu/mason-nvim-dap.nvim",
+    },
   },
 }
