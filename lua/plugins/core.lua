@@ -21,6 +21,7 @@ return {
     end,
   },
   { "folke/which-key.nvim", enabled = true },
+  { "kevinhwang91/nvim-ufo", enabled = false },
   {
     "rcarriga/nvim-notify",
     enabled = false, -- Overseeded by snacks.nvim notify
