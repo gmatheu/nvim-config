@@ -3,6 +3,51 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
+local function try_stop_codeium()
+  if require("lazy.core.config").plugins["neocodeium"]._.loaded then require("neocodeium.commands").disable(true) end
+end
+local function try_stop_supermaven()
+  if require("lazy.core.config").plugins["supermaven-nvim"]._.loaded then
+    local supermaven = require "supermaven-nvim.api"
+    if supermaven.is_running() then supermaven.stop() end
+  end
+end
+local function try_stop_copilot()
+  if require("lazy.core.config").plugins["copilot.lua"]._.loaded then require("copilot.command").disable() end
+end
+local function ai_copilot_status()
+  local supermaven_status = "unloaded"
+  if require("lazy.core.config").plugins["supermaven-nvim"]._.loaded then
+    local supermaven = require "supermaven-nvim.api"
+    if supermaven.is_running() then
+      supermaven_status = "running"
+    else
+      supermaven_status = "stopped"
+    end
+  end
+  local codeium_status = "unloaded"
+  if require("lazy.core.config").plugins["neocodeium"]._.loaded then
+    if require("neocodeium").get_status() then
+      codeium_status = "running"
+    else
+      codeium_status = "stopped"
+    end
+  end
+  local copilot_status = "unloaded"
+  if require("lazy.core.config").plugins["copilot.lua"]._.loaded then
+    if require("copilot.command").status() then
+      copilot_status = "running"
+    else
+      copilot_status = "stopped"
+    end
+  end
+  local status = {}
+  status.supermaven = supermaven_status
+  status.codeium = codeium_status
+  status.copilot = copilot_status
+  vim.notify("Copilot Status " .. vim.inspect(status))
+end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -101,10 +146,8 @@ return {
     commands = {
       AiCodeium = {
         function()
-          if require("lazy.core.config").plugins["supermaven-nvim"]._.loaded then
-            local supermaven = require "supermaven-nvim.api"
-            if supermaven.is_running() then supermaven.stop() end
-          end
+          try_stop_supermaven()
+          try_stop_copilot()
           require("neocodeium.commands").enable()
           vim.notify "Codeium enabled"
         end,
@@ -112,9 +155,8 @@ return {
       },
       AiSuperMaven = {
         function()
-          if require("lazy.core.config").plugins["neocodeium"]._.loaded then
-            require("neocodeium.commands").disable(true)
-          end
+          try_stop_codeium()
+          try_stop_copilot()
           local supermaven = require "supermaven-nvim.api"
           if not supermaven.is_running() then supermaven.start() end
           vim.notify "SuperMaven enabled"
@@ -123,17 +165,25 @@ return {
       },
       AiCopilot = {
         function()
-          if require("lazy.core.config").plugins["neocodeium"]._.loaded then
-            require("neocodeium.commands").disable(true)
-          end
-          if require("lazy.core.config").plugins["supermaven-nvim"]._.loaded then
-            local supermaven = require "supermaven-nvim.api"
-            if supermaven.is_running() then supermaven.stop() end
-          end
+          try_stop_codeium()
+          try_stop_supermaven()
           require("copilot.command").enable()
           vim.notify "Copilot enabled"
         end,
         desc = "Enables Copilot for inline completion",
+      },
+      AiCopilotStatus = {
+        function() ai_copilot_status() end,
+        desc = "Ai Copilot status",
+      },
+      AiCopilotDisable = {
+        function()
+          try_stop_codeium()
+          try_stop_supermaven()
+          try_stop_copilot()
+          vim.notify "All AI Copilot disabled"
+        end,
+        desc = "Disables any AI Copilot for inline completion",
       },
     },
 
