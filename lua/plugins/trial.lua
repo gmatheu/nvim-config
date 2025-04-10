@@ -2,6 +2,7 @@ return {
   {
     "rasulomaroff/reactive.nvim",
     event = "VeryLazy",
+
     config = function()
       require("reactive").setup {
         builtin = {
@@ -334,6 +335,47 @@ return {
 
       require("telescope").load_extension "ecolog"
     end,
+  },
+
+  {
+    "echasnovski/mini.pick",
+    version = "*",
+    cmd = { "Pick" },
+    config = function() require("mini.pick").setup() end,
+  },
+  {
+    "hiberabyss/readline.nvim",
+    event = "CmdlineEnter",
+    keys = {
+      {
+        "<C-a>",
+        function() require("readline").beginning_of_line() end,
+        desc = "Beginning of line [readline]",
+        mode = { "c", "i" },
+      },
+      {
+        "<C-e>",
+        function() require("readline").end_of_line() end,
+        desc = "End of line [readline]",
+        mode = { "c", "i" },
+      },
+      {
+        "<C-u>",
+        function() require("readline").backward_kill_line() end,
+        desc = "Backgward kill line [readline]",
+        mode = "c",
+      },
+      { "<C-k>", function() require("readline").kill_line() end, desc = "Kill line [readline]", mode = "c" },
+      { "<C-d>", function() require("readline").kill_word() end, desc = "Kill word [readlined]", mode = "c" },
+      {
+        "<A-BS>",
+        function() require("readline").backward_kill_word() end,
+        desc = "Backward kill word [readline]",
+        mode = "c",
+      },
+      { "<A-b>", function() require("readline").forward_word() end, desc = "Forward word [readline]", mode = "c" },
+      { "<A-f>", function() require("readline").backward_word() end, desc = "Backward word [readline]", mode = "c" },
+    },
   },
   -- To try
   -- https://github.com/stevearc/stickybuf.nvim
