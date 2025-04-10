@@ -53,6 +53,12 @@ return {
     },
   },
   {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = { "lua_ls" },
+    },
+  },
+  {
     "jay-babu/mason-null-ls.nvim",
     opts = function(_, opts)
       opts.handlers = {

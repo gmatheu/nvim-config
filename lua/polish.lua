@@ -38,7 +38,7 @@ local function disable_completion()
   vim.g.completion_enable_auto_popup = 0
   -- TODO: Make it work with blink.cmp for v5 migration
   -- For nvim-cmp:
-  if require("lazy.core.config").plugins["nvim-cmp"]._.loaded then require("cmp").setup.buffer { enabled = false } end
+  if require("lazy.core.config").plugins["nvim-cmp"] then require("cmp").setup.buffer { enabled = false } end
 end
 vim.api.nvim_create_augroup("DisableCompletionForCodeCompanion", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
@@ -90,7 +90,7 @@ if not vim.g.vscode then
   -- https://github.com/monkoose/neocodeium?tab=readme-ov-file#-tips
   if not vim.env.ASTRONVIM_SKIP_NEOCODEIUM then
     -- TODO: Make it work with blink.cmp for v5 migration
-    if require("lazy.core.config").plugins["nvim-cmp"]._.loaded then
+    if require("lazy.core.config").plugins["nvim-cmp"] then
       local cmp = require "cmp"
       local neocodeium = require "neocodeium"
       -- local commands = require "neocodeium.commands"
@@ -109,5 +109,5 @@ if not vim.g.vscode then
     end
   end
 else
-  vim.notify "VS Code neovim loaded"
+  vim.notify("VS Code neovim loaded (v" .. vim.version().major .. "." .. vim.version().minor .. ")")
 end
