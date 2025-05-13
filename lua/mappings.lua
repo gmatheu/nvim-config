@@ -65,7 +65,6 @@ maps.n["<Leader>ci"] = { function() vim.lsp.buf.implementation() end, desc = "ls
 maps.n["<Leader>ls"] = { function() vim.lsp.buf.signature_help() end, desc = "lsp signature_help" }
 maps.n["<Leader>cs"] = { function() vim.lsp.buf.signature_help() end, desc = "lsp signature_help" }
 maps.n["<Leader>D"] = { function() vim.lsp.buf.type_definition() end, desc = "lsp definition type" }
--- maps.n["<Leader>ra"] = { function() require("nvchad_ui.renamer").open() end, desc = "lsp rename" }
 
 maps.n["<Leader>ca"] = { function() vim.lsp.buf.code_action() end, desc = "lsp code_action" }
 maps.n["gr"] = { function() vim.lsp.buf.references() end, desc = "lsp references" }
@@ -81,9 +80,9 @@ maps.n["<Leader>wl"] = {
   desc = "list workspace folders",
 }
 
-maps.i["<F2>"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Rename action" }
-maps.n["<Leader>ra"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Rename action" }
-maps.v["<Leader>ra"] = { '<cmd>lua require("renamer").rename()<cr>', desc = "Rename action" }
+maps.i["<F2>"] = { vim.lsp.buf.rename, desc = "Rename action" }
+maps.n["<Leader>ra"] = { vim.lsp.buf.rename, desc = "Rename action" }
+maps.v["<Leader>ra"] = { vim.lsp.buf.rename, desc = "Rename action" }
 
 maps.n["<Leader>ss"] = { "<cmd>MurenToggle<CR>", desc = "Open multiple replace" }
 -- maps.n["<Leader>sw"] =
