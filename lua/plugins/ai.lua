@@ -447,40 +447,49 @@ return {
     end,
   },
   {
-    "Exafunction/codeium.vim",
+    "Exafunction/windsurf.nvim",
     enabled = false,
-    event = "BufEnter",
+    event = "InsertEnter",
     cmd = { "Codeium", "CodeiumEnable", "CodeiumDisable" },
-    keys = {
-      {
-        "<C-g>",
-        function() return vim.fn["codeium#Accept"]() end,
-        desc = "Accept suggestion [Codeium]",
-        mode = "i",
-        expr = true,
-        silent = true,
-      },
-      {
-        "<C-j>",
-        function() return vim.fn["codeium#CycleCompletion"](1) end,
-        desc = "Cycle suggestion up [Codeium]",
-        mode = "i",
-        expr = true,
-        silent = true,
-      },
-      {
-        "<C-L>",
-        function() return vim.fn["codeium#CycleCompletion"](-1) end,
-        desc = "Cycle suggestion down [Codeium]",
-        mode = "i",
-        expr = true,
-        silent = true,
-      },
-    },
+    keys = {},
+    config = function()
+      require("codeium").setup {
+        enable_cmp_source = false,
+        virtual_text = {
+          enabled = true,
+          -- Set to true if you never want completions to be shown automatically.
+          manual = false,
+          -- A mapping of filetype to true or false, to enable virtual text.
+          filetypes = {},
+          -- Whether to enable virtual text of not for filetypes not specifically listed above.
+          default_filetype_enabled = true,
+          -- How long to wait (in ms) before requesting completions after typing stops.
+          idle_delay = 75,
+          -- Priority of the virtual text. This usually ensures that the completions appear on top of
+          -- other plugins that also add virtual text, such as LSP inlay hints, but can be modified if
+          -- desired.
+          virtual_text_priority = 65535,
+          -- Set to false to disable all key bindings for managing completions.
+          map_keys = true,
+          -- The key to press when hitting the accept keybinding but no completion is showing.
+          -- Defaults to \t normally or <c-n> when a popup is showing.
+          accept_fallback = nil,
+          key_bindings = {
+            accept = "<Tab>",
+            accept_word = false,
+            accept_line = false,
+            clear = false,
+            next = "<M-]>",
+            prev = "<M-[>",
+          },
+        },
+      }
+    end,
   },
   {
     "monkoose/neocodeium",
     cmd = { "NeoCodeium" },
+    event = "InsertEnter",
     enabled = not vim.env.ASTRONVIM_SKIP_NEOCODEIUM,
     config = function()
       local neocodeium = require "neocodeium"
@@ -513,31 +522,34 @@ return {
         "trouble",
         "Trouble",
         "fugitive",
-        "markdown",
+        "snacks_picker_input",
       }
       neocodeium.setup {
-        -- filetypes = {
-        --   TelescopePrompt = false,
-        -- },
-        --
-        -- filter = function(bufnr)
-        --   if vim.tbl_contains(disabled_filetypes, vim.api.nvim_get_option_value("filetype", { buf = bufnr })) then
-        --     vim.notify(
-        --       "NeoCodeium disabled in this buffer"
-        --         .. vim.inspect(vim.api.nvim_get_option_value("filetype", { buf = bufnr })),
-        --       vim.log.levels.INFO,
-        --       { title = "NeoCodeium" }
-        --     )
-        --     return false
-        --   end
-        --   vim.notify(
-        --     "NeoCodeium enabled in this buffer"
-        --       .. vim.inspect(vim.api.nvim_get_option_value("filetype", { buf = bufnr })),
-        --     vim.log.levels.INFO,
-        --     { title = "NeoCodeium" }
-        --   )
-        --   return true
-        -- end,
+        filetypes = {
+          TelescopePrompt = false,
+        },
+        filter = function(bufnr)
+          if vim.tbl_contains(disabled_filetypes, vim.api.nvim_get_option_value("filetype", { buf = bufnr })) then
+            if vim.env.ASTRONVIM_DEBUG_NOTIFICATIONS then
+              vim.notify(
+                "NeoCodeium disabled in this buffer"
+                  .. vim.inspect(vim.api.nvim_get_option_value("filetype", { buf = bufnr })),
+                vim.log.levels.INFO,
+                { title = "NeoCodeium" }
+              )
+            end
+            return false
+          end
+          if vim.env.ASTRONVIM_VERBOSE_NOTIFICATIONS then
+            vim.notify(
+              "NeoCodeium enabled in this buffer"
+                .. vim.inspect(vim.api.nvim_get_option_value("filetype", { buf = bufnr })),
+              vim.log.levels.INFO,
+              { title = "NeoCodeium" }
+            )
+          end
+          return true
+        end,
       }
       vim.keymap.set("i", "<A-f>", function() neocodeium.accept() end)
       vim.keymap.set("i", "<A-w>", function() neocodeium.accept_word() end)
@@ -559,6 +571,7 @@ return {
         --   clear_suggestion = "<A-c>",
         --   accept_word = "<A-w>",
         -- },
+        condition = function() return not string.match(vim.fn.expand "%:t", "foo.sh") end,
         ignore_filetypes = { cpp = true },
         color = {
           suggestion_color = "#2222ff",
@@ -605,7 +618,7 @@ return {
       require("copilot").setup {
         panel = {
           enabled = true,
-          auto_refresh = false,
+          auto_refresh = true,
           keymap = {
             jump_prev = "[[",
             jump_next = "]]",

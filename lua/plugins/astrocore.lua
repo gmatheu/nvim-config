@@ -15,6 +15,23 @@ end
 local function try_stop_copilot()
   if require("lazy.core.config").plugins["copilot.lua"]._.loaded then require("copilot.command").disable() end
 end
+local function try_stop_augment()
+  if require("lazy.core.config").plugins["augment"] and require("lazy.core.config").plugins["augment"]._.loaded then
+    vim.g.augment_disable_completions = true
+  end
+end
+local function try_stop_all()
+  try_stop_codeium()
+  try_stop_supermaven()
+  try_stop_copilot()
+  try_stop_augment()
+end
+
+local function start_augment()
+  require "augment"
+  vim.g.augment_disable_completions = false
+end
+
 local function ai_copilot_status()
   local supermaven_status = "unloaded"
   if require("lazy.core.config").plugins["supermaven-nvim"]._.loaded then
@@ -27,7 +44,8 @@ local function ai_copilot_status()
   end
   local codeium_status = "unloaded"
   if require("lazy.core.config").plugins["neocodeium"]._.loaded then
-    if require("neocodeium").get_status() then
+    local neocodeium_status, neocodeium_server_status = require("neocodeium").get_status()
+    if neocodeium_server_status == 0 then
       codeium_status = "running"
     else
       codeium_status = "stopped"
@@ -41,10 +59,19 @@ local function ai_copilot_status()
       copilot_status = "stopped"
     end
   end
+  local augment_status = "unloaded"
+  if require("lazy.core.config").plugins["augment"] and require("lazy.core.config").plugins["augment"]._.loaded then
+    if vim.g.augment_disable_completions then
+      copilot_status = "disabled"
+    else
+      copilot_status = "running"
+    end
+  end
   local status = {}
   status.supermaven = supermaven_status
   status.codeium = codeium_status
   status.copilot = copilot_status
+  status.augment = augment_status
   vim.notify("Copilot Status " .. vim.inspect(status))
 end
 
@@ -177,15 +204,21 @@ return {
         end,
         desc = "Enables Copilot for inline completion",
       },
+      AiAugment = {
+        function()
+          try_stop_all()
+          start_augment()
+          vim.cmd "Augment status"
+        end,
+        desc = "Enables Copilot for inline completion",
+      },
       AiCopilotStatus = {
         function() ai_copilot_status() end,
         desc = "Ai Copilot status",
       },
       AiCopilotDisable = {
         function()
-          try_stop_codeium()
-          try_stop_supermaven()
-          try_stop_copilot()
+          try_stop_all()
           vim.notify "All AI Copilot disabled"
         end,
         desc = "Disables any AI Copilot for inline completion",
