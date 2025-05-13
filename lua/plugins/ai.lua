@@ -668,6 +668,20 @@ return {
   },
 
   {
+    "augmentcode/augment.vim",
+    cmd = { "Augment" },
+
+    config = function()
+      vim.g.augment_disable_tab_mapping = true
+      vim.g.augment_disable_leader_mapping = true
+      vim.g.augment_workspace_folders = { vim.fn.getcwd() }
+    end,
+    keys = {
+      { "<A-f>", "<cmd>call augment#Accept()<cr>", desc = "Accept suggestion [AugmentCode]", mode = "i" },
+    },
+  },
+
+  {
     "sourcegraph/sg.nvim",
     enabled = false,
     event = "VeryLazy",
