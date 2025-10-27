@@ -21,6 +21,8 @@ return {
           "shfmt",
           "staticcheck",
 
+          "copilot-language-server",
+
           "typescript-language-server",
           "sqlls",
           "dockerfile-language-server",

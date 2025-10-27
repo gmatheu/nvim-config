@@ -81,7 +81,11 @@ return {
     opts = {},
   },
 
-  { "wakatime/vim-wakatime", lazy = false, enabled = not vim.env.ASTRONVIM_SKIP_WAKATIME },
+  {
+    "wakatime/vim-wakatime",
+    lazy = false,
+    enabled = false, -- not vim.env.ASTRONVIM_SKIP_WAKATIME,
+  },
 
   {
     "danymat/neogen",
@@ -183,8 +187,8 @@ return {
 
   {
     "gmatheu/keymap-stats.nvim",
-    enabled = true,
-    dev = true,
+    enabled = false,
+    -- dev = true,
     event = "VeryLazy",
     config = function()
       require("keymap-stats").setup {
@@ -198,7 +202,10 @@ return {
     priority = 990,
     dependencies = {
       { "MunifTanjim/nui.nvim" },
-      { "gmatheu/keymap-amend.nvim", dev = true },
+      {
+        "gmatheu/keymap-amend.nvim",
+        -- dev = true,
+      },
       {
         "m4xshen/hardtime.nvim",
         event = "VeryLazy",

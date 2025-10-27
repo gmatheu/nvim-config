@@ -397,6 +397,7 @@ return {
   {
     "ggandor/flit.nvim",
     event = "VeryLazy",
+    enabled = false,
     config = function()
       require("flit").setup {
         keys = { f = "f", F = "F", t = "t", T = "T" },

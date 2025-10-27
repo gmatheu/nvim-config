@@ -10,6 +10,12 @@ return {
         function()
           if vim.g.ai_accept then return vim.g.ai_accept() end
         end,
+        function() -- sidekick next edit suggestion
+          return require("sidekick").nes_jump_or_apply()
+        end,
+        -- function() -- if you are using Neovim's native inline completions
+        --   return vim.lsp.inline_completion.get()
+        -- end,
         "fallback",
       }
       opts.keymap["<S-Tab>"] = { "snippet_backward", "fallback" }

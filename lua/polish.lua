@@ -31,6 +31,9 @@ vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
 vim.opt.path:append { "**" }
 vim.opt.wildmenu = true
 vim.opt.exrc = true
+vim.opt.secure = true
+vim.o.exrc = true
+vim.o.secure = false
 
 local function disable_completion()
   -- Assuming you are using nvim-compe or a similar completion plugin
