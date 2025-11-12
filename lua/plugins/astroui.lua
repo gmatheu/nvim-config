@@ -38,6 +38,20 @@ return {
             StatusLine = {
               bg = "#572e33",
             },
+            Search = {
+              bg = "#554824",
+              fg = "#d09214",
+            },
+            Question = {
+              fg = red,
+              bg = bg_alt,
+              bold = true,
+            },
+            Substitute = {
+              bg = "#554824",  -- similar to your Search highlight
+              fg = "#d09214",
+              bold = true,
+            },
             LineNr = {
               fg = "yellow",
             },
@@ -52,7 +66,11 @@ return {
           }
         end,
         astrotheme = { -- a table of overrides/changes when applying the astrotheme theme
-          -- Normal = { bg = "#000000" },
+          Question = {
+            fg = red,
+            bg = bg_alt,
+            bold = true,
+          },
         },
       },
       status = {

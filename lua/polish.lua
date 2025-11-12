@@ -1,5 +1,3 @@
--- if true then return end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 vim.filetype.add {
   pattern = {
     [".*/i3/config.d/.*.config"] = "i3config",
@@ -11,7 +9,7 @@ vim.filetype.add {
 function load_log_file() end
 
 -- https://andrewcourter.substack.com/p/create-autocommands-in-neovim
-vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter", "BufRead" }, {
   callback = function()
     if vim.bo.filetype == "TelescopePrompt" then
       vim.wo.relativenumber = false
