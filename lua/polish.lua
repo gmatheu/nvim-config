@@ -180,3 +180,26 @@ vim.api.nvim_create_autocmd("CursorMovedI", {
   desc = "Clear highlights when entering insert mode",
   callback = function() vim.lsp.buf.clear_references() end,
 })
+
+-- Highlight replacement word in substitute command confirm dialog
+vim.api.nvim_create_autocmd("CmdlineChanged", {
+  group = vim.api.nvim_create_augroup("SubstituteHighlight", { clear = true }),
+  callback = function()
+    local cmdline = vim.fn.getcmdline()
+    local cmdtype = vim.fn.getcmdtype()
+
+    -- Check if it's a substitute command with confirmation flag
+    if cmdtype == ":" and cmdline:match "^%%?s/" and cmdline:find "/g?c?$" then
+      -- Extract the replacement word (between second and third slash)
+      local pattern = "^%%?s/([^/]*)/([^/]*)/"
+      local _, _, search, replace = cmdline:find(pattern)
+
+      if search and replace and replace ~= "" then
+        -- Highlight the replacement word in the command line
+        vim.api.nvim_set_hl(0, "SubstituteReplace", { fg = "#ff0000", bold = true, underline = true })
+        -- Note: Actually highlighting in cmdline is complex, this sets up the highlight group
+        -- The actual highlighting would need more complex logic
+      end
+    end
+  end,
+})

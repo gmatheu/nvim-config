@@ -17,38 +17,43 @@ return {
           local get_hlgroup = require("astroui").get_hlgroup
           -- get highlights from highlight groups
           local normal = get_hlgroup "Normal"
-          local fg, bg = normal.fg, normal.bg
+          local fg = normal.fg
+          local bg = normal.bg
           local bg_alt = get_hlgroup("Visual").bg
           local green = get_hlgroup("String").fg
           local red = get_hlgroup("Error").fg
+          local comment_fg = get_hlgroup("Comment").fg
+          local warning_fg = get_hlgroup("WarningMsg").fg
 
           return { -- this table overrides highlights in all themes
-            TelescopeBorder = { fg = bg_alt, bg = bg },
-            TelescopeNormal = { bg = bg },
+            TelescopeBorder = { fg = bg_alt, bg = "#0a0a0a" },
+            TelescopeNormal = { bg = "#1b1b1b" },
             -- TelescopePreviewBorder = { fg = bg, bg = bg },
-            TelescopePreviewNormal = { bg = bg },
+            TelescopePreviewNormal = { bg = "#2c2c2c" },
             TelescopePreviewTitle = { fg = bg, bg = green },
             -- TelescopePromptBorder = { fg = bg_alt, bg = bg_alt },
             -- TelescopePromptNormal = { fg = fg, bg = bg_alt },
             -- TelescopePromptPrefix = { fg = red, bg = bg_alt },
             TelescopePromptTitle = { fg = bg, bg = red },
             -- TelescopeResultsBorder = { fg = bg, bg = bg },
-            TelescopeResultsNormal = { bg = bg },
+            TelescopeResultsNormal = {
+              -- bg = "#3d3d3d"
+            },
             -- TelescopeResultsTitle = { fg = bg, bg = bg },
             StatusLine = {
-              bg = "#572e33",
+              -- bg = "#4e4e4e",
             },
             Search = {
-              bg = "#554824",
+              bg = "#5f5f5f",
               fg = "#d09214",
             },
             Question = {
               fg = red,
-              bg = bg_alt,
+              -- bg = "#6a6a6a",
               bold = true,
             },
             Substitute = {
-              bg = "#554824",  -- similar to your Search highlight
+              bg = "#554824", -- similar to your Search highlight
               fg = "#d09214",
               bold = true,
             },
@@ -63,15 +68,10 @@ return {
               bg = "#572e33",
               underline = true,
             },
+            CursorLine = { bg = "#554824" },
+            PmenuMatch = { bg = "#954824" },
           }
         end,
-        astrotheme = { -- a table of overrides/changes when applying the astrotheme theme
-          Question = {
-            fg = red,
-            bg = bg_alt,
-            bold = true,
-          },
-        },
       },
       status = {
         -- Configure attributes of components defined in the `status` API. Check the AstroNvim documentation for a complete list of color names, this applies to colors that have `_fg` and/or `_bg` names with the suffix removed (ex. `git_branch_fg` as attributes from `git_branch`).
@@ -143,7 +143,7 @@ return {
           },
           os = {},
 
-          use_file_extension = function(ext, file) return true end,
+          use_file_extension = function(_ext, _file) return true end,
         },
       }
     end,

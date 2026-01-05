@@ -232,7 +232,7 @@ return {
     config = function()
       require("telescope").setup {
         defaults = {
-          layout_strategy = "horizontal",
+          layout_strategy = "vertical",
           layout_config = {
             center = { width = 0.8, height = 0.8 },
             horizontal = { width = 0.9, height = 0.9 },

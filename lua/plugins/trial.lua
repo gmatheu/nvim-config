@@ -84,7 +84,7 @@ return {
   {
     "wakatime/vim-wakatime",
     lazy = false,
-    enabled = false, -- not vim.env.ASTRONVIM_SKIP_WAKATIME,
+    enabled = not vim.env.ASTRONVIM_SKIP_WAKATIME,
   },
 
   {
