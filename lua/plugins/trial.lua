@@ -188,7 +188,7 @@ return {
   {
     "gmatheu/keymap-stats.nvim",
     enabled = false,
-    -- dev = true,
+    dev = true,
     event = "VeryLazy",
     config = function()
       require("keymap-stats").setup {
@@ -204,7 +204,7 @@ return {
       { "MunifTanjim/nui.nvim" },
       {
         "gmatheu/keymap-amend.nvim",
-        -- dev = true,
+        dev = true,
       },
       {
         "m4xshen/hardtime.nvim",

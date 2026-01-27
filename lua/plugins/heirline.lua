@@ -41,6 +41,7 @@ local NeoCodeium = {
   },
   provider = function(self)
     local symbols = self.symbols
+
     local status, server_status = require("neocodeium").get_status()
     return status .. "/" .. server_status
     -- return symbols.status[status] .. symbols.server_status[server_status]

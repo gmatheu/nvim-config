@@ -1,6 +1,7 @@
 return {
   {
     {
+
       "codota/tabnine-nvim",
       enabled = false,
       event = "VeryLazy",
@@ -780,23 +781,23 @@ return {
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      {
-        -- support for image pasting
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
+      -- {
+      --   -- support for image pasting
+      --   "HakonHarnes/img-clip.nvim",
+      --   event = "VeryLazy",
+      --   opts = {
+      --     -- recommended settings
+      --     default = {
+      --       embed_image_as_base64 = false,
+      --       prompt_for_file_name = false,
+      --       drag_and_drop = {
+      --         insert_mode = true,
+      --       },
+      --       -- required for Windows users
+      --       use_absolute_path = true,
+      --     },
+      --   },
+      -- },
       {
         -- Make sure to setup it properly if you have lazy=true
         "MeanderingProgrammer/render-markdown.nvim",
@@ -941,6 +942,54 @@ return {
       -- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o".
       vim.keymap.set("n", "+", "<C-a>", { desc = "Increment", noremap = true })
       vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement", noremap = true })
+    end,
+  },
+
+  {
+    "milanglacier/minuet-ai.nvim",
+    config = function()
+      require("minuet").setup {
+        virtualtext = {
+          auto_trigger_ft = {},
+          keymap = {
+            -- accept whole completion
+            accept = "<A-A>",
+            -- accept one line
+            accept_line = "<A-a>",
+            -- accept n lines (prompts for number)
+            -- e.g. "A-z 2 CR" will accept 2 lines
+            accept_n_lines = "<A-z>",
+            -- Cycle to prev completion item, or manually invoke completion
+            prev = "<A-[>",
+            -- Cycle to next completion item, or manually invoke completion
+            next = "<A-]>",
+            dismiss = "<A-e>",
+          },
+        },
+
+        provider = "openai_compatible",
+        request_timeout = 2.5,
+        throttle = 1500, -- Increase to reduce costs and avoid rate limits
+        debounce = 600, -- Increase to reduce costs and avoid rate limits
+        provider_options = {
+          openai_compatible = {
+            api_key = "OPENCODE_API_KEY",
+
+            end_point = "https://opencode.ai/zen/v1/chat/completions",
+            model = "grok-code",
+            name = "Opencode",
+            optional = {
+
+              max_tokens = 56,
+              top_p = 0.9,
+              provider = {
+                -- Prioritize throughput for faster completion
+                sort = "throughput",
+              },
+            },
+          },
+        },
+      }
     end,
   },
 }

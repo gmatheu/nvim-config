@@ -19,6 +19,21 @@ return {
         "fallback",
       }
       opts.keymap["<S-Tab>"] = { "snippet_backward", "fallback" }
+      -- opts.keymap["<A-y>"] = {
+      --   function(cmp) cmp.show { providers = { "minuet" } } end,
+      -- }
+      --
+      -- opts.sources = {
+      --   -- if you want to use auto-complete
+      --   default = { "minuet" },
+      --   providers = {
+      --     minuet = {
+      --       name = "minuet",
+      --       module = "minuet.blink",
+      --       score_offset = 100,
+      --     },
+      --   },
+      -- }
     end,
   },
 
