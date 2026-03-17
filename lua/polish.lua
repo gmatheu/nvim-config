@@ -2,6 +2,7 @@ vim.filetype.add {
   pattern = {
     [".*/i3/config.d/.*.config"] = "i3config",
     [".*.kbd"] = "lisp",
+    [".*.njk"] = "jinja",
     [".envrc"] = "bash",
   },
 }
@@ -39,6 +40,7 @@ local function disable_completion()
   vim.g.completion_enable_auto_popup = 0
   -- TODO: Make it work with blink.cmp for v5 migration
   -- For nvim-cmp:
+
   if require("lazy.core.config").plugins["nvim-cmp"] then require("cmp").setup.buffer { enabled = false } end
 end
 vim.api.nvim_create_augroup("DisableCompletionForCodeCompanion", { clear = true })
