@@ -19,9 +19,10 @@ return {
         -- function() -- if you are using Neovim's native inline completions
         --   return vim.lsp.inline_completion.get()
         -- end,
+        "select_next",
         "fallback",
       }
-      opts.keymap["<S-Tab>"] = { "snippet_backward", "fallback" }
+      opts.keymap["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" }
       -- opts.keymap["<A-y>"] = {
       --   function(cmp) cmp.show { providers = { "minuet" } } end,
       -- }
