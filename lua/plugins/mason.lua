@@ -4,7 +4,6 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     config = function()
       require("mason-tool-installer").setup {
-
         ensure_installed = {
           { "bash-language-server", auto_update = true },
           "lua-language-server",

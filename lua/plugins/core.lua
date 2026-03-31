@@ -1,5 +1,5 @@
 return {
-  { "folke/which-key.nvim", enabled = true },
+  -- { "gmatheu/which-key.nvim", enabled = true },
   { "kevinhwang91/nvim-ufo", enabled = false },
   {
     "rcarriga/nvim-notify",

@@ -244,20 +244,20 @@ return {
   },
 
   {
-    "ggandor/leap.nvim",
+    "https://codeberg.org/andyg/leap.nvim",
     keys = {
-      { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-      { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
-      { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
+      { "s", "<Plug>(leap)", mode = { "n", "x", "o" }, desc = "Leap forward to [leap]", silent = true },
+      { "S", "<Plug>(leap-backward)", mode = { "n", "x", "o" }, desc = "Leap backward to [leap]", silent = true },
+      { "gs", "<Plug>(leap-from-window)", mode = { "n", "x", "o" }, desc = "Leap from windows [leap]", silent = true },
     },
     config = function(_, opts)
       local leap = require "leap"
       for k, v in pairs(opts) do
         leap.opts[k] = v
       end
-      leap.add_default_mappings(true)
-      vim.keymap.del({ "x", "o" }, "x")
-      vim.keymap.del({ "x", "o" }, "X")
+      -- leap.add_default_mappings(true)
+      -- vim.keymap.del({ "x", "o" }, "x")
+      -- vim.keymap.del({ "x", "o" }, "X")
     end,
   },
   { "tpope/vim-repeat", event = "VeryLazy" },
@@ -635,6 +635,7 @@ return {
 
   {
     "m4xshen/hardtime.nvim",
+    enabled = false,
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     config = function()
       require("hardtime").setup {}
@@ -692,7 +693,36 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    ---@type snacks.Config
     opts = {
+      ---@class snacks.picker.Config
+      picker = {
+        focus = "input",
+        layout = {
+          cycle = true,
+          --- Use the default layout or vertical if the window is too narrow
+          -- preset = function() return vim.o.columns >= 120 and "default" or "vertical" end,
+          preset = "vertical",
+        },
+        layouts = {
+          vertical = {
+            layout = {
+              backdrop = false,
+              width = 0.9,
+              min_width = 80,
+              height = 0.9,
+              min_height = 30,
+              box = "vertical",
+              border = true,
+              title = "{title} {live} {flags}",
+              title_pos = "center",
+              { win = "input", height = 1, border = "bottom" },
+              { win = "list", border = "none" },
+              { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+            },
+          },
+        },
+      },
       scroll = {
         enabled = true,
         animate = {
@@ -729,7 +759,7 @@ return {
           zindex = 100,
           width = 0.8,
           height = 0.8,
-          minimal = false,
+          minimal = true,
           title = " Notification History ",
           title_pos = "center",
           ft = "markdown",
@@ -773,6 +803,7 @@ return {
         function() require("snacks").notifier.show_history() end,
         desc = "Notifications history [snacks]",
       },
+      { "<leader>ff", function() require("snacks").picker.smart() end, desc = "Smart Find Files [snacks]" },
       { "<leader>gg", function() require("snacks").lazygit() end, desc = "Lazygit [snacks]" },
       { "<leader>sn", function() require("snacks").scratch() end, desc = "Toggle Scratch Buffer [snacks]" },
       { "<leader>so", function() require("snacks").scratch.open() end, desc = "Toggle Scratch Buffer [snacks]" },
