@@ -947,6 +947,7 @@ return {
 
   {
     "milanglacier/minuet-ai.nvim",
+
     config = function()
       require("minuet").setup {
         virtualtext = {
@@ -966,28 +967,37 @@ return {
             dismiss = "<A-e>",
           },
         },
-
         provider = "openai_compatible",
         request_timeout = 2.5,
         throttle = 1500, -- Increase to reduce costs and avoid rate limits
         debounce = 600, -- Increase to reduce costs and avoid rate limits
         provider_options = {
           openai_compatible = {
-            api_key = "OPENCODE_API_KEY",
-
-            end_point = "https://opencode.ai/zen/v1/chat/completions",
-            model = "grok-code",
-            name = "Opencode",
+            api_key = "OPENROUTER_API_KEY_MINUET",
+            end_point = "https://openrouter.ai/api/v1/chat/completions",
+            model = "moonshotai/kimi-k2.5",
+            name = "Openrouter",
             optional = {
-
               max_tokens = 56,
               top_p = 0.9,
               provider = {
-                -- Prioritize throughput for faster completion
                 sort = "throughput",
               },
             },
           },
+        },
+      }
+    end,
+  },
+  {
+    "leonardcser/cursortab.nvim",
+    -- version = "*",  -- Use latest tagged version for more stability
+    build = "cd server && go build",
+    config = function()
+      require("cursortab").setup {
+        provider = {
+          type = "sweep",
+          url = "http://localhost:8000",
         },
       }
     end,
