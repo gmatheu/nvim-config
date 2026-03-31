@@ -187,21 +187,44 @@ return {
 
   {
     "gmatheu/keymap-stats.nvim",
-    enabled = false,
+    enabled = true,
     dev = true,
     event = "VeryLazy",
     config = function()
       require("keymap-stats").setup {
         autoinstrument = true,
         notify = false or os.getenv("KEYMAP_STATS_NVIM" .. "_NOTIFY"),
+        include_rhs = false,
         debug = false or os.getenv("KEYMAP_STATS_NVIM" .. "_DEBUG") or os.getenv("ASTRONVIM" .. "_DEBUG"),
-        plugins = { which_key = false, hardtime = true, keymap = true },
+        plugins = { which_key = false, hardtime = false, keymap = true },
       }
     end,
     cmd = { "KeymapStats" },
     priority = 990,
     dependencies = {
       { "MunifTanjim/nui.nvim" },
+      {
+        "gmatheu/which-key.nvim",
+        dev = true,
+        opts = {
+          debug = false,
+          hooks = {
+            start = function(ctx)
+              -- vim.notify("Which-key: type:" .. ctx.type .. ", filter:" .. vim.inspect(ctx.state.leader_started))
+            end,
+            check = function(ctx)
+              -- vim.notify("Which-key: type:" .. ctx.type .. ", key:" .. ctx.key .. ", mode:" .. ctx.mode)
+            end,
+            execute = function(ctx)
+              vim.notify("Which-key: type:" .. ctx.type .. ", key:" .. ctx.key .. " feed:" .. ctx.feed)
+
+              local api = require "keymap-stats.api"
+              local count_keymap = api.count_keymap
+              count_keymap(ctx.feed, ctx.mode, "which-key", false, true, 1)
+            end,
+          },
+        },
+      },
       {
         "gmatheu/keymap-amend.nvim",
         dev = true,
@@ -282,7 +305,7 @@ return {
   {
     "philosofonusus/ecolog.nvim",
     dependencies = {
-      "hrsh7th/nvim-cmp",
+      "Saghen/blink.compat",
       "ibhagwan/fzf-lua",
     },
     cmd = { "EcologGoto", "EcologPeek", "EcologSelect", "EcologFzf" },
@@ -302,7 +325,7 @@ return {
         ---@diagnostic disable-next-line: missing-fields
         integrations = {
           nvim_cmp = true,
-          blink_cmp = false,
+          blink_cmp = true,
           fzf = true,
         },
         -- Enables shelter mode for sensitive values
@@ -413,7 +436,6 @@ return {
     dependencies = { -- These are optional
       "nvim-treesitter/nvim-treesitter",
       "L3MON4D3/LuaSnip",
-      "hrsh7th/nvim-cmp",
     },
     opt = true, -- Set this to true if the plugin is optional
     event = "InsertCharPre", -- Set the event to 'InsertCharPre' for better compatibility
