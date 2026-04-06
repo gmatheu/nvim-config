@@ -153,6 +153,9 @@ return {
       },
     },
 
+    -- Treesitter configuration (moved from nvim-treesitter plugin spec for v6)
+    -- treesitter = {...}, Check treesitter.lua
+
     autocmds = {
       -- disable alpha autostart
       alpha_autostart = false,

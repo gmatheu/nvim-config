@@ -1,42 +1,71 @@
----@type LazySpec
 return {
-  "nvim-treesitter/nvim-treesitter",
-  opts = function(_, opts)
-    -- add more things to the ensure_installed table protecting against community packs modifying it
-    opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-      "lua",
-      "vim",
-      "python",
-      "javascript",
-      "typescript",
-      "java",
-      "sql",
-      "tsx",
-      "json",
-    })
-
-    opts.auto_install = true
-    opts.highlight = {
-      -- `false` will disable the whole extension
-      enable = true,
-      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-      -- Using this option may slow down your editor, and you may see some duplicate highlights.
-      -- Instead of true it can also be a list of languages
-      additional_vim_regex_highlighting = false,
-    }
-    opts.incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<CR>",
-        scope_incremental = "<CR>",
-        node_incremental = "<TAB>",
-        node_decremental = "<S-TAB>",
+  "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
+  opts = {
+    treesitter = {
+      enabled = function(lang, bufnr) return not require("astrocore.buffer").is_large(bufnr) end,
+      highlight = true,
+      indent = true,
+      ensure_installed = {
+        "lua",
+        "vim",
+        "python",
+        "javascript",
+        "typescript",
+        "java",
+        "sql",
+        "tsx",
+        "json",
       },
-    }
-  end,
-  dependencies = {
-    -- NOTE: additional parser
-    { "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
+      auto_install = true,
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<CR>",
+          scope_incremental = "<CR>",
+          node_incremental = "<TAB>",
+          node_decremental = "<S-TAB>",
+        },
+      },
+      textobjects = {
+        select = {
+          select_textobject = {
+            ["af"] = { query = "@function.outer", desc = "around function" },
+            ["if"] = { query = "@function.inner", desc = "around function" },
+          },
+        },
+        move = {
+          goto_next_start = {
+            ["]f"] = { query = "@function.outer", desc = "Next function start" },
+          },
+          goto_next_end = {
+            ["]F"] = { query = "@function.outer", desc = "Next function end" },
+          },
+          goto_previous_start = {
+            ["[f"] = {
+              query = "@function.outer",
+              desc = "Previous function start",
+            },
+          },
+          goto_previous_end = {
+            ["[F"] = {
+              query = "@function.outer",
+              desc = "Previous function end",
+            },
+          },
+        },
+        swap = {
+          swap_next = {
+            [">F"] = { query = "@function.outer", desc = "Swap next function" },
+          },
+          swap_previous = {
+            ["<F"] = {
+              query = "@function.outer",
+              desc = "Swap previous function",
+            },
+          },
+        },
+      },
+    },
   },
 }
