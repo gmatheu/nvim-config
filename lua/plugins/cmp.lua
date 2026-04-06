@@ -1,10 +1,10 @@
 return {
   { import = "astrocommunity.recipes.ai" },
   {
-    "Saghen/blink.cmp",
+    "saghen/blink.cmp",
     optional = true,
     dependencies = {
-      "Saghen/blink.compat",
+      "saghen/blink.compat",
     },
     opts = function(_, opts)
       if not opts.keymap then opts.keymap = {} end

@@ -12,7 +12,7 @@ vim.tbl_map(function(plugin) enabled[plugin] = true end, {
   "nvim-treesitter",
   "nvim-ts-autotag",
   "nvim-treesitter-textobjects",
-  "nvim-ts-context-commentstring",
+  -- "nvim-ts-context-commentstring",
   -- more known working
   "dial.nvim",
   "flash.nvim",

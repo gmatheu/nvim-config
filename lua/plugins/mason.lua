@@ -48,13 +48,13 @@ return {
       }
     end,
     dependencies = {
-      "williamboman/mason-lspconfig.nvim",
+      "mason-org/mason-lspconfig.nvim",
       "jay-babu/mason-null-ls.nvim",
       "jay-babu/mason-nvim-dap.nvim",
     },
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = { "lua_ls" },
     },

@@ -1,16 +1,5 @@
 ---@type LazySpec
 return {
-  -- {
-  --   "navarasu/onedark.nvim",
-  --   config = function()
-  --     require("onedark").setup {
-  --       style = "warmer",
-  --     }
-  --     require("onedark").load()
-  --   end,
-  -- },
-  -- { "ellisonleao/gruvbox.nvim", lazy = false },
-  -- { "luisiacc/gruvbox-baby", lazy = false },
   { "mbbill/undotree", lazy = true, cmd = { "UndotreeToggle" } },
 
   {
@@ -261,40 +250,6 @@ return {
     end,
   },
   { "tpope/vim-repeat", event = "VeryLazy" },
-
-  {
-    "RRethy/vim-illuminate",
-    event = { "BufReadPost", "BufNewFile" },
-    opts = { delay = 500 },
-    config = function(_, opts)
-      require("illuminate").configure(opts)
-
-      local function map(key, dir, buffer)
-        vim.keymap.set(
-          "n",
-          key,
-          function() require("illuminate")["goto_" .. dir .. "_reference"](false) end,
-          { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer }
-        )
-      end
-
-      map("]]", "next")
-      map("[[", "prev")
-
-      -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-          local buffer = vim.api.nvim_get_current_buf()
-          map("]]", "next", buffer)
-          map("[[", "prev", buffer)
-        end,
-      })
-    end,
-    keys = {
-      { "]]", desc = "Next Reference" },
-      { "[[", desc = "Prev Reference" },
-    },
-  },
 
   {
     "echasnovski/mini.bufremove",
@@ -878,10 +833,7 @@ return {
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needtrueed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
+      -- "rcarriga/nvim-notify",
     },
   },
 
