@@ -41,103 +41,6 @@ return {
       { "<leader>5", function() require("harpoon"):list():select(5) end, desc = "harpoon to file 5" },
     },
   },
-
-  {
-    "windwp/nvim-spectre",
-    enabled = false,
-    lazy = true,
-    keys = {},
-    cmd = { "Spectre" },
-    config = function()
-      require("spectre").setup {
-        highlight = {
-          ui = "String",
-          search = "DiffChange",
-          replace = "DiffDelete",
-        },
-      }
-    end,
-  },
-  {
-    "AckslD/muren.nvim",
-    cmd = { "MurenToggle" },
-    config = function()
-      require("muren").setup {
-        -- general
-        create_commands = true,
-        filetype_in_preview = true,
-        -- default togglable options
-        two_step = false,
-        all_on_line = true,
-        preview = true,
-        cwd = false,
-        files = "**/*",
-        -- keymaps
-        keys = {
-          close = "q",
-          toggle_side = "<Tab>",
-          toggle_options_focus = "<C-s>",
-          toggle_option_under_cursor = "<CR>",
-          scroll_preview_up = "<Up>",
-          scroll_preview_down = "<Down>",
-          do_replace = "<CR>",
-          -- NOTE these are not guaranteed to work, what they do is just apply `:normal! u` vs :normal! <C-r>`
-          -- on the last affected buffers so if you do some edit in these buffers in the meantime it won't do the correct thing
-          do_undo = "<localleader>u",
-          do_redo = "<localleader>r",
-        },
-        -- ui sizes
-        patterns_width = 60,
-        patterns_height = 20,
-        options_width = 20,
-        preview_height = 16,
-        -- options order in ui
-        order = {
-          "buffer",
-          "dir",
-          "files",
-          "two_step",
-          "all_on_line",
-          "preview",
-        },
-        -- highlights used for options ui
-        hl = {
-          options = {
-            on = "@string",
-            off = "@variable.builtin",
-          },
-          preview = {
-            cwd = {
-              path = "Comment",
-              lnum = "Number",
-            },
-          },
-        },
-      }
-    end,
-  },
-
-  {
-    "otavioschwanck/tmux-awesome-manager.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("tmux-awesome-manager").setup {
-        per_project_commands = {
-          -- Configure your per project servers with
-          -- project name = { { cmd, name } }
-          api = { { cmd = "rails server", name = "Rails Server" } },
-          front = { { cmd = "yarn dev", name = "react server" } },
-        },
-        -- session_name = 'Neovim Terminals',
-        -- use_icon = false, -- use prefix icon
-        -- icon = ' ', -- Prefix icon to use
-        -- project_open_as = 'window', -- Open per_project_commands as.  Default: separated_session
-        -- default_size = '30%', -- on panes, the default size
-        -- open_new_as = 'window' -- open new command as.  options: pane, window, separated_session.
-      }
-    end,
-  },
-
   {
     "chentoast/marks.nvim",
     event = "VeryLazy",
@@ -281,24 +184,8 @@ return {
   },
 
   {
-    "LeonGr/neovim-expand-selection",
-    cmd = { "ExpSel" },
-    keys = {
-      { "<A-j>", function() require("expand-selection").expsel() end, desc = "Expand selection" },
-    },
-  },
-
-  {
-    "mfussenegger/nvim-treehopper",
-    enabled = false,
-    keys = {
-      { "<A-j>", function() require("tsht").nodes() end, desc = "Expand hop selection" },
-    },
-  },
-
-  {
     "stevearc/overseer.nvim",
-    cmd = { "OverseerToggle", "OverseerRun", "OverseerQuickAction", "Make" },
+    cmd = { "OveeseerToggle", "OverseerRun", "OverseerQuickAction", "Make" },
     opts = {},
     config = function(_, opts)
       require("overseer").setup(opts)
@@ -339,6 +226,7 @@ return {
   },
   {
     "mawkler/modicator.nvim",
+    enabled = false,
     event = "VeryLazy",
     init = function()
       vim.o.cursorline = true
@@ -404,6 +292,7 @@ return {
   {
     "scheisa/relpointers.nvim",
     event = "VeryLazy",
+    enabled = false,
     config = function()
       require("relpointers").setup {
         amount = 1,
@@ -556,6 +445,7 @@ return {
 
   {
     "mrquantumcodes/bufferchad.nvim",
+    enabled = false,
     keys = {
       {
         "<leader>b" .. "bl",
@@ -852,6 +742,7 @@ return {
 
   {
     "shellRaining/hlchunk.nvim",
+    enabled = true,
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("hlchunk").setup {

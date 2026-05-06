@@ -1,6 +1,7 @@
 return {
   {
     "rasulomaroff/reactive.nvim",
+    enabled = false,
     event = "VeryLazy",
 
     config = function()
@@ -84,7 +85,8 @@ return {
   {
     "wakatime/vim-wakatime",
     lazy = false,
-    enabled = not vim.env.ASTRONVIM_SKIP_WAKATIME,
+    -- enabled = not vim.env.ASTRONVIM_SKIP_WAKATIME,
+    enabled = false,
   },
 
   {
@@ -187,7 +189,7 @@ return {
 
   {
     "gmatheu/keymap-stats.nvim",
-    enabled = true,
+    enabled = false,
     dev = true,
     event = "VeryLazy",
     config = function()
@@ -282,12 +284,14 @@ return {
 
   {
     "cbochs/grapple.nvim",
+    enabled = false,
     dependencies = {
       { "nvim-tree/nvim-web-devicons", lazy = true },
     },
   },
   {
     "cbochs/portal.nvim",
+    enabled = true,
     dependencies = {
       "cbochs/grapple.nvim",
     },
@@ -304,6 +308,7 @@ return {
 
   {
     "philosofonusus/ecolog.nvim",
+    enabled = false,
     dependencies = {
       "Saghen/blink.compat",
       "ibhagwan/fzf-lua",
@@ -545,6 +550,12 @@ return {
       },
     },
   },
+
+  {
+    "Cannon07/code-preview.nvim",
+    config = function() require("code-preview").setup() end,
+  },
+
   -- To try
   -- https://github.com/stevearc/stickybuf.nvim
   -- https://github.com/Theo-Steiner/theosteiner.de/issues/2#issuecomment-new

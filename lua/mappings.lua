@@ -84,17 +84,6 @@ maps.i["<F2>"] = { vim.lsp.buf.rename, desc = "Rename action" }
 maps.n["<Leader>ra"] = { vim.lsp.buf.rename, desc = "Rename action" }
 maps.v["<Leader>ra"] = { vim.lsp.buf.rename, desc = "Rename action" }
 
-maps.n["<Leader>ss"] = { "<cmd>MurenToggle<CR>", desc = "Open multiple replace" }
--- maps.n["<Leader>sw"] =
--- { '<cmd>lua require("spectre").open_visual({select_word={ue})<CR>', desc = "Search current word" }
--- maps.v["<Leader>sw"] = { '<esc><cmd>lua require("spectre").open_visual()<CR>', desc = "Search current word" }
--- maps.n["<Leader>sp"] = {
---   '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
---   desc = "Search on current file",
--- }
-
-maps.n["<A-j>"] = { function() require("expand-selection").expsel() end, desc = "Expand selection" }
-
 -- TODO Review
 -- maps.n["<A-e>"] = { function() require("tsht").nodes() end, desc = "Expand selection" }
 

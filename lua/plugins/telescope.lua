@@ -213,6 +213,7 @@ return {
       { "<Leader>m", "<cmd>Telescope frecency<cr>", desc = "Find history [frecency]" },
       -- { "<Leader>w", function() require("telescope.builtin").live_grep() end, desc = "Live grep [telescope]" },
       { "<Leader>w", live_grep_plus, desc = "Live grep [telescope]" },
+      { "<Leader>W", live_grep_plus, desc = "Live grep [telescope]" },
       {
         "<Leader>fo",
         function() require("telescope").live_grep { grep_open_files = true } end,
