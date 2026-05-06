@@ -17,13 +17,13 @@ return {
           local get_hlgroup = require("astroui").get_hlgroup
           -- get highlights from highlight groups
           local normal = get_hlgroup "Normal"
-          local fg = normal.fg
+          -- local fg = normal.fg
           local bg = normal.bg
           local bg_alt = get_hlgroup("Visual").bg
           local green = get_hlgroup("String").fg
           local red = get_hlgroup("Error").fg
-          local comment_fg = get_hlgroup("Comment").fg
-          local warning_fg = get_hlgroup("WarningMsg").fg
+          -- local comment_fg = get_hlgroup("Comment").fg
+          -- local warning_fg = get_hlgroup("WarningMsg").fg
 
           return { -- this table overrides highlights in all themes
             TelescopeBorder = { fg = bg_alt, bg = "#0a0a0a" },
@@ -69,7 +69,7 @@ return {
               underline = true,
             },
             CursorLine = { bg = "#554824" },
-            PmenuMatch = { bg = "#954824" },
+            PmenuMatch = { bg = "#954840" },
           }
         end,
       },
@@ -143,7 +143,7 @@ return {
           },
           os = {},
 
-          use_file_extension = function(_ext, _file) return true end,
+          use_file_extension = function() return true end,
         },
       }
     end,

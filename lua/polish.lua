@@ -1,12 +1,3 @@
-vim.filetype.add {
-  pattern = {
-    [".*/i3/config.d/.*.config"] = "i3config",
-    [".*.kbd"] = "lisp",
-    [".*.njk"] = "jinja",
-    [".envrc"] = "bash",
-  },
-}
-
 function load_log_file() end
 
 -- https://andrewcourter.substack.com/p/create-autocommands-in-neovim
@@ -203,5 +194,53 @@ vim.api.nvim_create_autocmd("CmdlineChanged", {
         -- The actual highlighting would need more complex logic
       end
     end
+  end,
+})
+
+-- local sev = vim.diagnostic.severity
+--
+-- vim.diagnostic.config {
+--   -- keep underline & severity_sort on for quick scanning
+--   underline = true,
+--   severity_sort = true,
+--   update_in_insert = false, -- less flicker
+--   float = {
+--     border = "rounded",
+--     source = true,
+--   },
+--   -- keep signs & virtual text, but tune them as you like
+--   signs = {
+--     text = {
+--       [sev.ERROR] = " ",
+--       [sev.WARN] = " ",
+--       [sev.INFO] = " ",
+--       [sev.HINT] = "󰌵 ",
+--     },
+--   },
+--   virtual_text = {
+--     spacing = 4,
+--     source = "if_many",
+--     prefix = "●",
+--   },
+--   -- NEW in 0.11 — dim whole line
+--   linehl = {
+--     [sev.ERROR] = "DiagnosticErrorLine",
+--     [sev.WARN] = "DiagnosticWarnLine",
+--     [sev.INFO] = "DiagnosticInfoLine",
+--     [sev.HINT] = "DiagnosticHintLine",
+--   },
+-- }
+
+-- close some filetypes with <q>
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "help",
+    "lspinfo",
+    "checkhealth",
+    "qf",
+    "grug-far",
+  },
+  callback = function(event)
+    vim.keymap.set("n", "q", function() vim.cmd "close" end, { buffer = event.buf, silent = true })
   end,
 })

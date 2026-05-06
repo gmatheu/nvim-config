@@ -1,0 +1,1 @@
+/home/gmatheu/.local/share/astronvim/lazy/code-preview.nvim/bin

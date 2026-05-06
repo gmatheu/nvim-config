@@ -1,398 +1,396 @@
 return {
-  {
-    {
+  -- {
+  --
+  --   "codota/tabnine-nvim",
+  --   enabled = false,
+  --   event = "VeryLazy",
+  --   build = "./dl_binaries.sh",
+  --   config = function()
+  --     require("tabnine").setup {
+  --       disable_auto_comment = true,
+  --       accept_keymap = "<Tab>",
+  --       dismiss_keymap = "<C-]>",
+  --       debounce_ms = 800,
+  --       suggestion_color = { gui = "#808080", cterm = 244 },
+  --       exclude_filetypes = { "TelescopePrompt", "NvimTree" },
+  --       log_file_path = nil, -- absolute path to Tabnine log file
+  --     }
+  --   end,
+  -- },
 
-      "codota/tabnine-nvim",
-      enabled = false,
-      event = "VeryLazy",
-      build = "./dl_binaries.sh",
-      config = function()
-        require("tabnine").setup {
-          disable_auto_comment = true,
-          accept_keymap = "<Tab>",
-          dismiss_keymap = "<C-]>",
-          debounce_ms = 800,
-          suggestion_color = { gui = "#808080", cterm = 244 },
-          exclude_filetypes = { "TelescopePrompt", "NvimTree" },
-          log_file_path = nil, -- absolute path to Tabnine log file
-        }
-      end,
-    },
-  },
+  -- {
+  --   "gmatheu/ChatGPT.nvim",
+  --   -- dev = true,
+  --   enabled = false,
+  --   -- event = "VeryLazy",
+  --   cmd = {
+  --     "ChatGPT",
+  --     "ChatGPTActAs",
+  --     "ChatGPTEditWithInstructions",
+  --     "ChatGPTRun",
+  --     "ChatGPTCompleteCode",
+  --   },
+  --   keys = {
+  --     {
+  --       "<LocalLeader>cc",
+  --       "<cmd>ChatGPT<CR>",
+  --       desc = "Open Chat [ChatGPT]",
+  --       mode = "n",
+  --     },
+  --     {
+  --       "<LocalLeader>ce",
+  --       "<cmd>ChatGPTEditWithInstruction<CR>",
+  --       desc = "Edit with instruction [ChatGPT]",
+  --       mode = "n",
+  --     },
+  --   },
+  --   config = function()
+  --     require("chatgpt").setup {
+  --       api_key_cmd = "pass show intive/openai/gm-org/api-key",
+  --       openai_params = {
+  --         model = "gpt-4o",
+  --         frequency_penalty = 0,
+  --         presence_penalty = 0,
+  --         max_tokens = 300,
+  --         temperature = 0,
+  --         top_p = 1,
+  --         n = 1,
+  --       },
+  --       openai_edit_params = {
+  --         model = "gpt-4o",
+  --         frequency_penalty = 0,
+  --         presence_penalty = 0,
+  --         temperature = 0,
+  --         top_p = 1,
+  --         n = 1,
+  --       },
+  --       popup_window = {
+  --         border = {
+  --           highlight = "FloatBorder",
+  --           style = "rounded",
+  --           text = {
+  --             top = " ChatGPT ",
+  --           },
+  --         },
+  --         win_options = {
+  --           wrap = true,
+  --           linebreak = true,
+  --           foldcolumn = "1",
+  --           winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+  --           relativenumber = true,
+  --         },
+  --         buf_options = {
+  --           filetype = "markdown",
+  --         },
+  --       },
+  --       system_window = {
+  --         border = {
+  --           highlight = "FloatBorder",
+  --           style = "rounded",
+  --           text = {
+  --             top = " SYSTEM ",
+  --           },
+  --         },
+  --         win_options = {
+  --           wrap = true,
+  --           linebreak = true,
+  --           foldcolumn = "2",
+  --           relativenumber = true,
+  --           winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+  --         },
+  --       },
+  --       popup_input = {
+  --         prompt = "  ",
+  --         border = {
+  --           highlight = "FloatBorder",
+  --           style = "rounded",
+  --           text = {
+  --             top_align = "center",
+  --             top = " Prompt ",
+  --           },
+  --         },
+  --         win_options = {
+  --           winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+  --           relativenumber = true,
+  --         },
+  --         submit = "<C-Enter>",
+  --         submit_n = "<Enter>",
+  --         max_visible_lines = 20,
+  --       },
+  --     }
+  --   end,
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "folke/trouble.nvim",
+  --     "nvim-telescope/telescope.nvim",
+  --   },
+  -- },
 
-  {
-    "gmatheu/ChatGPT.nvim",
-    -- dev = true,
-    enabled = false,
-    -- event = "VeryLazy",
-    cmd = {
-      "ChatGPT",
-      "ChatGPTActAs",
-      "ChatGPTEditWithInstructions",
-      "ChatGPTRun",
-      "ChatGPTCompleteCode",
-    },
-    keys = {
-      {
-        "<LocalLeader>cc",
-        "<cmd>ChatGPT<CR>",
-        desc = "Open Chat [ChatGPT]",
-        mode = "n",
-      },
-      {
-        "<LocalLeader>ce",
-        "<cmd>ChatGPTEditWithInstruction<CR>",
-        desc = "Edit with instruction [ChatGPT]",
-        mode = "n",
-      },
-    },
-    config = function()
-      require("chatgpt").setup {
-        api_key_cmd = "pass show intive/openai/gm-org/api-key",
-        openai_params = {
-          model = "gpt-4o",
-          frequency_penalty = 0,
-          presence_penalty = 0,
-          max_tokens = 300,
-          temperature = 0,
-          top_p = 1,
-          n = 1,
-        },
-        openai_edit_params = {
-          model = "gpt-4o",
-          frequency_penalty = 0,
-          presence_penalty = 0,
-          temperature = 0,
-          top_p = 1,
-          n = 1,
-        },
-        popup_window = {
-          border = {
-            highlight = "FloatBorder",
-            style = "rounded",
-            text = {
-              top = " ChatGPT ",
-            },
-          },
-          win_options = {
-            wrap = true,
-            linebreak = true,
-            foldcolumn = "1",
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-            relativenumber = true,
-          },
-          buf_options = {
-            filetype = "markdown",
-          },
-        },
-        system_window = {
-          border = {
-            highlight = "FloatBorder",
-            style = "rounded",
-            text = {
-              top = " SYSTEM ",
-            },
-          },
-          win_options = {
-            wrap = true,
-            linebreak = true,
-            foldcolumn = "2",
-            relativenumber = true,
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-          },
-        },
-        popup_input = {
-          prompt = "  ",
-          border = {
-            highlight = "FloatBorder",
-            style = "rounded",
-            text = {
-              top_align = "center",
-              top = " Prompt ",
-            },
-          },
-          win_options = {
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-            relativenumber = true,
-          },
-          submit = "<C-Enter>",
-          submit_n = "<Enter>",
-          max_visible_lines = 20,
-        },
-      }
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "folke/trouble.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   -- dev = true,
+  --   enabled = false,
+  --   cmd = {
+  --     "CodeCompanion",
+  --     "CodeCompanionChat",
+  --     "CodeCompanionInline",
+  --     "CodeCompanionEdit",
+  --     "CodeCompanionAdd",
+  --     "CodeCompanionToggle",
+  --     "CodeCompanionActions",
+  --   },
+  --   lazy = true,
+  --   keys = {
+  --     { "<LocalLeader>a", "<cmd>CodeCompanionToggle<CR>", desc = "Toogle chat [CodeCompanion]", mode = "n" },
+  --     { "<LocalLeader>q", "<cmd>CodeCompanionActions<CR>", desc = "Actions [CodeCompanion]", mode = "n" },
+  --     {
+  --       "<LocalLeader>ca",
+  --       "<cmd>CodeCompanionChat anthropic<CR>",
+  --       desc = "Anthropic chat [CodeCompanion]",
+  --       mode = "n",
+  --     },
+  --     { "<LocalLeader>co", "<cmd>CodeCompanionChat openai<CR>", desc = "OpenAI chat [CodeCompanion]", mode = "n" },
+  --   },
+  --   config = function()
+  --     require("codecompanion").setup {
+  --       adapters = {
+  --         anthropic = function()
+  --           return require("codecompanion.adapters").extend("anthropic", {
+  --             env = {
+  --               api_key = "cmd:pass show intive/anthropic/gm-org/api-key",
+  --             },
+  --             schema = {
+  --               model = {
+  --                 default = "claude-3-5-sonnet-20240620",
+  --               },
+  --             },
+  --           })
+  --         end,
+  --         openai = function()
+  --           return require("codecompanion.adapters").extend("openai", {
+  --             env = {
+  --               api_key = "cmd:pass show intive/openai/gm-org/api-key",
+  --             },
+  --             schema = {
+  --               model = {
+  --                 default = "gpt-4o",
+  --               },
+  --             },
+  --           })
+  --         end,
+  --         llama3 = function()
+  --           return require("codecompanion.adapters").extend("ollama", {
+  --             name = "llama3.2:1b", -- Give this adapter a different name to differentiate it from the default ollama adapter
+  --             schema = {
+  --               model = {
+  --                 default = "llama3.2:1b",
+  --               },
+  --               num_ctx = {
+  --                 default = 16384,
+  --               },
+  --               num_predict = {
+  --                 default = -1,
+  --               },
+  --             },
+  --           })
+  --         end,
+  --       },
+  --       strategies = {
+  --         chat = { adapter = "anthropic" },
+  --         inline = { adapter = "anthropic" },
+  --       },
+  --       display = {
+  --         action_palette = {
+  --           width = 95,
+  --           height = 10,
+  --         },
+  --         chat = { -- Options for the chat strategy
+  --           type = "buffer", -- float|buffer
+  --           show_settings = true, -- Show the model settings in the chat buffer?
+  --           show_token_count = true, -- Show the token count for the current chat in the buffer?
+  --           buf_options = { -- Buffer options for the chat buffer
+  --             buflisted = false,
+  --           },
+  --           float_options = { -- Float window options if the type is "float"
+  --             border = "single",
+  --             buflisted = false,
+  --             max_height = 0,
+  --             max_width = 0,
+  --             padding = 1,
+  --           },
+  --           win_options = { -- Window options for the chat buffer
+  --             cursorcolumn = false,
+  --             cursorline = false,
+  --             foldcolumn = "0",
+  --             linebreak = true,
+  --             list = false,
+  --             signcolumn = "no",
+  --             spell = false,
+  --             wrap = true,
+  --           },
+  --         },
+  --       },
+  --     }
+  --   end,
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "nvim-telescope/telescope.nvim", -- Optional
+  --     {
+  --       "stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
+  --       opts = {},
+  --     },
+  --     {
+  --       "folke/edgy.nvim",
+  --       event = "VeryLazy",
+  --       init = function()
+  --         vim.opt.laststatus = 3
+  --         vim.opt.splitkeep = "screen"
+  --       end,
+  --       opts = {
+  --         right = {
+  --           { ft = "codecompanion", title = "Code Companion Chat", size = { width = 0.45 } },
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 
-  {
-    "olimorris/codecompanion.nvim",
-    -- dev = true,
-    enabled = false,
-    cmd = {
-      "CodeCompanion",
-      "CodeCompanionChat",
-      "CodeCompanionInline",
-      "CodeCompanionEdit",
-      "CodeCompanionAdd",
-      "CodeCompanionToggle",
-      "CodeCompanionActions",
-    },
-    lazy = true,
-    keys = {
-      { "<LocalLeader>a", "<cmd>CodeCompanionToggle<CR>", desc = "Toogle chat [CodeCompanion]", mode = "n" },
-      { "<LocalLeader>q", "<cmd>CodeCompanionActions<CR>", desc = "Actions [CodeCompanion]", mode = "n" },
-      {
-        "<LocalLeader>ca",
-        "<cmd>CodeCompanionChat anthropic<CR>",
-        desc = "Anthropic chat [CodeCompanion]",
-        mode = "n",
-      },
-      { "<LocalLeader>co", "<cmd>CodeCompanionChat openai<CR>", desc = "OpenAI chat [CodeCompanion]", mode = "n" },
-    },
-    config = function()
-      require("codecompanion").setup {
-        adapters = {
-          anthropic = function()
-            return require("codecompanion.adapters").extend("anthropic", {
-              env = {
-                api_key = "cmd:pass show intive/anthropic/gm-org/api-key",
-              },
-              schema = {
-                model = {
-                  default = "claude-3-5-sonnet-20240620",
-                },
-              },
-            })
-          end,
-          openai = function()
-            return require("codecompanion.adapters").extend("openai", {
-              env = {
-                api_key = "cmd:pass show intive/openai/gm-org/api-key",
-              },
-              schema = {
-                model = {
-                  default = "gpt-4o",
-                },
-              },
-            })
-          end,
-          llama3 = function()
-            return require("codecompanion.adapters").extend("ollama", {
-              name = "llama3.2:1b", -- Give this adapter a different name to differentiate it from the default ollama adapter
-              schema = {
-                model = {
-                  default = "llama3.2:1b",
-                },
-                num_ctx = {
-                  default = 16384,
-                },
-                num_predict = {
-                  default = -1,
-                },
-              },
-            })
-          end,
-        },
-        strategies = {
-          chat = { adapter = "anthropic" },
-          inline = { adapter = "anthropic" },
-        },
-        display = {
-          action_palette = {
-            width = 95,
-            height = 10,
-          },
-          chat = { -- Options for the chat strategy
-            type = "buffer", -- float|buffer
-            show_settings = true, -- Show the model settings in the chat buffer?
-            show_token_count = true, -- Show the token count for the current chat in the buffer?
-            buf_options = { -- Buffer options for the chat buffer
-              buflisted = false,
-            },
-            float_options = { -- Float window options if the type is "float"
-              border = "single",
-              buflisted = false,
-              max_height = 0,
-              max_width = 0,
-              padding = 1,
-            },
-            win_options = { -- Window options for the chat buffer
-              cursorcolumn = false,
-              cursorline = false,
-              foldcolumn = "0",
-              linebreak = true,
-              list = false,
-              signcolumn = "no",
-              spell = false,
-              wrap = true,
-            },
-          },
-        },
-      }
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-telescope/telescope.nvim", -- Optional
-      {
-        "stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
-        opts = {},
-      },
-      {
-        "folke/edgy.nvim",
-        event = "VeryLazy",
-        init = function()
-          vim.opt.laststatus = 3
-          vim.opt.splitkeep = "screen"
-        end,
-        opts = {
-          right = {
-            { ft = "codecompanion", title = "Code Companion Chat", size = { width = 0.45 } },
-          },
-        },
-      },
-    },
-  },
-
-  {
-    "huynle/ogpt.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    opts = {
-      default_provider = "anthropic",
-      edgy = true, -- enable this!
-      single_window = true, -- set this to true if you want only one OGPT window to appear at a time
-    },
-    cmd = {
-      "ChatGPT",
-      "ChatGPTActAs",
-      "ChatGPTEditWithInstructions",
-      "ChatGPTRun",
-      "ChatGPTCompleteCode",
-    },
-    keys = {
-      {
-        "<LocalLeader>cc",
-        "<cmd>ChatGPT<CR>",
-        desc = "Open Chat [ChatGPT]",
-        mode = "n",
-      },
-    },
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
-  {
-    "folke/edgy.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.opt.laststatus = 3
-      vim.opt.splitkeep = "screen" -- or "topline" or "screen"
-    end,
-    opts = {
-      exit_when_last = false,
-      animate = {
-        enabled = false,
-      },
-      wo = {
-        winbar = true,
-        winfixwidth = true,
-        winfixheight = false,
-        winhighlight = "WinBar:EdgyWinBar,Normal:EdgyNormal",
-        spell = false,
-        signcolumn = "no",
-      },
-      keys = {
-        -- -- close window
-        ["q"] = function(win) win:close() end,
-        -- close sidebar
-        ["Q"] = function(win) win.view.edgebar:close() end,
-        -- increase width
-        ["<S-Right>"] = function(win) win:resize("width", 3) end,
-        -- decrease width
-        ["<S-Left>"] = function(win) win:resize("width", -3) end,
-        -- increase height
-        ["<S-Up>"] = function(win) win:resize("height", 3) end,
-        -- decrease height
-        ["<S-Down>"] = function(win) win:resize("height", -3) end,
-      },
-      right = {
-        {
-          title = "OGPT Popup",
-          ft = "ogpt-popup",
-          size = { width = 0.2 },
-          wo = {
-            wrap = true,
-          },
-        },
-        {
-          title = "OGPT Parameters",
-          ft = "ogpt-parameters-window",
-          size = { height = 6 },
-          wo = {
-            wrap = true,
-          },
-        },
-        {
-          title = "OGPT Template",
-          ft = "ogpt-template",
-          size = { height = 6 },
-        },
-        {
-          title = "OGPT Sessions",
-          ft = "ogpt-sessions",
-          size = { height = 6 },
-          wo = {
-            wrap = true,
-          },
-        },
-        {
-          title = "OGPT System Input",
-          ft = "ogpt-system-window",
-          size = { height = 6 },
-        },
-        {
-          title = "OGPT",
-          ft = "ogpt-window",
-          size = { height = 0.5 },
-          wo = {
-            wrap = true,
-          },
-        },
-        {
-          title = "OGPT {{{selection}}}",
-          ft = "ogpt-selection",
-          size = { width = 80, height = 4 },
-          wo = {
-            wrap = true,
-          },
-        },
-        {
-          title = "OGPt {{{instruction}}}",
-          ft = "ogpt-instruction",
-          size = { width = 80, height = 4 },
-          wo = {
-            wrap = true,
-          },
-        },
-        {
-          title = "OGPT Chat",
-          ft = "ogpt-input",
-          size = { width = 80, height = 4 },
-          wo = {
-            wrap = true,
-          },
-        },
-      },
-    },
-  },
+  -- {
+  --   "huynle/ogpt.nvim",
+  --   enabled = false,
+  --   event = "VeryLazy",
+  --   opts = {
+  --     default_provider = "anthropic",
+  --     edgy = true, -- enable this!
+  --     single_window = true, -- set this to true if you want only one OGPT window to appear at a time
+  --   },
+  --   cmd = {
+  --     "ChatGPT",
+  --     "ChatGPTActAs",
+  --     "ChatGPTEditWithInstructions",
+  --     "ChatGPTRun",
+  --     "ChatGPTCompleteCode",
+  --   },
+  --   keys = {
+  --     {
+  --       "<LocalLeader>cc",
+  --       "<cmd>ChatGPT<CR>",
+  --       desc = "Open Chat [ChatGPT]",
+  --       mode = "n",
+  --     },
+  --   },
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim",
+  --   },
+  -- },
+  -- {
+  --   "folke/edgy.nvim",
+  --   event = "VeryLazy",
+  --   init = function()
+  --     vim.opt.laststatus = 3
+  --     vim.opt.splitkeep = "screen" -- or "topline" or "screen"
+  --   end,
+  --   opts = {
+  --     exit_when_last = false,
+  --     animate = {
+  --       enabled = false,
+  --     },
+  --     wo = {
+  --       winbar = true,
+  --       winfixwidth = true,
+  --       winfixheight = false,
+  --       winhighlight = "WinBar:EdgyWinBar,Normal:EdgyNormal",
+  --       spell = false,
+  --       signcolumn = "no",
+  --     },
+  --     keys = {
+  --       -- -- close window
+  --       ["q"] = function(win) win:close() end,
+  --       -- close sidebar
+  --       ["Q"] = function(win) win.view.edgebar:close() end,
+  --       -- increase width
+  --       ["<S-Right>"] = function(win) win:resize("width", 3) end,
+  --       -- decrease width
+  --       ["<S-Left>"] = function(win) win:resize("width", -3) end,
+  --       -- increase height
+  --       ["<S-Up>"] = function(win) win:resize("height", 3) end,
+  --       -- decrease height
+  --       ["<S-Down>"] = function(win) win:resize("height", -3) end,
+  --     },
+  --     right = {
+  --       {
+  --         title = "OGPT Popup",
+  --         ft = "ogpt-popup",
+  --         size = { width = 0.2 },
+  --         wo = {
+  --           wrap = true,
+  --         },
+  --       },
+  --       {
+  --         title = "OGPT Parameters",
+  --         ft = "ogpt-parameters-window",
+  --         size = { height = 6 },
+  --         wo = {
+  --           wrap = true,
+  --         },
+  --       },
+  --       {
+  --         title = "OGPT Template",
+  --         ft = "ogpt-template",
+  --         size = { height = 6 },
+  --       },
+  --       {
+  --         title = "OGPT Sessions",
+  --         ft = "ogpt-sessions",
+  --         size = { height = 6 },
+  --         wo = {
+  --           wrap = true,
+  --         },
+  --       },
+  --       {
+  --         title = "OGPT System Input",
+  --         ft = "ogpt-system-window",
+  --         size = { height = 6 },
+  --       },
+  --       {
+  --         title = "OGPT",
+  --         ft = "ogpt-window",
+  --         size = { height = 0.5 },
+  --         wo = {
+  --           wrap = true,
+  --         },
+  --       },
+  --       {
+  --         title = "OGPT {{{selection}}}",
+  --         ft = "ogpt-selection",
+  --         size = { width = 80, height = 4 },
+  --         wo = {
+  --           wrap = true,
+  --         },
+  --       },
+  --       {
+  --         title = "OGPt {{{instruction}}}",
+  --         ft = "ogpt-instruction",
+  --         size = { width = 80, height = 4 },
+  --         wo = {
+  --           wrap = true,
+  --         },
+  --       },
+  --       {
+  --         title = "OGPT Chat",
+  --         ft = "ogpt-input",
+  --         size = { width = 80, height = 4 },
+  --         wo = {
+  --           wrap = true,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 
   {
     "piersolenski/wtf.nvim",
@@ -433,60 +431,60 @@ return {
   },
 
   -- For debugging: export DEBUG_CODEIUM=trace
-  {
-    "gmatheu/codeium.nvim",
-    dev = false,
-    enabled = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    config = function()
-      require("codeium").setup {
-        enable_chat = true,
-      }
-    end,
-  },
-  {
-    "Exafunction/windsurf.nvim",
-    enabled = false,
-    event = "InsertEnter",
-    cmd = { "Codeium", "CodeiumEnable", "CodeiumDisable" },
-    keys = {},
-    config = function()
-      require("codeium").setup {
-        enable_cmp_source = true,
-        virtual_text = {
-          enabled = true,
-          -- Set to true if you never want completions to be shown automatically.
-          manual = false,
-          -- A mapping of filetype to true or false, to enable virtual text.
-          filetypes = {},
-          -- Whether to enable virtual text of not for filetypes not specifically listed above.
-          default_filetype_enabled = true,
-          -- How long to wait (in ms) before requesting completions after typing stops.
-          idle_delay = 75,
-          -- Priority of the virtual text. This usually ensures that the completions appear on top of
-          -- other plugins that also add virtual text, such as LSP inlay hints, but can be modified if
-          -- desired.
-          virtual_text_priority = 65535,
-          -- Set to false to disable all key bindings for managing completions.
-          map_keys = true,
-          -- The key to press when hitting the accept keybinding but no completion is showing.
-          -- Defaults to \t normally or <c-n> when a popup is showing.
-          accept_fallback = nil,
-          key_bindings = {
-            accept = "<Tab>",
-            accept_word = false,
-            accept_line = false,
-            clear = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-          },
-        },
-      }
-    end,
-  },
+  -- {
+  --   "gmatheu/codeium.nvim",
+  --   dev = false,
+  --   enabled = false,
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "hrsh7th/nvim-cmp",
+  --   },
+  --   config = function()
+  --     require("codeium").setup {
+  --       enable_chat = true,
+  --     }
+  --   end,
+  -- },
+  -- {
+  --   "Exafunction/windsurf.nvim",
+  --   enabled = false,
+  --   event = "InsertEnter",
+  --   cmd = { "Codeium", "CodeiumEnable", "CodeiumDisable" },
+  --   keys = {},
+  --   config = function()
+  --     require("codeium").setup {
+  --       enable_cmp_source = true,
+  --       virtual_text = {
+  --         enabled = true,
+  --         -- Set to true if you never want completions to be shown automatically.
+  --         manual = false,
+  --         -- A mapping of filetype to true or false, to enable virtual text.
+  --         filetypes = {},
+  --         -- Whether to enable virtual text of not for filetypes not specifically listed above.
+  --         default_filetype_enabled = true,
+  --         -- How long to wait (in ms) before requesting completions after typing stops.
+  --         idle_delay = 75,
+  --         -- Priority of the virtual text. This usually ensures that the completions appear on top of
+  --         -- other plugins that also add virtual text, such as LSP inlay hints, but can be modified if
+  --         -- desired.
+  --         virtual_text_priority = 65535,
+  --         -- Set to false to disable all key bindings for managing completions.
+  --         map_keys = true,
+  --         -- The key to press when hitting the accept keybinding but no completion is showing.
+  --         -- Defaults to \t normally or <c-n> when a popup is showing.
+  --         accept_fallback = nil,
+  --         key_bindings = {
+  --           accept = "<Tab>",
+  --           accept_word = false,
+  --           accept_line = false,
+  --           clear = false,
+  --           next = "<M-]>",
+  --           prev = "<M-[>",
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     "monkoose/neocodeium",
     cmd = { "NeoCodeium" },
@@ -603,15 +601,15 @@ return {
     },
   },
 
-  {
-    enabled = false,
-    "github/copilot.vim",
-    cmd = "Copilot",
-    config = function()
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-    end,
-  },
+  -- {
+  --   enabled = false,
+  --   "github/copilot.vim",
+  --   cmd = "Copilot",
+  --   config = function()
+  --     vim.g.copilot_no_tab_map = true
+  --     vim.g.copilot_assume_mapped = true
+  --   end,
+  -- },
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -695,29 +693,29 @@ return {
     },
   },
 
-  {
-    "sourcegraph/sg.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
-    },
-    keys = {
-      {
-        "<leader>f" .. "s",
-        function() require("sg.extensions.telescope").fuzzy_search_results() end,
-        desc = "Cody search [sg.nvim]",
-      },
-    },
-    config = function() require("sg").setup {} end,
-  },
+  -- {
+  --   "sourcegraph/sg.nvim",
+  --   enabled = false,
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
+  --   },
+  --   keys = {
+  --     {
+  --       "<leader>f" .. "s",
+  --       function() require("sg.extensions.telescope").fuzzy_search_results() end,
+  --       desc = "Cody search [sg.nvim]",
+  --     },
+  --   },
+  --   config = function() require("sg").setup {} end,
+  -- },
 
-  {
-    "kiddos/gemini.nvim",
-    enabled = false,
-    build = { "pip install -r requirements.txt", ":UpdateRemotePlugins" },
-    config = function() require("gemini").setup() end,
-  },
+  -- {
+  --   "kiddos/gemini.nvim",
+  --   enabled = false,
+  --   build = { "pip install -r requirements.txt", ":UpdateRemotePlugins" },
+  --   config = function() require("gemini").setup() end,
+  -- },
 
   {
     "yetone/avante.nvim",
@@ -886,64 +884,65 @@ return {
     },
   },
 
-  {
-    "NickvanDyke/opencode.nvim",
-    dependencies = {
-      -- Recommended for `ask()` and `select()`.
-      -- Required for default `toggle()` implementation.
-      { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
-    },
-    config = function()
-      ---@type opencode.Opts
-      vim.g.opencode_opts = {
-        -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition".
-      }
-
-      -- Required for `opts.auto_reload`.
-      vim.o.autoread = true
-
-      -- Recommended/example keymaps.
-      vim.keymap.set(
-        { "n", "x" },
-        "<C-a>",
-        function() require("opencode").ask("@this: ", { submit = true }) end,
-        { desc = "Ask opencode" }
-      )
-      vim.keymap.set(
-        { "n", "x" },
-        "<LocalLeader>ax",
-        function() require("opencode").select() end,
-        { desc = "Execute opencode action…" }
-      )
-      vim.keymap.set(
-        { "n", "x" },
-        "<LocalLeader>aa",
-        function() require("opencode").prompt "@this" end,
-        { desc = "Add to opencode" }
-      )
-      vim.keymap.set(
-        { "n", "t" },
-        "<LocalLeader>ao",
-        function() require("opencode").toggle() end,
-        { desc = "Toggle opencode" }
-      )
-      vim.keymap.set(
-        "n",
-        "<S-C-u>",
-        function() require("opencode").command "session.half.page.up" end,
-        { desc = "opencode half page up" }
-      )
-      vim.keymap.set(
-        "n",
-        "<S-C-d>",
-        function() require("opencode").command "session.half.page.down" end,
-        { desc = "opencode half page down" }
-      )
-      -- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o".
-      vim.keymap.set("n", "+", "<C-a>", { desc = "Increment", noremap = true })
-      vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement", noremap = true })
-    end,
-  },
+  -- {
+  --   "NickvanDyke/opencode.nvim",
+  --   enabled = false,
+  --   dependencies = {
+  --     -- Recommended for `ask()` and `select()`.
+  --     -- Required for default `toggle()` implementation.
+  --     { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
+  --   },
+  --   config = function()
+  --     ---@type opencode.Opts
+  --     vim.g.opencode_opts = {
+  --       -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition".
+  --     }
+  --
+  --     -- Required for `opts.auto_reload`.
+  --     vim.o.autoread = true
+  --
+  --     -- Recommended/example keymaps.
+  --     vim.keymap.set(
+  --       { "n", "x" },
+  --       "<C-a>",
+  --       function() require("opencode").ask("@this: ", { submit = true }) end,
+  --       { desc = "Ask opencode" }
+  --     )
+  --     vim.keymap.set(
+  --       { "n", "x" },
+  --       "<LocalLeader>ax",
+  --       function() require("opencode").select() end,
+  --       { desc = "Execute opencode action…" }
+  --     )
+  --     vim.keymap.set(
+  --       { "n", "x" },
+  --       "<LocalLeader>aa",
+  --       function() require("opencode").prompt "@this" end,
+  --       { desc = "Add to opencode" }
+  --     )
+  --     vim.keymap.set(
+  --       { "n", "t" },
+  --       "<LocalLeader>ao",
+  --       function() require("opencode").toggle() end,
+  --       { desc = "Toggle opencode" }
+  --     )
+  --     vim.keymap.set(
+  --       "n",
+  --       "<S-C-u>",
+  --       function() require("opencode").command "session.half.page.up" end,
+  --       { desc = "opencode half page up" }
+  --     )
+  --     vim.keymap.set(
+  --       "n",
+  --       "<S-C-d>",
+  --       function() require("opencode").command "session.half.page.down" end,
+  --       { desc = "opencode half page down" }
+  --     )
+  --     -- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o".
+  --     vim.keymap.set("n", "+", "<C-a>", { desc = "Increment", noremap = true })
+  --     vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement", noremap = true })
+  --   end,
+  -- },
 
   {
     "milanglacier/minuet-ai.nvim",
@@ -993,13 +992,19 @@ return {
     "leonardcser/cursortab.nvim",
     -- version = "*",  -- Use latest tagged version for more stability
     build = "cd server && go build",
+    enabled = true,
     config = function()
       require("cursortab").setup {
         provider = {
-          type = "sweep",
-          url = "http://localhost:8000",
+          type = "copilot",
         },
       }
+      -- require("cursortab").setup {
+      --   provider = {
+      --     type = "sweep",
+      --     url = "http://localhost:8000",
+      --   },
+      -- }
     end,
   },
 }

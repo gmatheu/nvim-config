@@ -2,6 +2,8 @@ local maps = {
   i = {},
   n = {},
   v = {},
+  x = {},
+  o = {},
   t = {},
 }
 
@@ -83,9 +85,6 @@ maps.n["<Leader>wl"] = {
 maps.i["<F2>"] = { vim.lsp.buf.rename, desc = "Rename action" }
 maps.n["<Leader>ra"] = { vim.lsp.buf.rename, desc = "Rename action" }
 maps.v["<Leader>ra"] = { vim.lsp.buf.rename, desc = "Rename action" }
-
--- TODO Review
--- maps.n["<A-e>"] = { function() require("tsht").nodes() end, desc = "Expand selection" }
 
 -- maps.n["<Leader>qr"] = { "<cmd>OverseerRun<CR>", desc = "Run tasks [overseer]" }
 -- maps.n["<Leader>qt"] = { "<cmd>OverseerToggle<CR>", desc = "Overseer toggle [overseer]" }
@@ -190,5 +189,37 @@ maps.n["<LocalLeader>Xi"] = { name = "Instrument" }
 -- }
 
 -- maps.n["J"] = { "j", desc = "Next line" }
+
+-- source: https://github.com/pawelgrzybek/dotfiles/blob/master/nvim/lua/keymaps.lua#L92-L107
+-- incremental selection treesitter/lsp
+local increment_selection = {
+  function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      require("vim.treesitter._select").select_parent(vim.v.count1)
+    else
+      vim.lsp.buf.selection_range(vim.v.count1)
+    end
+  end,
+  desc = "Expand selection [incremental]",
+}
+
+maps.n["<A-o>"] = increment_selection
+maps.x["<A-o>"] = increment_selection
+maps.o["<A-o>"] = increment_selection
+
+local decrement_selection = {
+  function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      require("vim.treesitter._select").select_child(vim.v.count1)
+    else
+      vim.lsp.buf.selection_range(-vim.v.count1)
+    end
+  end,
+  desc = "Shrink selection [incremental]",
+}
+
+maps.n["<A-O>"] = decrement_selection
+maps.x["<A-O>"] = decrement_selection
+maps.o["<A-O>"] = decrement_selection
 
 return maps
