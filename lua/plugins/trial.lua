@@ -108,7 +108,7 @@ return {
     "wakatime/vim-wakatime",
     lazy = false,
     -- enabled = not vim.env.ASTRONVIM_SKIP_WAKATIME,
-    enabled = false,
+    enabled = true,
   },
 
   {
@@ -569,6 +569,37 @@ return {
           unstaged = true,
           conflicts = true,
         },
+      },
+    },
+  },
+
+  {
+    "r4ppz/lspeek.nvim",
+    opts = {
+      window = {
+        width = 70,
+        height = 15,
+        border = "single",
+      },
+      stack_limit = 7,
+      select_first = false,
+      keymaps = {
+        close = "q",
+        split = "s",
+        vsplit = "v",
+        enter = "<CR>",
+      },
+    },
+    keys = {
+      {
+        "gdd",
+        function() require("lspeek").peek_definition() end,
+        desc = "Peek Definition (lspeek)",
+      },
+      {
+        "gdt",
+        function() require("lspeek").peek_type_definition() end,
+        desc = "Peek Type Definition (lspeek)",
       },
     },
   },
