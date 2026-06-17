@@ -30,10 +30,12 @@ return {
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.svelte" },
   { import = "astrocommunity.pack.typescript" },
-  { import = "astrocommunity.pack.typescript-all-in-one" },
+  -- { import = "astrocommunity.pack.typescript-all-in-one" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.json" },
+  { import = "astrocommunity.pack.php" },
+  { import = "astrocommunity.pack.full-dadbod" },
   -- { import = "astrocommunity.pack.java" },
 
   { import = "astrocommunity.editing-support.refactoring-nvim" },
