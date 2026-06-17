@@ -23,9 +23,9 @@ return {
       -- control auto formatting on save
       format_on_save = {
         enabled = true, -- enable or disable format on save globally
-        allow_filetypes = { -- enable format on save for specified filetypes only
-          -- "go",
-        },
+        -- allow_filetypes = { -- enable format on save for specified filetypes only
+        --   -- "go",
+        -- },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
         },
@@ -57,6 +57,12 @@ return {
         },
       },
       lua_ls = { settings = { Lua = { workspace = { checkThirdParty = false } } } },
+      copilot = {
+        root_markers = { "composer.json", ".git" },
+      },
+      phpactor = {
+        root_markers = { "composer.json", ".phpactor.json", ".phpactor.yml" },
+      },
       denols = {
         root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
       },
