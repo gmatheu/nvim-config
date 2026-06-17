@@ -972,10 +972,10 @@ return {
         debounce = 600, -- Increase to reduce costs and avoid rate limits
         provider_options = {
           openai_compatible = {
-            api_key = "OPENROUTER_API_KEY_MINUET",
-            end_point = "https://openrouter.ai/api/v1/chat/completions",
-            model = "moonshotai/kimi-k2.5",
-            name = "Openrouter",
+            api_key = "MIMO_API_KEY_MINUET",
+            end_point = "https://token-plan-sgp.xiaomimimo.com/v1",
+            model = "mimo-v2.5",
+            name = "MiMo",
             optional = {
               max_tokens = 56,
               top_p = 0.9,
@@ -989,7 +989,7 @@ return {
     end,
   },
   {
-    "leonardcser/cursortab.nvim",
+    "cursortab/cursortab.nvim",
     -- version = "*",  -- Use latest tagged version for more stability
     build = "cd server && go build",
     enabled = true,
@@ -998,6 +998,28 @@ return {
         provider = {
           type = "copilot",
         },
+
+        blink = {
+          enabled = true, -- Enable blink source
+          ghost_text = true, -- Show native ghost text alongside blink menu
+        },
+
+        behavior = {
+          idle_completion_delay = 50, -- Delay in ms after idle to trigger completion (-1 to disable)
+          text_change_debounce = 50, -- Debounce in ms after text change to trigger completion (-1 to disable)
+          max_visible_lines = 12, -- Max visible lines per completion (0 to disable)
+          disabled_in = {}, -- Tree-sitter scopes to suppress completions (e.g., { "comment", "string" })
+          -- enabled_modes = { "insert", "normal" }, -- Modes where completions are active
+          -- cursor_prediction = {
+          --   enabled = true, -- Show jump indicators after completions
+          --   auto_advance = true, -- When no changes, show cursor jump to last line
+          --   proximity_threshold = 2, -- Min lines apart to show cursor jump (0 to disable)
+          -- },
+        },
+        --
+        -- debug = {
+        --   immediate_shutdown = false, -- Shutdown daemon immediately when no clients
+        -- },
       }
       -- require("cursortab").setup {
       --   provider = {
